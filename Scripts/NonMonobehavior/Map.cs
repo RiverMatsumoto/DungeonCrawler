@@ -10,6 +10,7 @@ public class Map
     public readonly int columns;
     public Tile[,] tiles;
     public IOccupiesTile[,] characterPositions;
+    public Vector2Int playerPosition;
 
 
     public Map(int rows, int columns, Texture2D mapLayout)
@@ -28,6 +29,8 @@ public class Map
     /// <summary>
     /// Generates a map given by a Texture2D png file. The dimensions of the image determine the size of the map.
     /// Each pixel of the image represents a tile on the map, the color of each pixel represents the type of tile. 
+    /// Current color representations: White(255,255,255) = Floor; Black(0,0,0) = Wall; Green(0,255,0) = Start point;
+    /// Blue(0,0,255) = an end tile;
     /// </summary>
     /// <param name="mapLayout">A Texture2D png file that determines the way the map will generate.</param>
     private void generateMap(Texture2D mapLayout)
@@ -36,13 +39,18 @@ public class Map
         {
             for (var y = 0; y < columns; y++)
             {
-                if (mapLayout.GetPixel(x,y) == Color.white)
+                Color pixel = mapLayout.GetPixel(x,y);
+                if (pixel == Color.white)
                 {
                     tiles[x, y] = new Floor(x, y);
                 }
-                else
+                else if (pixel == Color.black)
                 {
                     tiles[x, y] = new Wall(x, y);
+                }
+                else if (pixel == Color.green)
+                {
+                    // place a starting point floor here
                 }
             }
         }
@@ -74,19 +82,22 @@ public class Map
     }
 
     /// <summary>
-    /// Places the character somewhere on the map's coordinates. May only place them inside the
+    /// Places the entity somewhere on the map's coordinates. May only place them inside the
     /// the map boundaries.
     /// </summary>
-    /// <param name="position">Starting point of </param>
-    /// <param name="direction"></param>
+    /// <param name="startPos">Starting point of the entity.</param>
+    /// <param name="direction">
+    /// The direction/end point the entity will move to. The direction is relative to the entity 
+    /// so adding x+3 and y-2 will move the entity 3 tiles local right and 2 tiles local down. 
+    /// </param>
     /// <param name="entity"></param>
-    public void placeCharacter(Vector2Int position, Vector2Int direction, IOccupiesTile entity)
+    public void placeCharacter(Vector2Int startPos, Vector2Int direction, IOccupiesTile entity)
     {
-        characterPositions[position.x, position.y] = null;
-        Debug.Log(position);
-        position += direction;
-        Debug.Log(position);
-        characterPositions[position.x, position.y] = entity;
+        characterPositions[startPos.x, startPos.y] = null;
+        Debug.Log(startPos);
+        Vector2Int endPos = startPos + direction;
+        Debug.Log(endPos);
+        characterPositions[endPos.x, endPos.y] = entity;
     }
 
     /// <summary>

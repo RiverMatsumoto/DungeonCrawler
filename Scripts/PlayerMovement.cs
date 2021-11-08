@@ -213,9 +213,13 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public bool isValidMove(Vector2Int moveDir)
     {
         Tile tile = mapGenerator.map.getTile(mapPosition, moveDir);
-        if (tile.isFloor && tile != null)
+        // Written as nested if statements to ensure no null reference exception
+        if (tile != null)
         {
-            return true;
+            if (tile.isFloor)
+            {
+                return true;
+            }
         }
         return false;
     }

@@ -15,10 +15,13 @@ public class MapGenerator : MonoBehaviour
 
     void Awake()
     {
-        map = new Map(8,8, mapLayout);
-        for (int x = 0; x < map.rows; x++)
+        // store the map texture layout rows and columns
+        int rows = mapLayout.height;
+        int columns = mapLayout.width;
+        map = new Map(rows, columns, mapLayout);
+        for (int x = 0; x < rows; x++)
         {
-            for (int y = 0; y < map.columns; y++)
+            for (int y = 0; y < columns; y++)
             {
                 if (mapLayout.GetPixel(x, y) == Color.black)
                 {

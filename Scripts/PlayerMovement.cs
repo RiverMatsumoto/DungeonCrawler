@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, ICharacter
+public class PlayerMovement : MonoBehaviour, IOccupiesTile
 {
     public Vector2Int localForward;
     public Vector2Int localRight;
@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour, ICharacter
     private Vector2 input;
     private float turnInput;
     bool isActionable;
-    bool isFloor;
     [SerializeField]
     const float MOVE_TIME = 0.3F;
     const float MOVE_COOLDOWN_TIME = 0.05F;
@@ -32,7 +31,6 @@ public class PlayerMovement : MonoBehaviour, ICharacter
         input = new Vector2();
         turnInput = 0;
         isActionable = true;
-        isFloor = true;
     }
 
     private void FixedUpdate()
@@ -53,10 +51,11 @@ public class PlayerMovement : MonoBehaviour, ICharacter
 
     ///  <summary>
     ///  Called in the fixed update loop. Uses the already read input values
-
     ///  and moves the player in the direction they press.
     /// </summary>
-    /// <param name="userInput"></param>
+    /// <param name="userInput">
+    /// A Vector2 variable representing the user input with a range from 0-1 for the x and y axis.
+    /// </param>
     void attemptMove(Vector2 userInput)
     {
         if (!isActionable)
@@ -64,10 +63,9 @@ public class PlayerMovement : MonoBehaviour, ICharacter
             return;
         }
 
-        if (isActionable) return;
-
         if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
         {
+            Debug.Log("move forward");
             StartCoroutine(movePlayer(transform.forward));
             mapGenerator.map.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localForward;
@@ -108,7 +106,7 @@ public class PlayerMovement : MonoBehaviour, ICharacter
         if (turnInput > 0.5)
         {
             StartCoroutine(turnPlayer(transform.right));
-            turnRightLocalFacing();
+            turnLocalFacingRight();
         }
         else if (turnInput < -0.5)
         {
@@ -118,8 +116,7 @@ public class PlayerMovement : MonoBehaviour, ICharacter
     }
 
     /// <summary>
-    /// A coroutine that moves the player in the
-
+    /// A coroutine that turns the player a quarter turn on it's right-facing  or left-facing direction.
     /// </summary>
     /// <param name="direction">A Vector3 direction for which direction to turn the player.</param>
     /// <returns>Is a coroutine. Returns a coroutine yield.</returns>
@@ -148,7 +145,10 @@ public class PlayerMovement : MonoBehaviour, ICharacter
         isActionable = true;
     }
 
-    private void turnRightLocalFacing()
+    /// <summary>
+    /// When turning right, converts the current facing direction to match the map's absolute facing directions.
+    /// </summary>
+    private void turnLocalFacingRight()
     {
         Vector2Int tempF = localForward;
         Vector2Int tempR = localRight;
@@ -160,6 +160,9 @@ public class PlayerMovement : MonoBehaviour, ICharacter
         localLeft = tempF;
     }
 
+    /// <summary>
+    /// When turning left, converts the current facing direction to match the map's absolute facing directions.
+    /// </summary>
     private void turnLeftLocalFacing()
     {
         Vector2Int tempF = localForward;
@@ -174,7 +177,6 @@ public class PlayerMovement : MonoBehaviour, ICharacter
 
     /// <summary>
     /// A coroutine that moves the player in the direction they input. They can move
-
     /// forward, back, left, and right.
     /// </summary>
     /// <param name="direction">A Vector3 direction for which direction to move the player.</param>
@@ -211,16 +213,9 @@ public class PlayerMovement : MonoBehaviour, ICharacter
     public bool isValidMove(Vector2Int moveDir)
     {
         Tile tile = mapGenerator.map.getTile(mapPosition, moveDir);
-        try
+        if (tile.isFloor && tile != null)
         {
-            if (tile.isFloor && tile != null)
-            {
-                return true;
-            }
-        }
-        catch (System.NullReferenceException ex)
-        {
-            Debug.Log("Null tile reference: " + ex);
+            return true;
         }
         return false;
     }

@@ -9,27 +9,29 @@ public class MapGenerator : MonoBehaviour
     public Map map;
     [SerializeField]
     private Texture2D mapLayout;
+    public PlayerMovement player;
     const int TILE_SPACING = 5;
     const int FLOOR = 0;
     const int WALL = 1;
 
-    void Awake()
+    void Start()
     {
         // store the map texture layout rows and columns
-        int rows = mapLayout.height;
-        int columns = mapLayout.width;
+        int rows = mapLayout.width;
+        int columns = mapLayout.height;
         map = new Map(rows, columns, mapLayout);
         for (int x = 0; x < rows; x++)
         {
             for (int y = 0; y < columns; y++)
             {
-                if (mapLayout.GetPixel(x, y) == Color.black)
+                if (map.getTile(x, y) is Wall)
                 {
                     var wallInstance = Instantiate(tiles[WALL], new Vector3(x*TILE_SPACING, 0, y*TILE_SPACING), Quaternion.identity, transform);
                 }
             }
         }
         buildPerimeter();
+        player.placePlayer(Map.playerPosition, Map.DOWN);
     }
 
     /// <summary>

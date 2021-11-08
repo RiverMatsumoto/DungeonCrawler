@@ -12,6 +12,7 @@ public class StartFloor : Tile
     {
         properties = new Dictionary<string, bool>();
         this.properties.Add("isFloor", true);
+        this.properties.Add("isStartFloor", true);
         this.row = row;
         this.column = column;
     }

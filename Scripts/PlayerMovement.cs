@@ -21,13 +21,13 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     const float MOVE_COOLDOWN_TIME = 0.02F;
     const float MOVE_DISTANCE = 5;
 
-    void Start()
+    void Awake()
     {
+        //TODO CREATE A PLAYER MOVED EVENT SYSTEM TO CLEAN UP CODE
         localForward = new Vector2Int(0, 1);
         localBack = new Vector2Int(0, -1);
         localRight = new Vector2Int(1, 0);
         localLeft = new Vector2Int(-1, 0);
-        mapPosition = new Vector2Int(0, 0);
         input = new Vector2();
         turnInput = 0;
         isActionable = true;
@@ -135,8 +135,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         while (elapsedTime < MOVE_TIME)
         {
             transform.localRotation =
-                Quaternion
-                    .Lerp(startPoint, endPoint, (elapsedTime / MOVE_TIME));
+                Quaternion.Lerp(startPoint, endPoint, (elapsedTime / MOVE_TIME));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -213,6 +212,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public bool isValidMove(Vector2Int moveDir)
     {
         Tile tile = mapGenerator.map.getTile(mapPosition, moveDir);
+        Debug.Log(tile);
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)
         {
@@ -222,5 +222,35 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
             }
         }
         return false;
+    }
+
+    public void placePlayer(Vector2Int position, Vector2Int facingDir)
+    {
+        faceDirection(facingDir);
+        mapPosition = position;
+        Debug.Log(mapPosition);
+        Vector3 newPos = new Vector3();
+        newPos.x = position.x * MOVE_DISTANCE;
+        newPos.z = position.y * MOVE_DISTANCE;
+        transform.position = newPos;
+    }
+
+
+
+    private void faceDirection(Vector2Int facingDir)
+    {
+        // not gonna lie this is just a magic formula
+        localForward = facingDir;
+        localBack = facingDir * -1;
+        localLeft.x = localBack.y;
+        localLeft.y = localBack.x;
+        localRight.x = localForward.y;
+        localRight.y = localForward.x;
+        
+        Vector3 endRotation = new Vector3(facingDir.x, 0, facingDir.y);
+        Debug.Log(endRotation);
+        Quaternion endDir = transform.localRotation;
+        endDir.SetLookRotation(endRotation);
+        transform.localRotation = endDir;
     }
 }

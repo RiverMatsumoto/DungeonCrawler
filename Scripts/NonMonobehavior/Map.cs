@@ -2,23 +2,19 @@ using UnityEngine;
 
 public class Map
 {
-    public readonly Vector2Int UP;
-    public readonly Vector2Int DOWN;
-    public readonly Vector2Int LEFT;
-    public readonly Vector2Int RIGHT;
+    public static readonly Vector2Int UP = Vector2Int.up;
+    public static readonly Vector2Int DOWN = Vector2Int.down;
+    public static readonly Vector2Int LEFT = Vector2Int.left;
+    public static readonly Vector2Int RIGHT = Vector2Int.right;
     public readonly int rows;
     public readonly int columns;
     public Tile[,] tiles;
     public IOccupiesTile[,] characterPositions;
-    public Vector2Int playerPosition;
+    public static Vector2Int playerPosition;
 
 
     public Map(int rows, int columns, Texture2D mapLayout)
     {
-        UP = Vector2Int.up;
-        DOWN = Vector2Int.down;
-        LEFT = Vector2Int.left;
-        RIGHT = Vector2Int.right;
         this.rows = rows;
         this.columns = columns;
         tiles = new Tile[rows, columns];
@@ -35,6 +31,7 @@ public class Map
     /// <param name="mapLayout">A Texture2D png file that determines the way the map will generate.</param>
     private void generateMap(Texture2D mapLayout)
     {
+        Debug.Log(rows + " " + columns);
         for (var x = 0; x < rows; x++)
         {
             for (var y = 0; y < columns; y++)
@@ -50,7 +47,10 @@ public class Map
                 }
                 else if (pixel == Color.green)
                 {
-                    // place a starting point floor here
+                    tiles[x, y] = new StartFloor(x, y);
+                    Debug.Log(Map.playerPosition);
+                    playerPosition = new Vector2Int(x, y);
+                    Debug.Log(Map.playerPosition);
                 }
             }
         }
@@ -61,18 +61,20 @@ public class Map
     /// takes in coordinates on the map, and the intended move direction then returns
     /// a Tile object. 
     /// </summary>
-    /// <param name="coordinates"></param>
+    /// <param name="position"></param>
     /// <param name="intendedMoveDir"></param>
     /// <returns></returns>
-    public Tile getTile(Vector2Int coordinates, Vector2Int intendedMoveDir)
+    public Tile getTile(Vector2Int position, Vector2Int intendedMoveDir)
     {
-        Vector2Int tilePos = coordinates + intendedMoveDir;
-        if (isValidCoordinates(tilePos))
+        Debug.Log(position + " " + intendedMoveDir);
+        Vector2Int tilePos = position + intendedMoveDir;
+        Debug.Log(tilePos);
+        Debug.Log(rows + " " + columns);
+        if (checkValidCoordinates(tilePos))
         {
             return null;
         }
         
-
         return tiles[tilePos.x, tilePos.y];
     }
 
@@ -107,11 +109,10 @@ public class Map
     /// <param name="x">Map x coordinate</param>
     /// <param name="y">Map y coordinate</param>
     /// <returns>A boolean true if the coordinates are valid, false if the coordinates are invalid.</returns>
-    private bool isValidCoordinates(Vector2Int coordinates)
+    private bool checkValidCoordinates(Vector2Int coordinates)
     {
-        return coordinates.x >= this.columns 
-            || coordinates.x<0 
-            || coordinates.y >= this.rows 
-            || coordinates.y < 0;
+        
+        return coordinates.x >= rows || coordinates.x < 0 
+            || coordinates.y >= columns || coordinates.y < 0;
     }
 }

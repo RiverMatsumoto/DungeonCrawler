@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     bool isActionable;
     [SerializeField]
     const float MOVE_TIME = 0.3F;
-    const float MOVE_COOLDOWN_TIME = 0.05F;
+    const float MOVE_COOLDOWN_TIME = 0.02F;
     const float MOVE_DISTANCE = 5;
 
     void Start()
@@ -216,7 +216,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)
         {
-            if (tile.isFloor)
+            if (tile.properties.ContainsKey("isFloor"))
             {
                 return true;
             }

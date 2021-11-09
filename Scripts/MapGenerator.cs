@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MapGenerator : MonoBehaviour
     const int TILE_SPACING = 5;
     const int FLOOR = 0;
     const int WALL = 1;
+    
 
     void Start()
     {
@@ -27,11 +29,22 @@ public class MapGenerator : MonoBehaviour
                 if (map.getTile(x, y) is Wall)
                 {
                     var wallInstance = Instantiate(tiles[WALL], new Vector3(x*TILE_SPACING, 0, y*TILE_SPACING), Quaternion.identity, transform);
+                    
                 }
             }
         }
         buildPerimeter();
-        player.placePlayer(Map.playerPosition, Map.DOWN);
+        player.placePlayer(Map.playerPosition, Map.UP);
+    }
+
+    // debugging
+    public void onPlacePlayer(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("pressed L");
+            player.placePlayer(new Vector2Int(30,30), Map.DOWN);
+        }
     }
 
     /// <summary>
@@ -44,7 +57,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (var y = -1; y < map.columns+1; y++)
             {
-                if (x == -1 || y == -1 || x == map.rows || y == map.rows)
+                if (x == -1 || y == -1 || x == map.rows || y == map.columns)
                 {
                     instantiateWall(x,y);
                 }

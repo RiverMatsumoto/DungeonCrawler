@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public Vector2Int localLeft;
     public Vector2Int mapPosition { get; set; }
     public MapGenerator mapGenerator;
+    public UnityEvent<Vector2Int> playerMoved;
     [SerializeField]
     private InputActionAsset controls;
     private Vector2 input;
@@ -23,7 +25,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
     void Awake()
     {
-        //TODO CREATE A PLAYER MOVED EVENT SYSTEM TO CLEAN UP CODE
         localForward = new Vector2Int(0, 1);
         localBack = new Vector2Int(0, -1);
         localRight = new Vector2Int(1, 0);
@@ -66,26 +67,25 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
         {
             Debug.Log("move forward");
-            StartCoroutine(movePlayer(transform.forward));
-            mapGenerator.map.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
+            StartCoroutine(movePlayer(localForward));
             mapPosition += localForward;
         }
         else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
         {
 
-            StartCoroutine(movePlayer(-transform.forward));
+            StartCoroutine(movePlayer(localBack));
             mapGenerator.map.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localBack;
         }
         else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
         {
-            StartCoroutine(movePlayer(transform.right));
+            StartCoroutine(movePlayer(localRight));
             mapGenerator.map.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
-            mapPosition += localRight;
+            mapPosition += localRight; // add direction to the map position
         }
         else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
         {
-            StartCoroutine(movePlayer(-transform.right));
+            StartCoroutine(movePlayer(localLeft));
             mapGenerator.map.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localLeft;
         }
@@ -180,16 +180,21 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     /// </summary>
     /// <param name="direction">A Vector3 direction for which direction to move the player.</param>
     /// <returns>Is a coroutine. Returns a coroutine yield.</returns>
-    public IEnumerator movePlayer(Vector3 direction)
+    public IEnumerator movePlayer(Vector2Int direction)
     {
         if (!isActionable)
         {
             yield break;
         }
         isActionable = false;
+        // place the character on the map and send the playermoved event
+        mapGenerator.map.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
+        playerMoved.Invoke(mapPosition + direction);
+
+        Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
         Vector3 endPoint =
-            transform.localPosition + (direction * MOVE_DISTANCE);
+            transform.localPosition + (v3direction * MOVE_DISTANCE);
         float elapsedTime = 0;
         while (elapsedTime < MOVE_TIME)
         {
@@ -228,8 +233,10 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     {
         faceDirection(facingDir);
         mapPosition = position;
+        playerMoved.Invoke(position); // invoke event that player moved
+
         Debug.Log(mapPosition);
-        Vector3 newPos = new Vector3();
+        Vector3 newPos = new Vector3(); // adjust the physical transform to match the coordinates on the map
         newPos.x = position.x * MOVE_DISTANCE;
         newPos.z = position.y * MOVE_DISTANCE;
         transform.position = newPos;
@@ -248,7 +255,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         localRight.y = localForward.x;
         
         Vector3 endRotation = new Vector3(facingDir.x, 0, facingDir.y);
-        Debug.Log(endRotation);
         Quaternion endDir = transform.localRotation;
         endDir.SetLookRotation(endRotation);
         transform.localRotation = endDir;

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class UICoordinates : MonoBehaviour
 {
-    public PlayerMovement player;
-    private void FixedUpdate() 
+
+    public void updateUICoordinates(Vector2Int coordinates)
     {
-        GetComponent<TMPro.TextMeshProUGUI>().text = player.mapPosition.ToString();
+        
+        GetComponent<TMPro.TextMeshProUGUI>().text = coordinates.ToString();
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public Vector2Int localLeft;
     public Vector2Int mapPosition { get; set; }
     public MapGenerator mapGenerator;
-    public UnityEvent<Vector2Int> playerMoved;
     [SerializeField]
     private InputActionAsset controls;
     private Vector2 input;
@@ -132,6 +132,8 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         Quaternion endPoint = transform.localRotation;
         endPoint.SetLookRotation(direction);
         float elapsedTime = 0;
+        // MovementEventHandler.playerTurned(endPoint);
+        broadCastPlayerTurned(endPoint);
         while (elapsedTime < MOVE_TIME)
         {
             transform.localRotation =
@@ -142,6 +144,11 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         transform.localRotation = endPoint;
         yield return new WaitForSeconds(MOVE_COOLDOWN_TIME);
         isActionable = true;
+    }
+
+    private void broadCastPlayerTurned(Quaternion endPoint)
+    {
+        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint));
     }
 
     /// <summary>
@@ -189,7 +196,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         isActionable = false;
         // place the character on the map and send the playermoved event
         mapGenerator.map.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
-        playerMoved.Invoke(mapPosition + direction);
 
         Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
@@ -233,13 +239,14 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     {
         faceDirection(facingDir);
         mapPosition = position;
-        playerMoved.Invoke(position); // invoke event that player moved
 
         Debug.Log(mapPosition);
         Vector3 newPos = new Vector3(); // adjust the physical transform to match the coordinates on the map
         newPos.x = position.x * MOVE_DISTANCE;
         newPos.z = position.y * MOVE_DISTANCE;
         transform.position = newPos;
+
+        MovementEventHandler.playerMoved(mapPosition);
     }
 
 
@@ -253,10 +260,13 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         localLeft.y = localBack.x;
         localRight.x = localForward.y;
         localRight.y = localForward.x;
-        
         Vector3 endRotation = new Vector3(facingDir.x, 0, facingDir.y);
         Quaternion endDir = transform.localRotation;
         endDir.SetLookRotation(endRotation);
         transform.localRotation = endDir;
+
+        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir));
     }
+
+
 }

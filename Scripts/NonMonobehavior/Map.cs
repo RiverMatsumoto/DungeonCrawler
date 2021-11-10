@@ -48,9 +48,7 @@ public class Map
                 else if (pixel == Color.green)
                 {
                     tiles[x, y] = new StartFloor(x, y);
-                    Debug.Log(Map.playerPosition);
                     playerPosition = new Vector2Int(x, y);
-                    Debug.Log(Map.playerPosition);
                 }
             }
         }
@@ -66,10 +64,8 @@ public class Map
     /// <returns></returns>
     public Tile getTile(Vector2Int position, Vector2Int intendedMoveDir)
     {
-        Debug.Log(position + " " + intendedMoveDir);
         Vector2Int tilePos = position + intendedMoveDir;
         Debug.Log(tilePos);
-        Debug.Log(rows + " " + columns);
         if (checkValidCoordinates(tilePos))
         {
             return null;
@@ -100,6 +96,7 @@ public class Map
         Vector2Int endPos = startPos + direction;
         Debug.Log(endPos);
         characterPositions[endPos.x, endPos.y] = entity;
+        MovementEventHandler.playerMoved(endPos);
     }
 
     /// <summary>

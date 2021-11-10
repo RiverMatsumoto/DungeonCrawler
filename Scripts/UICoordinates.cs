@@ -7,7 +7,17 @@ public class UICoordinates : MonoBehaviour
 
     public void updateUICoordinates(Vector2Int coordinates)
     {
-        
+
         GetComponent<TMPro.TextMeshProUGUI>().text = coordinates.ToString();
+    }
+
+    private void OnEnable()
+    {
+        MovementEventHandler.broadcastPlayerMoved += updateUICoordinates;
+    }
+    
+    private void OnDisable() 
+    {
+        MovementEventHandler.broadcastPlayerMoved -= updateUICoordinates;
     }
 }

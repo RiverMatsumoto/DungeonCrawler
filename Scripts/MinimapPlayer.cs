@@ -10,8 +10,8 @@ public class MinimapPlayer : MonoBehaviour
 
     public void movePlayer(Vector2Int position)
     {
-        transform.localPosition = new Vector3(position.x, position.y, 0);
-        transform.localPosition += TILE_OFFSET;
+        transform.localPosition = new Vector3(position.x, position.y, -1);
+        // transform.localPosition += TILE_OFFSET;
     }
     
     public void turnPlayer(Quaternion direction)

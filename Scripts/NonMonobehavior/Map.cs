@@ -74,6 +74,18 @@ public class Map
         return tiles[tilePos.x, tilePos.y];
     }
 
+    public Tile getTile(Vector2Int position)
+    {
+        Vector2Int tilePos = position;
+        Debug.Log(tilePos);
+        if (checkValidCoordinates(tilePos))
+        {
+            return null;
+        }
+        
+        return tiles[tilePos.x, tilePos.y];
+    }
+
     public Tile getTile(int x, int y)
     {
         return tiles[x, y];

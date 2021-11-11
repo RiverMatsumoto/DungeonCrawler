@@ -19,8 +19,8 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         // store the map texture layout rows and columns
-        int rows = mapLayout.width;
-        int columns = mapLayout.height;
+        int columns = mapLayout.width;
+        int rows = mapLayout.height;
         map = new Map(rows, columns, mapLayout);
         for (int x = 0; x < rows; x++)
         {

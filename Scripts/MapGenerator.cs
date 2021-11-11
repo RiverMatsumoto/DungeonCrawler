@@ -12,15 +12,13 @@ public class MapGenerator : MonoBehaviour
     private Texture2D mapLayout;
     public PlayerMovement player;
     const int TILE_SPACING = 5;
-    const int FLOOR = 0;
-    const int WALL = 1;
-    
+
 
     void Start()
     {
         // store the map texture layout rows and columns
-        int columns = mapLayout.width;
-        int rows = mapLayout.height;
+        int columns = mapLayout.height;
+        int rows = mapLayout.width;
         map = new Map(rows, columns, mapLayout);
         for (int x = 0; x < rows; x++)
         {
@@ -28,8 +26,12 @@ public class MapGenerator : MonoBehaviour
             {
                 if (map.getTile(x, y) is Wall)
                 {
-                    var wallInstance = Instantiate(tiles[WALL], new Vector3(x*TILE_SPACING, 0, y*TILE_SPACING), Quaternion.identity, transform);
-                    
+                    var wallInstance = Instantiate(
+                            tiles[(int)TileTypes.WALL],
+                            new Vector3(x * TILE_SPACING, 0, y * TILE_SPACING),
+                            Quaternion.identity,
+                            transform);
+
                 }
             }
         }
@@ -43,7 +45,7 @@ public class MapGenerator : MonoBehaviour
         if (context.started)
         {
             Debug.Log("pressed L");
-            player.placePlayer(new Vector2Int(30,30), Map.DOWN);
+            player.placePlayer(new Vector2Int(30, 30), Map.DOWN);
         }
     }
 
@@ -53,13 +55,13 @@ public class MapGenerator : MonoBehaviour
     private void buildPerimeter()
     {
         //spawn a wall around the perimeter
-        for (var x = -1; x < map.rows+1; x++)
+        for (var x = -1; x < map.rows + 1; x++)
         {
-            for (var y = -1; y < map.columns+1; y++)
+            for (var y = -1; y < map.columns + 1; y++)
             {
                 if (x == -1 || y == -1 || x == map.rows || y == map.columns)
                 {
-                    instantiateWall(x,y);
+                    instantiateWall(x, y);
                 }
             }
         }
@@ -72,12 +74,12 @@ public class MapGenerator : MonoBehaviour
     /// <param name="y">y coordinate</param>
     private void instantiateWall(int x, int y)
     {
-        var wallInstance = 
+        var wallInstance =
             Instantiate(
-                tiles[WALL], 
-                new Vector3(x*TILE_SPACING, 0, y*TILE_SPACING), 
-                Quaternion.identity, 
-                transform
+                tiles[(int)TileTypes.WALL],
+                new Vector3(x * TILE_SPACING, 0, y * TILE_SPACING),
+                Quaternion.identity,
+                transform.GetChild(0)
             );
     }
 }

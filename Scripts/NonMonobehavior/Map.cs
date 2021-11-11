@@ -6,19 +6,19 @@ public class Map
     public static readonly Vector2Int DOWN = Vector2Int.down;
     public static readonly Vector2Int LEFT = Vector2Int.left;
     public static readonly Vector2Int RIGHT = Vector2Int.right;
-    public readonly int rows;
     public readonly int columns;
+    public readonly int rows;
     public Tile[,] tiles;
     public IOccupiesTile[,] characterPositions;
     public static Vector2Int playerPosition;
 
 
-    public Map(int rows, int columns, Texture2D mapLayout)
+    public Map(int columns, int rows, Texture2D mapLayout)
     {
-        this.rows = rows;
         this.columns = columns;
-        tiles = new Tile[rows, columns];
-        characterPositions = new IOccupiesTile[rows, columns];
+        this.rows = rows;
+        tiles = new Tile[columns, rows];
+        characterPositions = new IOccupiesTile[columns, rows];
         generateMap(mapLayout);
     }
 
@@ -31,10 +31,10 @@ public class Map
     /// <param name="mapLayout">A Texture2D png file that determines the way the map will generate.</param>
     private void generateMap(Texture2D mapLayout)
     {
-        Debug.Log(rows + " " + columns);
-        for (var x = 0; x < rows; x++)
+        Debug.Log(columns + " " + rows);
+        for (var x = 0; x < columns; x++)
         {
-            for (var y = 0; y < columns; y++)
+            for (var y = 0; y < rows; y++)
             {
                 Color pixel = mapLayout.GetPixel(x,y);
                 if (pixel == Color.white)
@@ -121,7 +121,7 @@ public class Map
     private bool checkValidCoordinates(Vector2Int coordinates)
     {
         
-        return coordinates.x >= rows || coordinates.x < 0 
-            || coordinates.y >= columns || coordinates.y < 0;
+        return coordinates.x >= columns || coordinates.x < 0 
+            || coordinates.y >= rows || coordinates.y < 0;
     }
 }

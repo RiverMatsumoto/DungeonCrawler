@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileTypes
+public enum TileTypes
 {
-    public static readonly int FLOOR = 0;
-    public static readonly int WALL = 1;
+     FLOOR = 0,
+    WALL = 1,
+    START_FLOOR = 2
+    
 }

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     private float turnInput;
     bool isActionable;
     [SerializeField]
-    const float MOVE_TIME = 0.3F;
+    const float MOVE_TIME = 0.1F;
     const float MOVE_COOLDOWN_TIME = 0.02F;
     const float MOVE_DISTANCE = 5;
 
@@ -222,6 +222,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     /// <returns>A boolean true if the intended move direction is legal/valid. False if the intended move is illegal/invalid.</returns>
     public bool isValidMove(Vector2Int moveDir)
     {
+        Debug.Log(mapPosition + " " + moveDir);
         Tile tile = mapGenerator.map.getTile(mapPosition, moveDir);
         Debug.Log(tile);
         // Written as nested if statements to ensure no null reference exception

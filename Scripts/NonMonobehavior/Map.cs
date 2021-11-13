@@ -10,7 +10,7 @@ public class Map
     public readonly int rows;
     public Tile[,] tiles;
     public IOccupiesTile[,] characterPositions;
-    public static Vector2Int playerPosition;
+    public Vector2Int playerPosition;
 
 
     public Map(int columns, int rows, Texture2D mapLayout)
@@ -31,12 +31,11 @@ public class Map
     /// <param name="mapLayout">A Texture2D png file that determines the way the map will generate.</param>
     private void generateMap(Texture2D mapLayout)
     {
-        Debug.Log(columns + " " + rows);
         for (var x = 0; x < columns; x++)
         {
             for (var y = 0; y < rows; y++)
             {
-                Color pixel = mapLayout.GetPixel(x,y);
+                Color pixel = mapLayout.GetPixel(x, y);
                 if (pixel == Color.white)
                 {
                     tiles[x, y] = new Floor(x, y);
@@ -68,27 +67,28 @@ public class Map
         Debug.Log(tilePos);
         if (checkValidCoordinates(tilePos))
         {
-            return null;
+            return tiles[tilePos.x, tilePos.y];
         }
-        
-        return tiles[tilePos.x, tilePos.y];
+        return null;
     }
 
     public Tile getTile(Vector2Int position)
     {
         Vector2Int tilePos = position;
-        Debug.Log(tilePos);
         if (checkValidCoordinates(tilePos))
         {
-            return null;
+            return tiles[tilePos.x, tilePos.y];
         }
-        
-        return tiles[tilePos.x, tilePos.y];
+        return null;
     }
 
     public Tile getTile(int x, int y)
     {
-        return tiles[x, y];
+        if (checkValidCoordinates(new Vector2Int(x, y)))
+        {
+            return tiles[x, y];
+        }
+        return null;
     }
 
     /// <summary>
@@ -104,7 +104,6 @@ public class Map
     public void placeCharacter(Vector2Int startPos, Vector2Int direction, IOccupiesTile entity)
     {
         characterPositions[startPos.x, startPos.y] = null;
-        Debug.Log(startPos);
         Vector2Int endPos = startPos + direction;
         Debug.Log(endPos);
         characterPositions[endPos.x, endPos.y] = entity;
@@ -120,8 +119,7 @@ public class Map
     /// <returns>A boolean true if the coordinates are valid, false if the coordinates are invalid.</returns>
     private bool checkValidCoordinates(Vector2Int coordinates)
     {
-        
-        return coordinates.x >= columns || coordinates.x < 0 
-            || coordinates.y >= rows || coordinates.y < 0;
+        return !(coordinates.x >= tiles.GetLength(0) || coordinates.x < 0
+            || coordinates.y >= tiles.GetLength(1) || coordinates.y < 0);
     }
 }

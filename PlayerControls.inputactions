@@ -11,7 +11,8 @@
                     "id": "e13b74a6-a9d2-41ff-ad4d-86414af059de",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Turn",
@@ -19,7 +20,8 @@
                     "id": "94577559-79f8-459d-9df5-b637b2cc4045",
                     "expectedControlType": "Digital",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Debug",
@@ -27,14 +29,15 @@
                     "id": "666b1a8d-19a4-4efe-bb3f-d73261de9373",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "WASD",
                     "id": "dea89c24-1c57-4e3b-8591-9f895f38694e",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

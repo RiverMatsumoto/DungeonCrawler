@@ -4,8 +4,11 @@ using UnityEngine;
 
 public enum TileTypes
 {
-     FLOOR = 0,
-    WALL = 1,
-    START_FLOOR = 2
-    
+    FLOOR = 0,
+    WALL,
+    START_FLOOR,
+    WALL_DOOR,
+    DOOR,
+    FLOOR_DAMAGE,
+    FLOOR_FORCEMOVE
 }

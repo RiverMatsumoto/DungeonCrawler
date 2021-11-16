@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45b218b9dc067094592a0e0663471192, type: 3}
-  m_Name: Wall
+  m_Script: {fileID: 11500000, guid: 78c3946c17a4e4d458fce46003a21a44, type: 3}
+  m_Name: MapData
   m_EditorClassIdentifier: 
-  model: {fileID: 4044842646830312655, guid: 7c87b653af8a0fd4397fbda50bdb6a0c, type: 3}
-  minimapTexture: {fileID: 2800000, guid: cd52f22c630653c4fadb1524f4086597, type: 3}
-  tileType: 1

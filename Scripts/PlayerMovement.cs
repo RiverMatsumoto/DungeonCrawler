@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IOccupiesTile
 {
+    public TilePallete tile;
     public Vector2Int localForward;
     public Vector2Int localRight;
     public Vector2Int localBack;

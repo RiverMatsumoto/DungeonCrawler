@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MinimapPlayer : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
     private readonly Vector3 TILE_OFFSET = new Vector3(0.5F, 0.5F, -1);
 
 

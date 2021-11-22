@@ -20,6 +20,8 @@ public class Map
         tiles = new Tile[columns, rows];
         characterPositions = new IOccupiesTile[columns, rows];
         generateMap(mapLayout);
+
+        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
     }
 
     /// <summary>
@@ -121,5 +123,10 @@ public class Map
     {
         return !(coordinates.x >= tiles.GetLength(0) || coordinates.x < 0
             || coordinates.y >= tiles.GetLength(1) || coordinates.y < 0);
+    }
+
+    private void updatePlayerPosition(Vector2Int position)
+    {
+        playerPosition = position;
     }
 }

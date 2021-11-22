@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IOccupiesTile
 {
-    public TilePallete tile;
     public Vector2Int localForward;
     public Vector2Int localRight;
     public Vector2Int localBack;
@@ -20,9 +19,10 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     private float turnInput;
     bool isActionable;
     [SerializeField]
-    const float MOVE_TIME = 0.1F;
-    const float MOVE_COOLDOWN_TIME = 0.02F;
-    const float MOVE_DISTANCE = 5;
+    public readonly float MOVE_TIME = 0.3F;
+    public readonly float MOVE_COOLDOWN_TIME = 0.025F;
+    public readonly float MOVE_DISTANCE = 5;
+    public OverworldData overworldData;
 
     void Awake()
     {
@@ -75,19 +75,19 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         {
 
             StartCoroutine(movePlayer(localBack));
-            mapGenerator.map.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
+            mapGenerator.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localBack;
         }
         else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
         {
             StartCoroutine(movePlayer(localRight));
-            mapGenerator.map.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
+            mapGenerator.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localRight; // add direction to the map position
         }
         else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
         {
             StartCoroutine(movePlayer(localLeft));
-            mapGenerator.map.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
+            mapGenerator.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localLeft;
         }
     }
@@ -196,7 +196,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         }
         isActionable = false;
         // place the character on the map and send the playermoved event
-        mapGenerator.map.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
+        mapGenerator.currentMap.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
 
         Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
@@ -224,7 +224,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public bool isValidMove(Vector2Int moveDir)
     {
         Debug.Log(mapPosition + " " + moveDir);
-        Tile tile = mapGenerator.map.getTile(mapPosition, moveDir);
+        Tile tile = mapGenerator.currentMap.getTile(mapPosition, moveDir);
         Debug.Log(tile);
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)

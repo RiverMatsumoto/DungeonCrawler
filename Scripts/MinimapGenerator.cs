@@ -13,19 +13,19 @@ public class MinimapGenerator : MonoBehaviour
 
     void Start()
     {
-        for (var x = 0; x < mapGenerator.map.columns; x++)
+        for (var x = 0; x < mapGenerator.currentMap.columns; x++)
         {
-            for (var y = 0; y < mapGenerator.map.rows; y++)
+            for (var y = 0; y < mapGenerator.currentMap.rows; y++)
             {
-                if (mapGenerator.map.getTile(x, y) is Floor)
+                if (mapGenerator.currentMap.getTile(x, y) is Floor)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileBase[(int)TileTypes.FLOOR]);
                 }
-                else if (mapGenerator.map.getTile(x, y) is Wall)
+                else if (mapGenerator.currentMap.getTile(x, y) is Wall)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileBase[(int)TileTypes.WALL]);
                 }
-                else if (mapGenerator.map.getTile(x, y) is StartFloor)
+                else if (mapGenerator.currentMap.getTile(x, y) is StartFloor)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileBase[(int)TileTypes.FLOOR]);
                 }

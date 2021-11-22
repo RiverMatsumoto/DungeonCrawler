@@ -5,21 +5,23 @@ using UnityEngine.InputSystem;
 
 public class MinimapCamera : MonoBehaviour
 {
+    public OverworldData overworldData;
+    public MapGenerator mapGenerator;
+    public Camera minimapCamera;
+    public RectTransform UIMinimap;
     private readonly int N_PAD = 34;
     private readonly int S_PAD = 5;
     private readonly int E_PAD = 42;
     private readonly int W_PAD = 5;
-    public Camera minimapCamera;
-    const float cameraOffset = -50;
+    const float cameraZOffset = -50;
+    private Vector2Int playerPosition;
     readonly Vector3 mapOpenPosition = new Vector3(24,20, -50);
-    public Vector2Int playerPosition;
-    public MapGenerator mapGenerator;
-    public RectTransform UIMinimap;
     bool hitNPadding = false;
     bool hitSPadding = false;
     bool hitWPadding = false;
     bool hitEPadding = false;
     bool mapOpen = false;
+
     public void moveCamera(Vector2Int position)
     {
         playerPosition = position; // always refresh the player's mapPosition
@@ -30,7 +32,7 @@ public class MinimapCamera : MonoBehaviour
         hitWPadding = false;
         hitEPadding = false;
 
-        Vector3 paddedPosition = new Vector3(0, 0, cameraOffset);
+        Vector3 paddedPosition = new Vector3(0, 0, cameraZOffset);
         if (position.x < W_PAD)
         {
             paddedPosition.x += W_PAD;
@@ -58,23 +60,23 @@ public class MinimapCamera : MonoBehaviour
         }
         else if (hitNPadding)
         {
-            transform.localPosition = new Vector3(position.x, N_PAD, cameraOffset);
+            transform.localPosition = new Vector3(position.x, N_PAD, cameraZOffset);
         }
         else if (hitSPadding)
         {
-            transform.localPosition = new Vector3(position.x, S_PAD, cameraOffset);
+            transform.localPosition = new Vector3(position.x, S_PAD, cameraZOffset);
         }
         else if (hitWPadding)
         {
-            transform.localPosition = new Vector3(W_PAD, position.y, cameraOffset);
+            transform.localPosition = new Vector3(W_PAD, position.y, cameraZOffset);
         }
         else if (hitEPadding)
         {
-            transform.localPosition = new Vector3(E_PAD, position.y, cameraOffset);
+            transform.localPosition = new Vector3(E_PAD, position.y, cameraZOffset);
         }
         else
         {
-            transform.localPosition = new Vector3(position.x, position.y, cameraOffset);
+            transform.localPosition = new Vector3(position.x, position.y, cameraZOffset);
         }
     }
 
@@ -84,22 +86,22 @@ public class MinimapCamera : MonoBehaviour
         {
             if (mapOpen)
             {
-                moveCamera(mapGenerator.map.playerPosition);
-                minimapCamera.orthographicSize = 6F;
-                setUITransform(mapOpen);
+                setUITransform();
                 mapOpen = false;
+                minimapCamera.orthographicSize = 6F;
+                moveCamera(playerPosition);
             }
             else
             {
+                setUITransform();
+                mapOpen = true;
                 transform.localPosition = mapOpenPosition;
                 minimapCamera.orthographicSize = 25F;
-                setUITransform(mapOpen);
-                mapOpen = true;
             }
         }
     }
 
-    private void setUITransform(bool mapOpen)
+    private void setUITransform()
     {
         if (mapOpen)
         {
@@ -108,7 +110,7 @@ public class MinimapCamera : MonoBehaviour
         } 
         else
         {
-            UIMinimap.localPosition = new Vector3(-210F, -70F, 0);
+            UIMinimap.localPosition = new Vector3(-190F, -50F, 0);
             UIMinimap.localScale = new Vector3(2.5F, 2.5F, 1);
         }
     }

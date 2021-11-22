@@ -4,8 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "MapData", menuName = "ScriptableObject/MapData")]
-public class MapData : ScriptableObject
+public class MapData : SerializedScriptableObject
 {
-    [ShowInInspector]
     public Dictionary<TileTypes, TilePallete> tiles;
 }

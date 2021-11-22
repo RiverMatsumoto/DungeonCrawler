@@ -13,11 +13,11 @@ public class UICoordinates : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementEventHandler.broadcastPlayerMoved += updateUICoordinates;
+        MovementEventHandler.broadCastPlayerMoved += updateUICoordinates;
     }
     
     private void OnDisable() 
     {
-        MovementEventHandler.broadcastPlayerMoved -= updateUICoordinates;
+        MovementEventHandler.broadCastPlayerMoved -= updateUICoordinates;
     }
 }

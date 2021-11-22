@@ -12,17 +12,17 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public Vector2Int localBack;
     public Vector2Int localLeft;
     public Vector2Int mapPosition { get; set; }
-    public MapGenerator mapGenerator;
+    public MapHandler mapHandler;
+    public OverworldData overworldData;
+    public readonly float MOVE_TIME = 0.3F;
+    public readonly float MOVE_COOLDOWN_TIME = 0.025F;
+    public readonly float MOVE_DISTANCE = 5;
     [SerializeField]
     private InputActionAsset controls;
     private Vector2 input;
     private float turnInput;
     bool isActionable;
     [SerializeField]
-    public readonly float MOVE_TIME = 0.3F;
-    public readonly float MOVE_COOLDOWN_TIME = 0.025F;
-    public readonly float MOVE_DISTANCE = 5;
-    public OverworldData overworldData;
 
     void Awake()
     {
@@ -68,26 +68,26 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
         {
             Debug.Log("move forward");
+            mapHandler.currentMap.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
             StartCoroutine(movePlayer(localForward));
             mapPosition += localForward;
         }
         else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
         {
-
+            mapHandler.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
             StartCoroutine(movePlayer(localBack));
-            mapGenerator.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localBack;
         }
         else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
         {
+            mapHandler.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
             StartCoroutine(movePlayer(localRight));
-            mapGenerator.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localRight; // add direction to the map position
         }
         else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
         {
+            mapHandler.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
             StartCoroutine(movePlayer(localLeft));
-            mapGenerator.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
             mapPosition += localLeft;
         }
     }
@@ -106,13 +106,13 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
         if (turnInput > 0.5)
         {
-            StartCoroutine(turnPlayer(transform.right));
             turnLocalFacingRight();
+            StartCoroutine(turnPlayer(transform.right));
         }
         else if (turnInput < -0.5)
         {
+            turnLocalFacingLeft();
             StartCoroutine(turnPlayer(-transform.right));
-            turnLeftLocalFacing();
         }
     }
 
@@ -133,8 +133,9 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         Quaternion endPoint = transform.localRotation;
         endPoint.SetLookRotation(direction);
         float elapsedTime = 0;
-        // MovementEventHandler.playerTurned(endPoint);
-        broadCastPlayerTurned(endPoint);
+
+        // broadcast event that player turned
+        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint), localForward);
         while (elapsedTime < MOVE_TIME)
         {
             transform.localRotation =
@@ -147,10 +148,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         isActionable = true;
     }
 
-    private void broadCastPlayerTurned(Quaternion endPoint)
-    {
-        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint));
-    }
 
     /// <summary>
     /// When turning right, converts the current facing direction to match the map's absolute facing directions.
@@ -170,7 +167,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     /// <summary>
     /// When turning left, converts the current facing direction to match the map's absolute facing directions.
     /// </summary>
-    private void turnLeftLocalFacing()
+    private void turnLocalFacingLeft()
     {
         Vector2Int tempF = localForward;
         Vector2Int tempR = localRight;
@@ -196,12 +193,11 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         }
         isActionable = false;
         // place the character on the map and send the playermoved event
-        mapGenerator.currentMap.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
+        mapHandler.currentMap.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
 
         Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
-        Vector3 endPoint =
-            transform.localPosition + (v3direction * MOVE_DISTANCE);
+        Vector3 endPoint = transform.localPosition + (v3direction * MOVE_DISTANCE);
         float elapsedTime = 0;
         while (elapsedTime < MOVE_TIME)
         {
@@ -224,7 +220,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public bool isValidMove(Vector2Int moveDir)
     {
         Debug.Log(mapPosition + " " + moveDir);
-        Tile tile = mapGenerator.currentMap.getTile(mapPosition, moveDir);
+        Tile tile = mapHandler.currentMap.getTile(mapPosition, moveDir);
         Debug.Log(tile);
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)
@@ -237,6 +233,12 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         return false;
     }
 
+    /// <summary>
+    /// Places the player in a certain location with certain facing direction using the position and direction passed through.
+    /// Position should be in the map range and facing direction should be a cardinal direction.
+    /// </summary>
+    /// <param name="position">The position the player is being placed in</param>
+    /// <param name="facingDir"></param>
     public void placePlayer(Vector2Int position, Vector2Int facingDir)
     {
         faceDirection(facingDir);
@@ -267,7 +269,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         endDir.SetLookRotation(endRotation);
         transform.localRotation = endDir;
 
-        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir));
+        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
     }
 
 

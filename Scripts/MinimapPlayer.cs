@@ -13,20 +13,20 @@ public class MinimapPlayer : MonoBehaviour
         // transform.localPosition += TILE_OFFSET;
     }
     
-    public void turnPlayer(Quaternion direction)
+    public void turnPlayer(Quaternion direction, Vector2Int direction2D)
     {
         transform.localRotation = direction;
     }
 
     private void OnEnable()
     {
-        MovementEventHandler.broadcastPlayerMoved += movePlayer;
+        MovementEventHandler.broadCastPlayerMoved += movePlayer;
         MovementEventHandler.broadCastPlayerTurned += turnPlayer;
     }
 
     private void OnDisable() 
     {
-        MovementEventHandler.broadcastPlayerMoved -= movePlayer;
+        MovementEventHandler.broadCastPlayerMoved -= movePlayer;
         MovementEventHandler.broadCastPlayerTurned -= turnPlayer;
     }
 }

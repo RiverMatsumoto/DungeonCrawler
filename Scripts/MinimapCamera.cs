@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class MinimapCamera : MonoBehaviour
 {
     public OverworldData overworldData;
-    public MapGenerator mapGenerator;
+    public MapHandler mapGenerator;
     public Camera minimapCamera;
     public RectTransform UIMinimap;
     private readonly int N_PAD = 34;
@@ -117,11 +117,11 @@ public class MinimapCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementEventHandler.broadcastPlayerMoved += moveCamera;
+        MovementEventHandler.broadCastPlayerMoved += moveCamera;
     }
 
     private void OnDisable()
     {
-        MovementEventHandler.broadcastPlayerMoved -= moveCamera;
+        MovementEventHandler.broadCastPlayerMoved -= moveCamera;
     }
 }

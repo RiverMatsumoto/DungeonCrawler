@@ -6,6 +6,7 @@ public class Map
     public static readonly Vector2Int DOWN = Vector2Int.down;
     public static readonly Vector2Int LEFT = Vector2Int.left;
     public static readonly Vector2Int RIGHT = Vector2Int.right;
+    private OverworldData overworldData;
     public readonly int columns;
     public readonly int rows;
     public Tile[,] tiles;
@@ -21,7 +22,7 @@ public class Map
         characterPositions = new IOccupiesTile[columns, rows];
         generateMap(mapLayout);
 
-        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
+        MovementEventHandler.broadCastPlayerMoved += updatePlayerPosition;
     }
 
     /// <summary>

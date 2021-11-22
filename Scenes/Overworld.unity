@@ -250,7 +250,8 @@ MonoBehaviour:
   localRight: {x: 0, y: 0}
   localBack: {x: 0, y: 0}
   localLeft: {x: 0, y: 0}
-  mapGenerator: {fileID: 1174983386}
+  mapHandler: {fileID: 1174983386}
+  overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   controls: {fileID: -944628639613478452, guid: fa70ec570119c284680d7fa59fd06b3f, type: 3}
 --- !u!4 &305814761
 Transform:
@@ -708,6 +709,7 @@ GameObject:
   - component: {fileID: 1174983387}
   - component: {fileID: 1174983386}
   - component: {fileID: 1174983388}
+  - component: {fileID: 1174983389}
   m_Layer: 0
   m_Name: MapHandler
   m_TagString: Untagged
@@ -728,10 +730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapData: {fileID: 11400000, guid: 2883136acd8ec65418fab75cdc02f998, type: 2}
+  overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   player: {fileID: 305814757}
-  mapLayout:
+  floorLayout:
   - {fileID: 2800000, guid: 669a39d1755589e4db1d7cfc531063fc, type: 3}
-  mapObjects: {fileID: 0}
 --- !u!4 &1174983387
 Transform:
   m_ObjectHideFlags: 0
@@ -807,6 +809,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1174983389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174983385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a46ad60ad3d694aa4b61989db91808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
 --- !u!1 &1394738481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1348,10 @@ PrefabInstance:
       propertyPath: mapGenerator
       value: 
       objectReference: {fileID: 1174983386}
+    - target: {fileID: 1966596041, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
+      propertyPath: overworldData
+      value: 
+      objectReference: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
     - target: {fileID: 5027305297552598489, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1381,6 +1400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinimapGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 5027305298348598487, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
+      propertyPath: mapHandler
+      value: 
+      objectReference: {fileID: 1174983386}
     - target: {fileID: 5027305298348598487, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
       propertyPath: mapGenerator
       value: 

@@ -10,7 +10,7 @@ public class MapHandler : MonoBehaviour
     public OverworldData overworldData;
     public PlayerMovement player;
     [SerializeField]
-    private Texture2D[] mapLayout;
+    private Texture2D[] floorLayout;
     private GameObject mapObjects;
     private const int TILE_SPACING = 5;
 
@@ -20,15 +20,20 @@ public class MapHandler : MonoBehaviour
         generateMap(0);
     }
 
-    private void generateMap(int mapIndex)
+    /// <summary>
+    /// Generates a map based on an image. Certain colors on the image determine certain tiles.
+    /// Calls the Map class constructor.
+    /// </summary>
+    /// <param name="floorLayoutIndex">The index of the floorLayout image array.</param>
+    private void generateMap(int floorLayoutIndex)
     {
         Destroy(GameObject.Find("MapObjects"));
         
         mapObjects = new GameObject("MapObjects");
         // store the map texture layout rows and columns
-        int columns = mapLayout[mapIndex].height;
-        int rows = mapLayout[mapIndex].width;
-        currentMap = new Map(rows, columns, mapLayout[mapIndex]);
+        int columns = floorLayout[floorLayoutIndex].height;
+        int rows = floorLayout[floorLayoutIndex].width;
+        currentMap = new Map(rows, columns, floorLayout[floorLayoutIndex]);
         for (int x = -1; x < currentMap.rows + 1; x++)
         {
             for (int y = -1; y < currentMap.columns + 1; y++)
@@ -43,10 +48,13 @@ public class MapHandler : MonoBehaviour
                 }
             }
         }
-        player.placePlayer(currentMap.playerPosition, Map.UP);
+        player.placePlayer(currentMap.playerStartPos, Map.UP);
     }
 
-    // debugging
+    /// <summary>
+    /// Debugging.
+    /// </summary>
+    /// <param name="context">Context of the controller input</param>
     public void onPlacePlayer(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -9,8 +9,8 @@ public class MovementEventHandler
     public static event playerMovedEvent broadCastPlayerMoved;
     public delegate void playerTurnedEvent(Quaternion direction, Vector2Int direction2D);
     public static event playerTurnedEvent broadCastPlayerTurned;
-    public delegate void playerTurnedEventV2Int(Vector2Int facingDir);
-    public static event playerTurnedEventV2Int broadCastPlayerTurnedV2Int;
+    // public delegate void playerTurnedEventV2Int(Vector2Int facingDir);
+    // public static event playerTurnedEventV2Int broadCastPlayerTurnedV2Int;
 
     public static void playerMoved(Vector2Int position)
     {

@@ -11,7 +11,7 @@ public class Map
     public readonly int rows;
     public Tile[,] tiles;
     public IOccupiesTile[,] characterPositions;
-    public Vector2Int playerPosition;
+    public Vector2Int playerStartPos;
 
 
     public Map(int columns, int rows, Texture2D mapLayout)
@@ -50,7 +50,7 @@ public class Map
                 else if (pixel == Color.green)
                 {
                     tiles[x, y] = new StartFloor(x, y);
-                    playerPosition = new Vector2Int(x, y);
+                    playerStartPos = new Vector2Int(x, y);
                 }
             }
         }
@@ -128,6 +128,6 @@ public class Map
 
     private void updatePlayerPosition(Vector2Int position)
     {
-        playerPosition = position;
+        playerStartPos = position;
     }
 }

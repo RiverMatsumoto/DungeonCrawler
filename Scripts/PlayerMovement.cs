@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
     void Awake()
     {
+        // Initialize everything
         localForward = new Vector2Int(0, 1);
         localBack = new Vector2Int(0, -1);
         localRight = new Vector2Int(1, 0);
@@ -37,61 +38,23 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
     private void FixedUpdate()
     {
-        // read input and poll for movement
+        // read input and poll for movement. Moving has priority
+        input = controls
+                .FindActionMap("Player")
+                .FindAction("Movement")
+                .ReadValue<Vector2>();
+        attemptMove(input);
+
         turnInput = controls
                 .FindActionMap("Player")
                 .FindAction("Turn")
                 .ReadValue<float>();
         attemptTurn(turnInput);
 
-        input = controls
-                .FindActionMap("Player")
-                .FindAction("Movement")
-                .ReadValue<Vector2>();
-        attemptMove(input);
     }
 
-    ///  <summary>
-    ///  Called in the fixed update loop. Uses the already read input values
-    ///  and moves the player in the direction they press.
-    /// </summary>
-    /// <param name="userInput">
-    /// A Vector2 variable representing the user input with a range from 0-1 for the x and y axis.
-    /// </param>
-    void attemptMove(Vector2 userInput)
-    {
-        if (!isActionable)
-        {
-            return;
-        }
 
-        if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
-        {
-            Debug.Log("move forward");
-            mapHandler.currentMap.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
-            StartCoroutine(movePlayer(localForward));
-            mapPosition += localForward;
-        }
-        else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
-        {
-            mapHandler.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
-            StartCoroutine(movePlayer(localBack));
-            mapPosition += localBack;
-        }
-        else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
-        {
-            mapHandler.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
-            StartCoroutine(movePlayer(localRight));
-            mapPosition += localRight; // add direction to the map position
-        }
-        else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
-        {
-            mapHandler.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
-            StartCoroutine(movePlayer(localLeft));
-            mapPosition += localLeft;
-        }
-    }
-
+    #region Movement: turning the player
     /// <summary>
     /// Called in the fixed update loop. Reads the already read controller input and moves
     /// the player in the direction they press.
@@ -178,6 +141,49 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         localBack = tempR;
         localLeft = tempB;
     }
+    #endregion
+
+    #region Movement: moving between tiles
+    ///  <summary>
+    ///  Called in the fixed update loop. Uses the already read input values
+    ///  and moves the player in the direction they press.
+    /// </summary>
+    /// <param name="userInput">
+    /// A Vector2 variable representing the user input with a range from 0-1 for the x and y axis.
+    /// </param>
+    void attemptMove(Vector2 userInput)
+    {
+        if (!isActionable)
+        {
+            return;
+        }
+
+        if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
+        {
+            Debug.Log("move forward");
+            mapHandler.currentMap.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
+            StartCoroutine(movePlayer(localForward));
+            mapPosition += localForward;
+        }
+        else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
+        {
+            mapHandler.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
+            StartCoroutine(movePlayer(localBack));
+            mapPosition += localBack;
+        }
+        else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
+        {
+            mapHandler.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
+            StartCoroutine(movePlayer(localRight));
+            mapPosition += localRight; // add direction to the map position
+        }
+        else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
+        {
+            mapHandler.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
+            StartCoroutine(movePlayer(localLeft));
+            mapPosition += localLeft;
+        }
+    }
 
     /// <summary>
     /// A coroutine that moves the player in the direction they input. They can move
@@ -232,7 +238,9 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         }
         return false;
     }
+    #endregion
 
+    #region Map related player placement
     /// <summary>
     /// Places the player in a certain location with certain facing direction using the position and direction passed through.
     /// Position should be in the map range and facing direction should be a cardinal direction.
@@ -271,6 +279,6 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
         MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
     }
-
+    #endregion
 
 }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1348ad91e4604a4fa234e2274b7cd85, type: 3}
-  m_Name: OverworldData
+  m_Script: {fileID: 11500000, guid: 631c3759353c6944b89cba759189b280, type: 3}
+  m_Name: SceneData
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,9 +20,9 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  playerPosition: {x: 11, y: 0}
-  playerFacingDir: {x: 0, y: 1}
-  foePositions: []
-  steps: 0
-  inBattle: 1
+    SerializationNodes:
+    - Name: Scenes
+      Entry: 6
+      Data: 
+  currentScene:
+    m_Handle: 0

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IOccupiesTile
 {
+    #region Variables
     public Vector2Int localForward;
     public Vector2Int localRight;
     public Vector2Int localBack;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     private Vector2 input;
     private float turnInput;
     bool isActionable;
-    [SerializeField]
+    #endregion
 
     void Awake()
     {
@@ -38,6 +39,10 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
 
     private void FixedUpdate()
     {
+        if (overworldData.inBattle)
+        {
+            return;
+        }
         // read input and poll for movement. Moving has priority
         input = controls
                 .FindActionMap("Player")
@@ -214,6 +219,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         }
         transform.localPosition = endPoint;
         yield return new WaitForSeconds(MOVE_COOLDOWN_TIME);
+        MovementEventHandler.playerMoveEnded();
         isActionable = true;
     }
 
@@ -280,5 +286,4 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
         MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
     }
     #endregion
-
 }

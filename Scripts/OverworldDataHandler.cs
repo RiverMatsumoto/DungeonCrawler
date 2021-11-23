@@ -5,6 +5,12 @@ using UnityEngine;
 public class OverworldDataHandler : MonoBehaviour
 {
     public OverworldData overworldData;
+
+    private void Start()
+    {
+        overworldData.inBattle = false;
+    }
+
     public void updatePlayerPosition(Vector2Int mapPosition)
     {
         overworldData.playerPosition = mapPosition;
@@ -15,10 +21,15 @@ public class OverworldDataHandler : MonoBehaviour
         overworldData.playerFacingDir = direction2D;
     }
 
-
-    private void Start() 
+    private void OnEnable()
     {
         MovementEventHandler.broadCastPlayerMoved += updatePlayerPosition;
         MovementEventHandler.broadCastPlayerTurned += updatePlayerFacing;
+    }
+
+    private void OnDisable()
+    {
+        MovementEventHandler.broadCastPlayerMoved -= updatePlayerPosition;
+        MovementEventHandler.broadCastPlayerTurned -= updatePlayerFacing;
     }
 }

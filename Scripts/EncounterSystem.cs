@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EncounterSystem : MonoBehaviour
 {
-    public SceneReference battleScene;
-    public SceneReference overworldScene;
     public int encounterSteps;
     public int currentSteps;
     public OverworldData overworldData;
@@ -27,6 +25,7 @@ public class EncounterSystem : MonoBehaviour
 
     private void encounterBattle()
     {
+        // TODO Make playermovement class broadcast an event that it landed on a tile with a FOE
         currentSteps = 0;
         enterBattle();
         overworldData.inBattle = true;

@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    public BattleEntity[] allBattleEntites;
-    public BattleEntity[] party;
-    public BattleEntity[] enemies;
+    public List<BattleEntity> allBattleEntites;
+    // public List<BattleEntity> party;
+    // public List<BattleEntity> enemies;
+    public BattleEntityParty party;
+    public BattleEntityParty enemies;
     public const int maxPartySize = 5;
     public const int maxEnemyPartySize = 7;
     public int partySize;
     public int enemyPartySize;
     public List<TurnCommand> turnCommands;
     bool playerTurn;
-    
 
-    public void startBattle(BattleEntity[] enemies)
+    public BattleEntity currentPlayer;
+
+    public void startBattle()
     {
-        this.enemies = enemies;
+        //this.enemies = ;  // Choose a random group of enemies
+        // Enable the ui that lets you choose actions
     }
 
     public void endBattle()
@@ -35,15 +39,25 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    public void AddIntendedAction()
+    public void AddIntendedAction(TurnCommand turnCommand, BattleEntity battleEntity)
     {
         // TODO Add the turn command to the turnCommand list and check that the turn is over
+        
+
     }
 
     private void Start()
     {
-        party = new BattleEntity[maxPartySize];
-        enemies = new BattleEntity[maxEnemyPartySize];
-        allBattleEntites = new BattleEntity[maxEnemyPartySize + maxPartySize];
+
+    }
+
+    private void OnEnable()
+    {
+        EncounterSystem.enterBattle += startBattle;
+    }
+
+    private void OnDisable()
+    {
+        EncounterSystem.enterBattle -= startBattle;
     }
 }

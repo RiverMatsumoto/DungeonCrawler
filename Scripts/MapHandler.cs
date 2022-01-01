@@ -9,6 +9,7 @@ public class MapHandler : MonoBehaviour
     public MapData mapData;
     public OverworldData overworldData;
     public PlayerMovement player;
+    public int floorNumber;
     [SerializeField]
     private Texture2D[] floorLayout;
     private GameObject mapObjects;
@@ -17,7 +18,8 @@ public class MapHandler : MonoBehaviour
 
     void Start()
     {
-        generateMap(0);
+        floorNumber = 1;
+        generateMap(floorNumber - 1);
     }
 
     /// <summary>

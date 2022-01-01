@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OverworldDataHandler : MonoBehaviour
 {
+    // updates the overworlddata scriptable object 
     public OverworldData overworldData;
 
     private void Start()

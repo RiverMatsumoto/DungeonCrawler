@@ -9,6 +9,6 @@ public class SelectorIcon : MonoBehaviour
 
     public void selectEntity()
     {
-
+        
     }
 }

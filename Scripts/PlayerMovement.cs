@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
             return;
         }
         // read input and poll for movement. Moving has priority
+        // I'm using polling because unity events doesn't constantly read input.
         input = controls
                 .FindActionMap("Player")
                 .FindAction("Movement")

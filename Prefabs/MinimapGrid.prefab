@@ -299,7 +299,8 @@ MonoBehaviour:
   overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   mapGenerator: {fileID: 0}
   minimapCamera: {fileID: 7336019211999925774}
-  UIMinimap: {fileID: 0}
+  overworldMinimap: {fileID: 0}
+  battleMinimap: {fileID: 0}
 --- !u!114 &3229572371199353887
 MonoBehaviour:
   m_ObjectHideFlags: 0

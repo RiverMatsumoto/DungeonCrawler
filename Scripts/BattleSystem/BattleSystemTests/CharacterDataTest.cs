@@ -8,6 +8,6 @@ public class CharacterDataTest : MonoBehaviour
 
     private void Start()
     {
-        BattleEntity hedgehog = new Hedgehog(characterData);
+        
     }
 }

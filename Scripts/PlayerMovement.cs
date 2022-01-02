@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Sirenix.OdinInspector;
 
-public class PlayerMovement : MonoBehaviour, IOccupiesTile
+public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 {
     #region Variables
     public Vector2Int localForward;
@@ -15,9 +16,9 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     public Vector2Int mapPosition { get; set; }
     public MapHandler mapHandler;
     public OverworldData overworldData;
-    public readonly float MOVE_TIME = 0.3F;
-    public readonly float MOVE_COOLDOWN_TIME = 0.025F;
-    public readonly float MOVE_DISTANCE = 5;
+    public float MOVE_TIME = 0.3F;
+    public float MOVE_COOLDOWN_TIME = 0.02F;
+    public float MOVE_DISTANCE = 5;
     [SerializeField]
     private InputActionAsset controls;
     private Vector2 input;
@@ -232,9 +233,7 @@ public class PlayerMovement : MonoBehaviour, IOccupiesTile
     /// <returns>A boolean true if the intended move direction is legal/valid. False if the intended move is illegal/invalid.</returns>
     public bool isValidMove(Vector2Int moveDir)
     {
-        Debug.Log(mapPosition + " " + moveDir);
         Tile tile = mapHandler.currentMap.getTile(mapPosition, moveDir);
-        Debug.Log(tile);
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)
         {

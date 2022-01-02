@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HudHandler : MonoBehaviour
 {
     public Canvas overworldHud;
     public Canvas battleHud;
+    public Button battleFirstSelectedButton;
     private void Start()
     {
         // overworldHud.gameObject.SetActive(true);
@@ -14,15 +16,16 @@ public class HudHandler : MonoBehaviour
         battleHud.enabled = false;
     }
 
-    public void enteredBattle()
+    public void enterBattle()
     {
         overworldHud.enabled = false;
         battleHud.enabled = true;
+        battleFirstSelectedButton.Select();
         // overworldHud.gameObject.SetActive(false);
         // battleHud.gameObject.SetActive(true);
     }
 
-    public void leftBattle()
+    public void endBattle()
     {
         overworldHud.enabled = true;
         battleHud.enabled = false;
@@ -33,14 +36,14 @@ public class HudHandler : MonoBehaviour
     #region OnEnable and OnDisable
     private void OnEnable()
     {
-        EncounterSystem.enterBattle += enteredBattle;
-        EncounterSystem.leftBattle += leftBattle;
+        EncounterSystem.enterBattle += enterBattle;
+        EncounterSystem.leftBattle += endBattle;
     }
 
     private void OnDisable()
     {
-        EncounterSystem.enterBattle -= enteredBattle;
-        EncounterSystem.leftBattle -= leftBattle;
+        EncounterSystem.enterBattle -= enterBattle;
+        EncounterSystem.leftBattle -= endBattle;
     }
     #endregion
 }

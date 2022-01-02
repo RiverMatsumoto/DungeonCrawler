@@ -22,7 +22,7 @@ public class Map
         characterPositions = new IOccupiesTile[columns, rows];
         generateMap(mapLayout);
 
-        MovementEventHandler.broadCastPlayerMoved += updatePlayerPosition;
+        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
     }
 
     /// <summary>

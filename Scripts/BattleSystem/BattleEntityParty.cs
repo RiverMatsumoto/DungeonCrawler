@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-public class BattleEntityParty
+public class BattleEntityParty : MonoBehaviour
 {
-    BattleEntity[] party;
-    int numEntities;
+    public List<BattleEntity> party;
+    [Range(0,6)]
+    public int numEntities;
+    public bool isEnemy;
     
 
-    public BattleEntityParty(int numEntites)
+    public void addBattleEntity(int partyPosition, BattleEntity battleEntity)
     {
-        this.numEntities = numEntites;
-        party = new BattleEntity[numEntites];
+        if (party[partyPosition] == null)
+        {
+            party.Insert(partyPosition, battleEntity);
+        }
+        else
+        {
+            Debug.Log("There is already an entity at position " + partyPosition);
+        }
     }
 
     public bool isFrontRow(int partyIndex)
@@ -24,5 +33,11 @@ public class BattleEntityParty
         {
             return false;
         }
+    }
+
+    public void clearParty()
+    {
+        party.Clear();
+        numEntities = 0;
     }
 }

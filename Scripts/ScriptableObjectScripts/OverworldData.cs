@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 
-[CreateAssetMenu(fileName = "OverworldData", menuName = "ScriptableObject/OverworldData", order = 3)]
+[CreateAssetMenu(fileName = "OverworldData", menuName = "ScriptableObject/OverworldData", order = 4)]
 public class OverworldData : SerializedScriptableObject
 {
     public Vector2Int playerPosition; // player position range should be inclusive from 0 to 47 for x and 0 to 39 for y

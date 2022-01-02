@@ -24,13 +24,13 @@ public class OverworldDataHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementEventHandler.broadCastPlayerMoved += updatePlayerPosition;
+        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
         MovementEventHandler.broadCastPlayerTurned += updatePlayerFacing;
     }
 
     private void OnDisable()
     {
-        MovementEventHandler.broadCastPlayerMoved -= updatePlayerPosition;
+        MovementEventHandler.broadcastPlayerMoved -= updatePlayerPosition;
         MovementEventHandler.broadCastPlayerTurned -= updatePlayerFacing;
     }
 }

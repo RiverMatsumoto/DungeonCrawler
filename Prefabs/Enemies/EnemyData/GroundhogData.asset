@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: Groundhog
+  m_Name: GroundhogData
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  characterName: 
+  characterName: Groundhog
   health: 15
   magicPoints: 0
   strength: 4

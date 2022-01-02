@@ -33,4 +33,9 @@ public abstract class BattleEntity : MonoBehaviour
     }
 
 
+    public void displayStats()
+    {
+        Debug.Log(characterData.name);
+        Debug.Log(characterData.health);
+    }
 }

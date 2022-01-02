@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UICoordinates : MonoBehaviour
 {
-
+    public TMP_Text coordinatesText;
     public void updateUICoordinates(Vector2Int coordinates)
     {
 
-        GetComponent<TMPro.TextMeshProUGUI>().text = coordinates.ToString();
+        coordinatesText.text = coordinates.ToString();
     }
 
     private void OnEnable()
     {
-        MovementEventHandler.broadCastPlayerMoved += updateUICoordinates;
+        MovementEventHandler.broadcastPlayerMoved += updateUICoordinates;
     }
-    
-    private void OnDisable() 
+
+    private void OnDisable()
     {
-        MovementEventHandler.broadCastPlayerMoved -= updateUICoordinates;
+        MovementEventHandler.broadcastPlayerMoved -= updateUICoordinates;
+        
+    }
+
+    private void Start()
+    {
+        coordinatesText = GetComponent<TMP_Text>();
     }
 }

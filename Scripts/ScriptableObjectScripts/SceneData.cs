@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(fileName = "SceneData", menuName = "ScriptableObject/SceneData", order = 6)]
+[CreateAssetMenu(fileName = "SceneData", menuName = "ScriptableObject/SceneData", order = 3)]
 public class SceneData : SerializedScriptableObject
 {
     public enum SceneType

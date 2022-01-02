@@ -20,13 +20,13 @@ public class MinimapPlayer : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementEventHandler.broadCastPlayerMoved += movePlayer;
+        MovementEventHandler.broadcastPlayerMoved += movePlayer;
         MovementEventHandler.broadCastPlayerTurned += turnPlayer;
     }
 
     private void OnDisable() 
     {
-        MovementEventHandler.broadCastPlayerMoved -= movePlayer;
+        MovementEventHandler.broadcastPlayerMoved -= movePlayer;
         MovementEventHandler.broadCastPlayerTurned -= turnPlayer;
     }
 }

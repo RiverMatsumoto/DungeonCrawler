@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleHUD : MonoBehaviour
+public class Ladybug : BattleEntity
 {
     
 }

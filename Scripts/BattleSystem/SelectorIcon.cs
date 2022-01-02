@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectorIcon : MonoBehaviour
 {
-    BattleEntity currentEntity;
+    private BattleEntity currentEntity;
 
 
     public void selectEntity()

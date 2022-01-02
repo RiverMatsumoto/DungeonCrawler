@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    public static BattleSystem instance;
+
     public List<BattleEntity> allBattleEntites;
     // public List<BattleEntity> party;
     // public List<BattleEntity> enemies;
@@ -26,7 +28,7 @@ public class BattleSystem : MonoBehaviour
 
     public void endBattle()
     {
-
+        
     }
 
     public void startTurn()
@@ -46,9 +48,17 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Awake()
     {
-
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private void OnEnable()

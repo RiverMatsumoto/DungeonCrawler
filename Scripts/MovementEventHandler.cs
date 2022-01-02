@@ -6,7 +6,7 @@ using UnityEngine;
 public class MovementEventHandler
 {
     public delegate void playerMovedEvent(Vector2Int position);
-    public static event playerMovedEvent broadCastPlayerMoved;
+    public static event playerMovedEvent broadcastPlayerMoved;
     public delegate void playerMoveEndedEvent();
     public static event playerMoveEndedEvent broadcastPlayerMoveEnded;
     public delegate void playerTurnedEvent(Quaternion direction, Vector2Int direction2D);
@@ -16,7 +16,7 @@ public class MovementEventHandler
 
     public static void playerMoved(Vector2Int position)
     {
-        broadCastPlayerMoved(position);
+        broadcastPlayerMoved(position);
     }
 
     public static void playerTurned(Quaternion direction, Vector2Int direction2D)

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EncounterSystem : MonoBehaviour
 {
+    public static EncounterSystem instance;
     public int encounterSteps;
     public int currentSteps;
     public OverworldData overworldData;
+    public StepCounter stepCounter;
     public delegate void enterBattleEvent();
     public static event enterBattleEvent enterBattle;
     public delegate void leaveBattleEvent();
@@ -16,6 +18,7 @@ public class EncounterSystem : MonoBehaviour
     public void encounterStep()
     {
         currentSteps++;
+        updateStepCounter();
 
         if (currentSteps >= encounterSteps)
         {
@@ -27,6 +30,7 @@ public class EncounterSystem : MonoBehaviour
     {
         // TODO Make playermovement class broadcast an event that it landed on a tile with a FOE
         currentSteps = 0;
+        randomizeEncounterSteps();
         enterBattle();
         overworldData.inBattle = true;
     }
@@ -37,11 +41,36 @@ public class EncounterSystem : MonoBehaviour
         overworldData.inBattle = false;
     }
 
-    private void Start()
+    private void updateStepCounter()
     {
-        encounterSteps = 10;
+        if (stepCounter != null)
+        {
+            stepCounter.updateStepCounter();
+        }
     }
 
+    private void randomizeEncounterSteps()
+    {
+        encounterSteps = Random.Range(7, 15);
+    }
+
+    private void Start()
+    {
+        randomizeEncounterSteps();
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void OnEnable()
     {

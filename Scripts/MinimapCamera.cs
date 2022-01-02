@@ -147,11 +147,12 @@ public class MinimapCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        MovementEventHandler.broadCastPlayerMoved += moveCamera;
+        MovementEventHandler.broadcastPlayerMoved += moveCamera;
     }
 
     private void OnDisable()
     {
-        MovementEventHandler.broadCastPlayerMoved -= moveCamera;
+        MovementEventHandler.broadcastPlayerMoved -= moveCamera;
+        
     }
 }

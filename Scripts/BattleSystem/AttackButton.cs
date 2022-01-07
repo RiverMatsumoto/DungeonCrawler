@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackButton : MonoBehaviour
 {
-    public SelectorIcon selectorIcon;
-    public BattleSystem battleSystem;
-
     public void selectTarget()
     {
-        selectorIcon.enabled = true;
+        EntitySelectSystem.instance.selectEntity(new AttackCommand());
     }
     public void attackCommand()
     {

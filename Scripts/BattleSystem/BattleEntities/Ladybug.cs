@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ladybug : BattleEntity
+public class Ladybug : Enemy
 {
     
 }

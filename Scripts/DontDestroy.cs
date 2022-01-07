@@ -21,13 +21,13 @@ public class DontDestroy : MonoBehaviour
 
     private void OnEnable()
     {
-        EncounterSystem.enterBattle += disable;
-        EncounterSystem.leftBattle += enable;
+        BattleSystem.broadcastEnterBattle += disable;
+        BattleSystem.broadcastLeaveBattle += enable;
     }
 
     private void OnDisable()
     {
-        EncounterSystem.enterBattle -= disable;
-        EncounterSystem.leftBattle -= enable;
+        BattleSystem.broadcastEnterBattle -= disable;
+        BattleSystem.broadcastLeaveBattle -= enable;
     }
 }

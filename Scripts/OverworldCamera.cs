@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OverworldCamera : MonoBehaviour
 {
-    private void disableCamera()
+    private void disableOverworldCamera()
     {
         GetComponent<Camera>().enabled = false;
         GetComponent<AudioListener>().enabled = false;
     }
 
-    private void enableCamera()
+    private void enableOverworldCamera()
     {
         GetComponent<Camera>().enabled = true;
         GetComponent<AudioListener>().enabled = true;
@@ -18,13 +18,13 @@ public class OverworldCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        EncounterSystem.enterBattle += disableCamera;
-        EncounterSystem.leftBattle += enableCamera;
+        BattleSystem.broadcastEnterBattle += disableOverworldCamera;
+        BattleSystem.broadcastLeaveBattle += enableOverworldCamera;
     }
 
     private void OnDisable()
     {
-        EncounterSystem.enterBattle -= disableCamera;
-        EncounterSystem.leftBattle -= enableCamera;
+        BattleSystem.broadcastEnterBattle -= disableOverworldCamera;
+        BattleSystem.broadcastLeaveBattle -= enableOverworldCamera;
     }
 }

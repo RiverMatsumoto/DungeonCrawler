@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AddIntendedAction : ICommand
 {
-    TurnCommand intendedAction;
+    BattleCommand intendedAction;
     public void execute()
     {
         

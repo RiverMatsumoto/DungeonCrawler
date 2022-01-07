@@ -45,16 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ccd89dd72e8e4498d10dec45af65d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  party: []
+  party:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   numEntities: 0
   isEnemy: 1
 --- !u!1001 &2904609359745856549
@@ -114,14 +111,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7febb9b6a9d2f948bc1c0cd8bbeb02c, type: 3}
---- !u!1 &2427225524566860860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 711571025635872793, guid: a7febb9b6a9d2f948bc1c0cd8bbeb02c, type: 3}
-  m_PrefabInstance: {fileID: 2904609359745856549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1202127742596238321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4098818831915057108, guid: a7febb9b6a9d2f948bc1c0cd8bbeb02c, type: 3}
+  m_PrefabInstance: {fileID: 2904609359745856549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2427225524566860860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 711571025635872793, guid: a7febb9b6a9d2f948bc1c0cd8bbeb02c, type: 3}
   m_PrefabInstance: {fileID: 2904609359745856549}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6963337540223679811

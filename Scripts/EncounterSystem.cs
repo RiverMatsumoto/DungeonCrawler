@@ -9,10 +9,6 @@ public class EncounterSystem : MonoBehaviour
     public int currentSteps;
     public OverworldData overworldData;
     public StepCounter stepCounter;
-    public delegate void enterBattleEvent();
-    public static event enterBattleEvent enterBattle;
-    public delegate void leaveBattleEvent();
-    public static event leaveBattleEvent leftBattle;
 
 
     public void encounterStep()
@@ -22,23 +18,23 @@ public class EncounterSystem : MonoBehaviour
 
         if (currentSteps >= encounterSteps)
         {
-            encounterBattle();
+            encounteredBattle();
         }
-    }
-
-    private void encounterBattle()
-    {
-        // TODO Make playermovement class broadcast an event that it landed on a tile with a FOE
-        currentSteps = 0;
-        randomizeEncounterSteps();
-        enterBattle();
-        overworldData.inBattle = true;
     }
 
     public void leaveBattle()
     {
-        leftBattle();
+        BattleSystem.leaveBattle();
         overworldData.inBattle = false;
+    }
+
+    private void encounteredBattle()
+    {
+        // TODO Make playermovement class broadcast an event that it landed on a tile with a FOE
+        currentSteps = 0;
+        randomizeEncounterSteps();
+        BattleSystem.enterBattle();
+        overworldData.inBattle = true;
     }
 
     private void updateStepCounter()
@@ -52,6 +48,7 @@ public class EncounterSystem : MonoBehaviour
     private void randomizeEncounterSteps()
     {
         encounterSteps = Random.Range(7, 15);
+        updateStepCounter();
     }
 
     private void Start()

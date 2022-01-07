@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BattleCamera : MonoBehaviour
 {
-    private void disableCamera()
+    private void disableBattleCamera()
     {
         GetComponent<Camera>().enabled = false;
         GetComponent<AudioListener>().enabled = false;
     }
 
-    private void enableCamera()
+    private void enableBattleCamera()
     {
         GetComponent<Camera>().enabled = true;
         GetComponent<AudioListener>().enabled = true;
@@ -18,14 +18,14 @@ public class BattleCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        EncounterSystem.enterBattle += enableCamera;
-        EncounterSystem.leftBattle += disableCamera;
+        BattleSystem.broadcastEnterBattle += enableBattleCamera;
+        BattleSystem.broadcastLeaveBattle += disableBattleCamera;
     }
 
     private void OnDisable()
     {
-        EncounterSystem.enterBattle -= enableCamera;
-        EncounterSystem.leftBattle -= enableCamera;
+        BattleSystem.broadcastEnterBattle -= enableBattleCamera;
+        BattleSystem.broadcastLeaveBattle -= disableBattleCamera;
     }
 
     private void Start()

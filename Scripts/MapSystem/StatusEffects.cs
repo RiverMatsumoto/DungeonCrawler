@@ -2,19 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StatusEffects
+public class StatusEffects
 {
-    none = 0,
-    poison,
-    confusion,
-    sleep,
-    stun,
-    paralysis,
-    blind,
-    fear,
-    curse,
-    instantDeath,
-    legBind,
-    armBind,
-    headBind
+    public enum Effects
+    {
+        NONE = 0,
+        POISON,
+        CONFUSION,
+        SLEEP,
+        STUN,
+        PARALYSIS,
+        BLIND,
+        FEAR,
+        CURSE,
+        INSTANT_DEATH,
+        PETRIFY,
+        DEAD
+    }
+    public enum Binds
+    {
+        NONE = 0,
+        HEAD_BIND,
+        ARM_BIND,
+        LEG_BIND
+    }
 }

@@ -20,15 +20,48 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: startingMaxHealth
+      Entry: 3
+      Data: 15
+    - Name: startingHealth
+      Entry: 3
+      Data: 15
+    - Name: startingMaxMagicPoints
+      Entry: 3
+      Data: 0
+    - Name: startingMagicPoints
+      Entry: 3
+      Data: 1
+    - Name: startingStrength
+      Entry: 3
+      Data: 4
+    - Name: startingDefense
+      Entry: 3
+      Data: 4
+    - Name: startingVitality
+      Entry: 3
+      Data: 4
+    - Name: startingAgility
+      Entry: 3
+      Data: 2
+    - Name: startingTech
+      Entry: 3
+      Data: 1
+    - Name: startingLuck
+      Entry: 3
+      Data: 1
   characterName: Groundhog
+  maxHealth: 15
   health: 15
-  magicPoints: 0
+  maxMagicPoints: 0
+  magicPoints: 1
   strength: 4
+  defense: 4
   vitality: 4
   agility: 2
   tech: 1
   luck: 1
-  defense: 1
-  currentEffect: 0
+  currentEffects: 0
+  currentBinds: 0
   sprite: {fileID: 2800000, guid: 29a6e634d2208c14183ab1a9698258d6, type: 3}

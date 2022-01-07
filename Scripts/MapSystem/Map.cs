@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Map
 {
     public static readonly Vector2Int UP = Vector2Int.up;
@@ -67,7 +68,6 @@ public class Map
     public Tile getTile(Vector2Int position, Vector2Int intendedMoveDir)
     {
         Vector2Int tilePos = position + intendedMoveDir;
-        Debug.Log(tilePos);
         if (checkValidCoordinates(tilePos))
         {
             return tiles[tilePos.x, tilePos.y];
@@ -108,7 +108,6 @@ public class Map
     {
         characterPositions[startPos.x, startPos.y] = null;
         Vector2Int endPos = startPos + direction;
-        Debug.Log(endPos);
         characterPositions[endPos.x, endPos.y] = entity;
         MovementEventHandler.playerMoved(endPos);
     }

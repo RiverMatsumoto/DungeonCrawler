@@ -5,47 +5,52 @@ using UnityEngine;
 public class BattleSystem : MonoBehaviour
 {
     public static BattleSystem instance;
-
+    public delegate void enterBattleEvent();
+    public static event enterBattleEvent broadcastEnterBattle;
+    public delegate void leaveBattleEvent();
+    public static event leaveBattleEvent broadcastLeaveBattle;
     public List<BattleEntity> allBattleEntites;
-    // public List<BattleEntity> party;
-    // public List<BattleEntity> enemies;
     public BattleEntityParty party;
     public BattleEntityParty enemies;
-    public const int maxPartySize = 5;
-    public const int maxEnemyPartySize = 7;
+    public BattleEntity currentPlayer;
+    public List<BattleCommand> battleCommands;
+    public Stack<BattleCommand> intendedCommands;
     public int partySize;
     public int enemyPartySize;
-    public List<TurnCommand> turnCommands;
     bool playerTurn;
 
-    public BattleEntity currentPlayer;
-
-    public void startBattle()
-    {
-        //this.enemies = ;  // Choose a random group of enemies
-        // Enable the ui that lets you choose actions
-    }
-
-    public void endBattle()
-    {
-        
-    }
 
     public void startTurn()
     {
         // TODO setup ui display and let that ui add the intended actions
+
     }
 
-    public void endTurn()
+    public void startBattlePhase()
     {
 
     }
 
-    public void AddIntendedAction(TurnCommand turnCommand, BattleEntity battleEntity)
+    public void AddIntendedBattleCommand(BattleCommand battleCommand, BattleEntity battleEntity)
     {
-        // TODO Add the turn command to the turnCommand list and check that the turn is over
-        
+        // TODO Add the turn command to the battleCommand list and check that the turn is over
+        intendedCommands.Push(battleCommand);
 
+    }
+
+    public static void enterBattle()
+    {
+        broadcastEnterBattle();
+    }
+
+    public static void leaveBattle()
+    {
+        broadcastLeaveBattle();
+    }
+    
+    public void setEnemyParty(BattleEntityParty enemyParty)
+    {
+        enemies = enemyParty;
     }
 
     private void Awake()
@@ -59,15 +64,5 @@ public class BattleSystem : MonoBehaviour
         {
             Destroy(this);
         }
-    }
-
-    private void OnEnable()
-    {
-        EncounterSystem.enterBattle += startBattle;
-    }
-
-    private void OnDisable()
-    {
-        EncounterSystem.enterBattle -= startBattle;
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public abstract class BattleEntity : MonoBehaviour
 {
+    // TODO add loot table, items, and item system
     public CharacterData characterData;
+    public BattleCommand intendedBattleCommand;
+    public BattleEntity target;
     public float[] damageMultipliers;
     public float[] speedMultipliers;
-    public TurnCommand turnCommand;
     public bool isBackRow;
-    public int partyPosition 
+    public int partyPosition
     {
         get
         {
@@ -24,18 +26,31 @@ public abstract class BattleEntity : MonoBehaviour
             partyPosition = value;
         }
     }
-    
 
-    
-    public virtual void attack()
+    public void selectEntity()
     {
-        Debug.Log("attacked something lol");
+        EntitySelectSystem.instance.setTarget(this);
     }
-
 
     public void displayStats()
     {
-        Debug.Log(characterData.name);
-        Debug.Log(characterData.health);
+        if (characterData.characterName == "Groundhog")
+        {
+            Debug.Log(characterData.health);
+            characterData.health++;
+            Debug.Log(characterData.health);
+
+        }
+    }
+
+    public void setCharacterData(CharacterData characterData)
+    {
+        this.characterData = characterData.getClone(); // required so that 
+    }
+
+    private void Start()
+    {
+        characterData = characterData.getClone();
+        displayStats();
     }
 }

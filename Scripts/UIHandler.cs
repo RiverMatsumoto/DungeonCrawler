@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HudHandler : MonoBehaviour
+public class UIHandler : MonoBehaviour
 {
     public Canvas overworldHud;
     public Canvas battleHud;
@@ -36,14 +36,14 @@ public class HudHandler : MonoBehaviour
     #region OnEnable and OnDisable
     private void OnEnable()
     {
-        EncounterSystem.enterBattle += enterBattle;
-        EncounterSystem.leftBattle += endBattle;
+        BattleSystem.broadcastEnterBattle += enterBattle;
+        BattleSystem.broadcastLeaveBattle += endBattle;
     }
 
     private void OnDisable()
     {
-        EncounterSystem.enterBattle -= enterBattle;
-        EncounterSystem.leftBattle -= endBattle;
+        BattleSystem.broadcastEnterBattle -= enterBattle;
+        BattleSystem.broadcastLeaveBattle -= endBattle;
     }
     #endregion
 }

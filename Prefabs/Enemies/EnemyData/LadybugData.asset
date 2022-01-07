@@ -20,15 +20,48 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: startingMaxHealth
+      Entry: 3
+      Data: 13
+    - Name: startingHealth
+      Entry: 3
+      Data: 13
+    - Name: startingMaxMagicPoints
+      Entry: 3
+      Data: 20
+    - Name: startingMagicPoints
+      Entry: 3
+      Data: 20
+    - Name: startingDefense
+      Entry: 3
+      Data: 3
+    - Name: startingStrength
+      Entry: 3
+      Data: 3
+    - Name: startingVitality
+      Entry: 3
+      Data: 4
+    - Name: startingAgility
+      Entry: 3
+      Data: 2
+    - Name: startingTech
+      Entry: 3
+      Data: 1
+    - Name: startingLuck
+      Entry: 3
+      Data: 1
   characterName: Ladybug
+  maxHealth: 13
   health: 13
+  maxMagicPoints: 20
   magicPoints: 20
+  defense: 3
   strength: 3
   vitality: 4
   agility: 2
   tech: 1
   luck: 1
-  defense: 3
-  currentEffect: 0
+  currentEffects: 0
+  currentBinds: 0
   sprite: {fileID: 2800000, guid: 763f5bf2c0636fc4aa0294d3b1bc47ff, type: 3}

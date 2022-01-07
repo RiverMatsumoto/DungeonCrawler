@@ -167,7 +167,6 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 
         if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
         {
-            Debug.Log("move forward");
             mapHandler.currentMap.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
             StartCoroutine(movePlayer(localForward));
             mapPosition += localForward;

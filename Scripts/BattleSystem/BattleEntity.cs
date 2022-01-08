@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-public abstract class BattleEntity : MonoBehaviour
+[ShowOdinSerializedPropertiesInInspector]
+public class BattleEntity
 {
     // TODO add loot table, items, and item system
     public CharacterData characterData;

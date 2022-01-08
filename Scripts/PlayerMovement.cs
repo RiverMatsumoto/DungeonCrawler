@@ -13,6 +13,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     public Vector2Int localRight;
     public Vector2Int localBack;
     public Vector2Int localLeft;
+    public UnityEvent playerMoveStart;
     public Vector2Int mapPosition { get; set; }
     public MapHandler mapHandler;
     public OverworldData overworldData;

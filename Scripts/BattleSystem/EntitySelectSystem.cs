@@ -35,12 +35,12 @@ public class EntitySelectSystem : EventTrigger
 
         if (selectingType == SelectingType.ENEMIES)
         {
-            battleCommand.battleEntity = BattleSystem.instance.currentPlayer;
-            highlightedEntity = BattleSystem.instance.enemies.getBattleEntity(selectPosition);
-            highlightedEntity.GetComponent<Button>().Select();
-            Vector3 position = highlightedEntity.transform.position;
-            position.y += 1;
-            transform.position = position;
+            // battleCommand.battleEntity = BattleSystem.instance.currentPlayer;
+            // highlightedEntity = BattleSystem.instance.enemies.getBattleEntity(selectPosition);
+            // highlightedEntity.GetComponent<Button>().Select();
+            // Vector3 position = highlightedEntity.transform.position;
+            // position.y += 1;
+            // transform.position = position;
         }
 
         // selectingEnemy();

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4098818831915057108}
-  - component: {fileID: 3203217301600229578}
   - component: {fileID: 5199053302404679509}
   - component: {fileID: 1009237706761557170}
+  - component: {fileID: 2124920700150822661}
   m_Layer: 0
   m_Name: Groundhog
   m_TagString: Untagged
@@ -34,23 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3203217301600229578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711571025635872793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b94ab76ac65a1b40b1fd9142b2b6128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: c6d1e28238402ef4ca3f2d2114f97f72, type: 2}
-  target: {fileID: 0}
-  damageMultipliers: []
-  speedMultipliers: []
-  isBackRow: 0
 --- !u!212 &5199053302404679509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,16 +129,49 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6467790729823152444, guid: 944576a18be64a34bb27ace9168e555a, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &2124920700150822661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711571025635872793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d087d8c90c36cdc42b5974159d0a69e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: battleEntity
+      Entry: 7
+      Data: 0|Groundhog, Assembly-CSharp
+    - Name: characterData
+      Entry: 6
+      Data: 
+    - Name: intendedBattleCommand
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 6
+      Data: 
+    - Name: damageMultipliers
+      Entry: 6
+      Data: 
+    - Name: speedMultipliers
+      Entry: 6
+      Data: 
+    - Name: isBackRow
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 

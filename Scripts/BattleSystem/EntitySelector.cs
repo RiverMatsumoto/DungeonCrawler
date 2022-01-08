@@ -17,7 +17,7 @@ public class EntitySelector : MonoBehaviour
         Debug.Log("Navigating Entities");
         gameObject.SetActive(true);
         currentSelectedEntity = BattleSystem.instance.enemies.getBattleEntity(1);
-        currentSelectedEntity.GetComponent<Button>().Select();
+        // currentSelectedEntity.GetComponent<Button>().Select();
     }
 
     public void selectEntity()

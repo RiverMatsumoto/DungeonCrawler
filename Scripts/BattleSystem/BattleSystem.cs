@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BattleOutcome { WON, LOST, ESCAPED }
 public class BattleSystem : MonoBehaviour
 {
     public static BattleSystem instance;
@@ -9,6 +10,10 @@ public class BattleSystem : MonoBehaviour
     public static event enterBattleEvent broadcastEnterBattle;
     public delegate void leaveBattleEvent();
     public static event leaveBattleEvent broadcastLeaveBattle;
+    public delegate void startTurnEvent();
+    public static event startTurnEvent broadcastStartTurn;
+    public delegate void startBattlePhaseEvent();
+    public static event startBattlePhaseEvent broadcastStartBattlePhase;
     public List<BattleEntity> allBattleEntites;
     public BattleEntityParty party;
     public BattleEntityParty enemies;
@@ -23,12 +28,12 @@ public class BattleSystem : MonoBehaviour
     public void startTurn()
     {
         // TODO setup ui display and let that ui add the intended actions
-
+        broadcastStartTurn();
     }
 
     public void startBattlePhase()
     {
-
+        broadcastStartBattlePhase();
     }
 
     public void AddIntendedBattleCommand(BattleCommand battleCommand, BattleEntity battleEntity)
@@ -51,6 +56,11 @@ public class BattleSystem : MonoBehaviour
     public void setEnemyParty(BattleEntityParty enemyParty)
     {
         enemies = enemyParty;
+    }
+
+    public void initializeEnemies()
+    {
+
     }
 
     private void Awake()

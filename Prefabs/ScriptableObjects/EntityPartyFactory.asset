@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: LadybugData
+  m_Script: {fileID: 11500000, guid: d6dc16061184b12469bd9a213192900a, type: 3}
+  m_Name: EntityPartyFactory
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,18 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  characterName: Ladybug
-  sprite: {fileID: 21300000, guid: 87c094454bcc75c4fac784b0389993c3, type: 3}
-  maxHealth: 13
-  health: 13
-  maxMagicPoints: 20
-  magicPoints: 20
-  strength: 3
-  defense: 3
-  vitality: 4
-  agility: 2
-  tech: 1
-  luck: 1
-  currentEffects: 0
-  currentBinds: 0
-  isEnemy: 0
+  dataProvider: {fileID: 11400000, guid: 9a01aa86c27f3aa44a584db54f1ba943, type: 2}
+  entityFactory: {fileID: 11400000, guid: 4f0c7889a8d6bc9438984c6cac6f3532, type: 2}

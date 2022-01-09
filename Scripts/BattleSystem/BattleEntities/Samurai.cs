@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Samurai : BattleEntity
 {
-    
+    private void Start()
+    {
+        
+    }
 }

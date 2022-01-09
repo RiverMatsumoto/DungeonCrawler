@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8482051580721650469
+--- !u!1 &3041912759664828728
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6517046257407270780}
-  - component: {fileID: -5227306335652518388}
+  - component: {fileID: 7041704595417306610}
+  - component: {fileID: 2608732756873824237}
   m_Layer: 0
-  m_Name: Samurai
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6517046257407270780
+--- !u!4 &7041704595417306610
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8482051580721650469}
+  m_GameObject: {fileID: 3041912759664828728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,67 +32,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5227306335652518388
+--- !u!114 &2608732756873824237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8482051580721650469}
+  m_GameObject: {fileID: 3041912759664828728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d087d8c90c36cdc42b5974159d0a69e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7376557156261a1409e96148c9eaf9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 3f53634a976b46547b1efc216af6678e, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: battleEntity
+    - Name: partyList
       Entry: 7
-      Data: 0|Samurai, Assembly-CSharp
-    - Name: characterData
-      Entry: 10
-      Data: 0
-    - Name: intendedBattleCommand
+      Data: 0|System.Collections.Generic.List`1[[BattleEntityParty, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|BattleEntityParty, Assembly-CSharp
+    - Name: party
       Entry: 6
       Data: 
-    - Name: target
-      Entry: 6
-      Data: 
-    - Name: damageMultipliers
-      Entry: 7
-      Data: 1|System.Single[], mscorlib
-    - Name: 
-      Entry: 14
+    - Name: numEntities
+      Entry: 3
       Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: speedMultipliers
-      Entry: 7
-      Data: 2|System.Single[], mscorlib
-    - Name: 
-      Entry: 14
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: isBackRow
+    - Name: isEnemy
       Entry: 5
       Data: false
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  overworldData: {fileID: 0}
+  enemyData: []

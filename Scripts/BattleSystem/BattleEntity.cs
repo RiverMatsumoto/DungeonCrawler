@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 [ShowOdinSerializedPropertiesInInspector]
-public class BattleEntity
+[RequireComponent(typeof(Button))]
+[RequireComponent(typeof(SpriteRenderer))]
+public class BattleEntity : SerializedMonoBehaviour
 {
     // TODO add loot table, items, and item system
-    public CharacterData characterData;
+    public BattleEntityParty party;
+    public CharacterDataStruct characterData;
     public BattleCommand intendedBattleCommand;
     public BattleEntity target;
+    public List<BattleCommand> learnedSkills;
     public float[] damageMultipliers;
     public float[] speedMultipliers;
     public bool isBackRow;
@@ -29,30 +34,20 @@ public class BattleEntity
         }
     }
 
+
     public void selectEntity()
     {
         EntitySelectSystem.instance.setTarget(this);
     }
 
-    public void displayStats()
-    {
-        if (characterData.characterName == "Groundhog")
-        {
-            Debug.Log(characterData.health);
-            characterData.health++;
-            Debug.Log(characterData.health);
-
-        }
-    }
-
     public void setCharacterData(CharacterData characterData)
     {
-        this.characterData = characterData.getClone(); // required so that 
+        GetComponent<SpriteRenderer>().sprite = characterData.sprite;
+        this.characterData = new CharacterDataStruct(characterData);
     }
 
-    private void Start()
-    {
-        characterData = characterData.getClone();
-        displayStats();
-    }
+    // public void setCharacterData(CharacterData characterData)
+    // {
+        
+    // }
 }

@@ -3,23 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class BattleEntityParty : MonoBehaviour
+public class BattleEntityParty
 {
-    public List<BattleEntity> party;
+    public EntityPartyType partyGroup;
+    public BattleEntity[] party;
     [Range(0, 6)]
     public int numEntities;
     public bool isEnemy;
-
-
-    public void addBattleEntity(int partyPosition, BattleEntity battleEntity)
+    public int numFrontRow
     {
-        if (party[partyPosition] == null)
+        get
         {
-            party.Insert(partyPosition, battleEntity);
+            int counter = 0;
+            for (var i = 0; i < party.Length; i++)
+            {
+                if (party[i] == null) { continue; }
+                if (!party[i].isBackRow) { counter++; }
+            }
+            return counter;
         }
-        else
+    }
+
+    public int numBackRow
+    {
+        get
         {
-            Debug.Log("There is already an entity at position " + partyPosition);
+            return numEntities - numFrontRow;
+        }
+    }
+
+
+    public BattleEntityParty(BattleEntity[] battleEntities, bool isEnemy, EntityPartyType partyGroup)
+    {
+        party = battleEntities;
+        numEntities = battleEntities.Length;
+        this.isEnemy = isEnemy;
+        this.partyGroup = partyGroup;
+    }
+
+
+    public void addBattleEntity(BattleEntity battleEntity)
+    {
+        bool wasInserted = false;
+        for (int i = 0; i < 6; i++)
+        {
+            if (party[i] == null)
+            {
+                wasInserted = true;
+                numEntities++;
+                party[i] = battleEntity;
+            }
+        }
+        if (!wasInserted)
+        {
+            Debug.Log("BattleEntity could not be inserted in party");
         }
     }
 
@@ -37,26 +74,24 @@ public class BattleEntityParty : MonoBehaviour
 
     public void clearParty()
     {
-        party.Clear();
+        for (int i = 0; i < party.Length; i++)
+        {
+            party[i] = null;
+        }
         numEntities = 0;
     }
 
-    public BattleEntity getBattleEntity(int partyPosition)
+    public BattleEntity getBattleEntity(int index)
     {
-        if (party[partyPosition] != null)
+        if (party[index] == null)
         {
-            Debug.Log("Accessed index " + partyPosition);
-            return party[partyPosition];
+            return null;
         }
         else
         {
-            Debug.LogError("The party position trying to be accessed is empty or null");
-            return null;
+            Debug.Log("Accessed index " + index);
+            return party[index];
         }
     }
 
-    private void Start()
-    {
-        BattleSystem.instance.setEnemyParty(this);
-    }
 }

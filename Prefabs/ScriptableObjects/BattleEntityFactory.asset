@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512a471e9ed6d854c81505c78e6a481f, type: 3}
-  m_Name: CharacterDataLibrary
+  m_Script: {fileID: 11500000, guid: 6158de3b0238e1946afd368d0a4123df, type: 3}
+  m_Name: BattleEntityFactory
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,6 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  characterDataLibrary:
-  - {fileID: 0}
-  - {fileID: 0}
+  battleEntity: {fileID: 1685460644770977717, guid: 4bc58dec4aa2b354ca22a5749da42853, type: 3}
+  characterDataProvider: {fileID: 11400000, guid: 9a01aa86c27f3aa44a584db54f1ba943, type: 2}

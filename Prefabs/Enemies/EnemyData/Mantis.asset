@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: LadybugData
+  m_Name: Mantis
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,16 +21,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  characterName: Ladybug
-  sprite: {fileID: 21300000, guid: 87c094454bcc75c4fac784b0389993c3, type: 3}
-  maxHealth: 13
-  health: 13
-  maxMagicPoints: 20
-  magicPoints: 20
-  strength: 3
-  defense: 3
-  vitality: 4
-  agility: 2
+  characterName: Mantis
+  sprite: {fileID: 0}
+  maxHealth: 0
+  health: 0
+  maxMagicPoints: 0
+  magicPoints: 0
+  strength: 1
+  defense: 0
+  vitality: 1
+  agility: 1
   tech: 1
   luck: 1
   currentEffects: 0

@@ -6,31 +6,26 @@ public class OverworldDataHandler : MonoBehaviour
 {
     // updates the overworlddata scriptable object 
     public OverworldData overworldData;
+    public PlayerMovement playerMovement;
+    public EncounterSystem encounterSystem;
 
     private void Start()
     {
         overworldData.inBattle = false;
     }
 
-    public void updatePlayerPosition(Vector2Int mapPosition)
+    public void updatePlayerPosition()
     {
-        overworldData.playerPosition = mapPosition;
+        overworldData.playerPosition = playerMovement.mapPosition;
     }
 
-    public void updatePlayerFacing(Quaternion direction, Vector2Int direction2D)
+    public void updatePlayerFacing()
     {
-        overworldData.playerFacingDir = direction2D;
+        overworldData.playerFacingDir = playerMovement.localForward;
     }
 
-    private void OnEnable()
+    public void updateStepCounter()
     {
-        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
-        MovementEventHandler.broadCastPlayerTurned += updatePlayerFacing;
-    }
-
-    private void OnDisable()
-    {
-        MovementEventHandler.broadcastPlayerMoved -= updatePlayerPosition;
-        MovementEventHandler.broadCastPlayerTurned -= updatePlayerFacing;
+        overworldData.currentSteps++;
     }
 }

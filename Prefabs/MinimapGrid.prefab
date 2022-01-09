@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 3047339937000955447}
   - component: {fileID: 4223847394443618505}
   - component: {fileID: 3229572371199353887}
+  - component: {fileID: 1619904604}
   m_Layer: 0
   m_Name: MinimapCamera
   m_TagString: Untagged
@@ -354,11 +355,98 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e5f02c52-ab3e-44b2-85e6-d3a9aeac34fb
     m_ActionName: Player/Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d264802d-efbe-4d26-8c03-64e4693345b6
+    m_ActionName: UI/Navigate[/Shaul Eizikovich vJoy - Virtual Joystick/stick/up,/Shaul
+      Eizikovich vJoy - Virtual Joystick1/stick/up,/Shaul Eizikovich vJoy - Virtual
+      Joystick2/stick/up,/Shaul Eizikovich vJoy - Virtual Joystick3/stick/up,/Shaul
+      Eizikovich vJoy - Virtual Joystick/stick/down,/Shaul Eizikovich vJoy - Virtual
+      Joystick1/stick/down,/Shaul Eizikovich vJoy - Virtual Joystick2/stick/down,/Shaul
+      Eizikovich vJoy - Virtual Joystick3/stick/down,/Shaul Eizikovich vJoy - Virtual
+      Joystick/stick/left,/Shaul Eizikovich vJoy - Virtual Joystick1/stick/left,/Shaul
+      Eizikovich vJoy - Virtual Joystick2/stick/left,/Shaul Eizikovich vJoy - Virtual
+      Joystick3/stick/left,/Shaul Eizikovich vJoy - Virtual Joystick/stick/right,/Shaul
+      Eizikovich vJoy - Virtual Joystick1/stick/right,/Shaul Eizikovich vJoy - Virtual
+      Joystick2/stick/right,/Shaul Eizikovich vJoy - Virtual Joystick3/stick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fbb00e43-fa3f-4ef0-9f79-21b20f0d75b4
+    m_ActionName: UI/Submit[/Keyboard/enter,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f14144b5-32ca-4387-9268-5833945661a3
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61e6cc19-1373-4658-bac3-1c22135a6ec8
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e4d50f8-1074-43c8-aef6-3d46e2949952
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db9d8430-3175-46cd-b6ac-0e76cb7fa254
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c39acc9-1d6f-48a4-ba36-b5708cb3eb02
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d06a3ba-21fa-4ed3-830e-3fe7d138893d
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 207a1650-5a8a-4e4e-b0f5-3620b6549a2d
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f327426-79b8-4eca-83fc-a07c14328a78
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1619904604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307208859814790152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  gameEvent: {fileID: 11400000, guid: b6dea47f630925a4d918df4deaf0d1f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4223847394443618505}
+        m_TargetAssemblyTypeName: MinimapCamera, Assembly-CSharp
+        m_MethodName: moveCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5106576286387472704
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +458,8 @@ GameObject:
   - component: {fileID: 6528969540321315725}
   - component: {fileID: 1207286331301670837}
   - component: {fileID: 5635413749226591035}
+  - component: {fileID: 1040539624976429905}
+  - component: {fileID: 293414142}
   m_Layer: 0
   m_Name: MinimapPlayer
   m_TagString: Untagged
@@ -456,6 +546,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcadcef6d37ea724188f6e2f8c1af462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
+--- !u!114 &1040539624976429905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106576286387472704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  gameEvent: {fileID: 11400000, guid: b6dea47f630925a4d918df4deaf0d1f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5635413749226591035}
+        m_TargetAssemblyTypeName: MinimapPlayer, Assembly-CSharp
+        m_MethodName: movePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &293414142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106576286387472704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  gameEvent: {fileID: 11400000, guid: 03d3fbc5e98088143a236e8eec4933de, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5635413749226591035}
+        m_TargetAssemblyTypeName: MinimapPlayer, Assembly-CSharp
+        m_MethodName: turnPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8996052146076781776
 GameObject:
   m_ObjectHideFlags: 0

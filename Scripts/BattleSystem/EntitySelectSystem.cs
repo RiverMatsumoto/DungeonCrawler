@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class EntitySelectSystem : EventTrigger
+public class EntitySelectSystem : MonoBehaviour
 {
     public static EntitySelectSystem instance;
     public delegate void selectingEnemyEvent();
@@ -62,7 +62,6 @@ public class EntitySelectSystem : EventTrigger
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {

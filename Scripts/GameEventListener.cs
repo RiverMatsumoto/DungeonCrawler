@@ -9,6 +9,11 @@ public class GameEventListener : SerializedMonoBehaviour
     public GameEvent gameEvent;
     public UnityEvent response;
 
+    public void onEventRaised()
+    {
+        response.Invoke();
+    }
+
     private void OnEnable()
     {
         gameEvent.RegisterListener(this);

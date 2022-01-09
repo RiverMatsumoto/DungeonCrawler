@@ -9,11 +9,13 @@ using Sirenix.OdinInspector;
 public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 {
     #region Variables
-    public Vector2Int localForward;
+    public GameEvent playerMoveStartEvent;
+    public GameEvent playerMoveEndedEvent;
+    public GameEvent playerTurnedEvent;
+    public Vector2Int localForward { get; set; }
     public Vector2Int localRight;
     public Vector2Int localBack;
     public Vector2Int localLeft;
-    public UnityEvent playerMoveStart;
     public Vector2Int mapPosition { get; set; }
     public MapHandler mapHandler;
     public OverworldData overworldData;
@@ -106,7 +108,9 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         float elapsedTime = 0;
 
         // broadcast event that player turned
-        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint), localForward);
+        // TODO MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint), localForward);
+        updateOverworldData();
+        playerTurnedEvent.raise();
         while (elapsedTime < MOVE_TIME)
         {
             transform.localRotation =
@@ -168,27 +172,23 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 
         if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
         {
-            mapHandler.currentMap.placeCharacter(mapPosition, localForward, gameObject.GetComponent<PlayerMovement>());
+            mapHandler.currentMap.placeCharacter(mapPosition, localForward, this);
             StartCoroutine(movePlayer(localForward));
-            mapPosition += localForward;
         }
         else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
         {
-            mapHandler.currentMap.placeCharacter(mapPosition, localBack, gameObject.GetComponent<PlayerMovement>());
+            mapHandler.currentMap.placeCharacter(mapPosition, localBack, this);
             StartCoroutine(movePlayer(localBack));
-            mapPosition += localBack;
         }
         else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
         {
-            mapHandler.currentMap.placeCharacter(mapPosition, localRight, gameObject.GetComponent<PlayerMovement>());
+            mapHandler.currentMap.placeCharacter(mapPosition, localRight, this);
             StartCoroutine(movePlayer(localRight));
-            mapPosition += localRight; // add direction to the map position
         }
         else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
         {
-            mapHandler.currentMap.placeCharacter(mapPosition, localLeft, gameObject.GetComponent<PlayerMovement>());
+            mapHandler.currentMap.placeCharacter(mapPosition, localLeft, this);
             StartCoroutine(movePlayer(localLeft));
-            mapPosition += localLeft;
         }
     }
 
@@ -206,7 +206,10 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         }
         isActionable = false;
         // place the character on the map and send the playermoved event
-        mapHandler.currentMap.placeCharacter(mapPosition, direction, gameObject.GetComponent<PlayerMovement>());
+        mapHandler.currentMap.placeCharacter(mapPosition, direction, this);
+        mapPosition += direction;
+        updateOverworldData();
+        playerMoveStartEvent.raise();
 
         Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
@@ -221,7 +224,8 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         }
         transform.localPosition = endPoint;
         yield return new WaitForSeconds(MOVE_COOLDOWN_TIME);
-        MovementEventHandler.playerMoveEnded();
+        // TODO MovementEventHandler.playerMoveEnded();
+        playerMoveEndedEvent.raise();
         isActionable = true;
     }
 
@@ -264,10 +268,16 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         newPos.z = position.y * MOVE_DISTANCE;
         transform.position = newPos;
 
-        MovementEventHandler.playerMoved(mapPosition);
+        // MovementEventHandler.playerMoved(mapPosition);
+        updateOverworldData();
+        playerMoveStartEvent.raise();
     }
 
-
+    private void updateOverworldData()
+    {
+        overworldData.playerPosition = mapPosition;
+        overworldData.playerFacingDir = localForward;
+    }
 
     private void faceDirection(Vector2Int facingDir)
     {
@@ -283,7 +293,9 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         endDir.SetLookRotation(endRotation);
         transform.localRotation = endDir;
 
-        MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
+        // TODO MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
+        updateOverworldData();
+        playerTurnedEvent.raise();
     }
     #endregion
 }

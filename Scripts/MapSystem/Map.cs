@@ -22,8 +22,6 @@ public class Map
         tiles = new Tile[columns, rows];
         characterPositions = new IOccupiesTile[columns, rows];
         generateMap(mapLayout);
-
-        MovementEventHandler.broadcastPlayerMoved += updatePlayerPosition;
     }
 
     /// <summary>
@@ -109,7 +107,7 @@ public class Map
         characterPositions[startPos.x, startPos.y] = null;
         Vector2Int endPos = startPos + direction;
         characterPositions[endPos.x, endPos.y] = entity;
-        MovementEventHandler.playerMoved(endPos);
+        // TODO EDIT THIS SO IT IS CLEANER WITH PLAYER MOVED EVENTS
     }
 
     /// <summary>

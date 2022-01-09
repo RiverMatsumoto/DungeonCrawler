@@ -26,9 +26,8 @@ public class MinimapCamera : MonoBehaviour
     #endregion
 
 
-    public void moveCamera(Vector2Int position)
+    public void moveCamera()
     {
-        playerPosition = position; // always refresh the player's mapPosition
         if (mapOpen) { return; }
 
         hitNPadding = false;
@@ -37,22 +36,22 @@ public class MinimapCamera : MonoBehaviour
         hitEPadding = false;
 
         Vector3 paddedPosition = new Vector3(0, 0, cameraZOffset);
-        if (position.x < W_PAD)
+        if (overworldData.playerPosition.x < W_PAD)
         {
             paddedPosition.x += W_PAD;
             hitWPadding = true;
         }
-        if (position.x > E_PAD)
+        if (overworldData.playerPosition.x > E_PAD)
         {
             paddedPosition.x += E_PAD;
             hitEPadding = true;
         }
-        if (position.y < S_PAD)
+        if (overworldData.playerPosition.y < S_PAD)
         {
             paddedPosition.y += S_PAD;
             hitSPadding = true;
         }
-        if (position.y > N_PAD)
+        if (overworldData.playerPosition.y > N_PAD)
         {
             paddedPosition.y += N_PAD;
             hitNPadding = true;
@@ -64,23 +63,43 @@ public class MinimapCamera : MonoBehaviour
         }
         else if (hitNPadding)
         {
-            transform.localPosition = new Vector3(position.x, N_PAD, cameraZOffset);
+            transform.localPosition = new Vector3(
+                overworldData.playerPosition.x, 
+                N_PAD, 
+                cameraZOffset
+            );
         }
         else if (hitSPadding)
         {
-            transform.localPosition = new Vector3(position.x, S_PAD, cameraZOffset);
+            transform.localPosition = new Vector3(
+                overworldData.playerPosition.x, 
+                S_PAD, 
+                cameraZOffset
+            );
         }
         else if (hitWPadding)
         {
-            transform.localPosition = new Vector3(W_PAD, position.y, cameraZOffset);
+            transform.localPosition = new Vector3(
+                W_PAD, 
+                overworldData.playerPosition.y, 
+                cameraZOffset
+            );
         }
         else if (hitEPadding)
         {
-            transform.localPosition = new Vector3(E_PAD, position.y, cameraZOffset);
+            transform.localPosition = new Vector3(
+                E_PAD, 
+                overworldData.playerPosition.y, 
+                cameraZOffset
+            );
         }
         else
         {
-            transform.localPosition = new Vector3(position.x, position.y, cameraZOffset);
+            transform.localPosition = new Vector3(
+                overworldData.playerPosition.x, 
+                overworldData.playerPosition.y, 
+                cameraZOffset
+            );
         }
     }
 
@@ -101,58 +120,65 @@ public class MinimapCamera : MonoBehaviour
 
     public void toggleMapInOverworld()
     {
-            if (mapOpen)
-            {
-                // toggles the ui position to the smaller minimap
-                overworldMinimap.localPosition = new Vector3(0, 0, 0);
-                overworldMinimap.localScale = Vector3.one;
-                mapOpen = false;
-                minimapCamera.orthographicSize = 6F;
-                moveCamera(playerPosition);
-            }
-            else
-            {
-                // toggles the ui position to the larger minimap
-                overworldMinimap.localPosition = new Vector3(-200F, -70F, 0);
-                overworldMinimap.localScale = new Vector3(2.5F, 2.5F, 1);
-                mapOpen = true;
-                transform.localPosition = mapOpenPosition;
-                minimapCamera.orthographicSize = 25F;
-            }
+        if (mapOpen)
+        {
+            minimizeOverworldMap();
+        }
+        else
+        {
+            maximizeOverworldMap();
+        }
+    }
+
+    public void minimizeOverworldMap()
+    {
+        // toggles the ui position to the smaller minimap
+        overworldMinimap.localPosition = new Vector3(0, 0, 0);
+        overworldMinimap.localScale = Vector3.one;
+        mapOpen = false;
+        minimapCamera.orthographicSize = 6F;
+        moveCamera();
+    }
+
+    public void maximizeOverworldMap()
+    {
+        // toggles the ui position to the larger minimap
+        overworldMinimap.localPosition = new Vector3(-200F, -70F, 0);
+        overworldMinimap.localScale = new Vector3(2.5F, 2.5F, 1);
+        mapOpen = true;
+        transform.localPosition = mapOpenPosition;
+        minimapCamera.orthographicSize = 25F;
     }
 
     public void toggleMapInBattle()
     {
-            if (mapOpen)
-            {
-                battleMinimap.localPosition = new Vector3(20, 28, 0);
-                battleMinimap.localScale = Vector3.one;
-                mapOpen = false;
-                minimapCamera.orthographicSize = 8F;
-                moveCamera(playerPosition);
-            }
-            else
-            {
-                battleMinimap.localPosition = new Vector3(-190F, -50F, 0);
-                battleMinimap.localScale = new Vector3(3.5F, 3.5F, 1);
-                mapOpen = true;
-                minimapCamera.orthographicSize = 25F;
-                transform.localPosition = mapOpenPosition;
-            }
+        if (mapOpen)
+        {
+            minimizeBattleMap();
+        }
+        else
+        {
+            maximizeBattleMap();
+        }
     }
 
-    private void toggleUITransform()
+    public void minimizeBattleMap()
     {
+        battleMinimap.localPosition = new Vector3(20, 28, 0);
+        battleMinimap.localScale = Vector3.one;
+        mapOpen = false;
+        minimapCamera.orthographicSize = 8F;
+        moveCamera();
+
     }
 
-    private void OnEnable()
+    public void maximizeBattleMap()
     {
-        MovementEventHandler.broadcastPlayerMoved += moveCamera;
+        battleMinimap.localPosition = new Vector3(-190F, -50F, 0);
+        battleMinimap.localScale = new Vector3(3.5F, 3.5F, 1);
+        mapOpen = true;
+        minimapCamera.orthographicSize = 25F;
+        transform.localPosition = mapOpenPosition;
     }
 
-    private void OnDisable()
-    {
-        MovementEventHandler.broadcastPlayerMoved -= moveCamera;
-        
-    }
 }

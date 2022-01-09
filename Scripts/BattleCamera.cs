@@ -4,33 +4,22 @@ using UnityEngine;
 
 public class BattleCamera : MonoBehaviour
 {
-    private void disableBattleCamera()
+    // TODO add game event listeners
+    public void disableBattleCamera()
     {
         GetComponent<Camera>().enabled = false;
         GetComponent<AudioListener>().enabled = false;
     }
 
-    private void enableBattleCamera()
+    public void enableBattleCamera()
     {
         GetComponent<Camera>().enabled = true;
         GetComponent<AudioListener>().enabled = true;
     }
 
-    private void OnEnable()
-    {
-        BattleSystem.broadcastEnterBattle += enableBattleCamera;
-        BattleSystem.broadcastLeaveBattle += disableBattleCamera;
-    }
-
-    private void OnDisable()
-    {
-        BattleSystem.broadcastEnterBattle -= enableBattleCamera;
-        BattleSystem.broadcastLeaveBattle -= disableBattleCamera;
-    }
 
     private void Start()
     {
-        GetComponent<Camera>().enabled = false;
-        GetComponent<AudioListener>().enabled = false;
+        disableBattleCamera();
     }
 }

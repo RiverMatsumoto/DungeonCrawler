@@ -16,7 +16,7 @@ public class UIHandler : MonoBehaviour
         battleHud.enabled = false;
     }
 
-    public void enterBattle()
+    public void startBattle()
     {
         overworldHud.enabled = false;
         battleHud.enabled = true;
@@ -25,7 +25,7 @@ public class UIHandler : MonoBehaviour
         // battleHud.gameObject.SetActive(true);
     }
 
-    public void endBattle()
+    public void leaveBattle()
     {
         overworldHud.enabled = true;
         battleHud.enabled = false;
@@ -34,16 +34,16 @@ public class UIHandler : MonoBehaviour
     }
 
     #region OnEnable and OnDisable
-    private void OnEnable()
-    {
-        BattleSystem.broadcastEnterBattle += enterBattle;
-        BattleSystem.broadcastLeaveBattle += endBattle;
-    }
+    // private void OnEnable()
+    // {
+    //     BattleSystem.broadcastEnterBattle += enterBattle;
+    //     BattleSystem.broadcastLeaveBattle += endBattle;
+    // }
 
-    private void OnDisable()
-    {
-        BattleSystem.broadcastEnterBattle -= enterBattle;
-        BattleSystem.broadcastLeaveBattle -= endBattle;
-    }
+    // private void OnDisable()
+    // {
+    //     BattleSystem.broadcastEnterBattle -= enterBattle;
+    //     BattleSystem.broadcastLeaveBattle -= endBattle;
+    // }
     #endregion
 }

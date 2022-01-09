@@ -316,8 +316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bf947ef69ef9440944ec600f57dc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBattleEvent: {fileID: 0}
+  leaveBattleEvent: {fileID: 0}
+  startTurnEvent: {fileID: 0}
+  startBattlePhaseEvent: {fileID: 0}
   party: {fileID: 2525442316299263016}
   enemies: {fileID: 1844329396881937773}
+  overworldData: {fileID: 0}
   partySize: 0
   enemyPartySize: 0
 --- !u!114 &1016690686
@@ -344,8 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118446b6533b7f24e84618c71cc93658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates: []
-  entitySelector: {fileID: 0}
+  entitySelector: {fileID: 3645623281172271794}
   currentSelectType: 0
 --- !u!1 &8123586430455366900
 GameObject:
@@ -577,6 +581,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6467790729823152445, guid: 944576a18be64a34bb27ace9168e555a, type: 3}
   m_PrefabInstance: {fileID: 6467790730671236592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3645623281172271794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7734350073107314498, guid: 944576a18be64a34bb27ace9168e555a, type: 3}
+  m_PrefabInstance: {fileID: 6467790730671236592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f745ee1c00717468564f0833680961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6502012898990591761
 PrefabInstance:
   m_ObjectHideFlags: 0

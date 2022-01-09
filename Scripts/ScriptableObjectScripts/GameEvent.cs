@@ -9,9 +9,9 @@ public class GameEvent : SerializedScriptableObject
     private List<GameEventListener> listeners = new List<GameEventListener>();
     public void raise()
     {
-        for (int i = listeners.Count; i >= 0; i++)
+        for (int i = listeners.Count - 1; i >= 0; i--)
         {
-            // on event raised
+            listeners[i].onEventRaised();
         }
     }
 

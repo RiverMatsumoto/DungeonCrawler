@@ -5,49 +5,44 @@ using UnityEngine;
 public class EncounterSystem : MonoBehaviour
 {
     public static EncounterSystem instance;
-    public int encounterSteps;
-    public int currentSteps;
     public OverworldData overworldData;
+    public GameEvent startBattleEvent;
     public StepCounter stepCounter;
 
 
     public void encounterStep()
     {
-        currentSteps++;
+        overworldData.currentSteps++;
         updateStepCounter();
 
-        if (currentSteps >= encounterSteps)
+        if (overworldData.currentSteps >= overworldData.encounterSteps)
         {
             encounteredBattle();
         }
     }
 
-    public void leaveBattle()
-    {
-        BattleSystem.leaveBattle();
-        overworldData.inBattle = false;
-    }
-
     private void encounteredBattle()
     {
         // TODO Make playermovement class broadcast an event that it landed on a tile with a FOE
-        currentSteps = 0;
-        randomizeEncounterSteps();
-        BattleSystem.enterBattle();
         overworldData.inBattle = true;
+        overworldData.currentSteps = 0;
+        randomizeEncounterSteps();
+        startBattleEvent.raise();
     }
 
     private void updateStepCounter()
     {
-        if (stepCounter != null)
+        if (stepCounter == null)
         {
-            stepCounter.updateStepCounter();
+            Debug.LogError("Step counter is null in encounter system");
+            return;
         }
+        stepCounter.updateStepCounter();
     }
 
     private void randomizeEncounterSteps()
     {
-        encounterSteps = Random.Range(7, 15);
+        overworldData.encounterSteps = Random.Range(7, 15);
         updateStepCounter();
     }
 
@@ -69,13 +64,4 @@ public class EncounterSystem : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        MovementEventHandler.broadcastPlayerMoveEnded += encounterStep;
-    }
-
-    private void OnDisable()
-    {
-        MovementEventHandler.broadcastPlayerMoveEnded -= encounterStep;
-    }
 }

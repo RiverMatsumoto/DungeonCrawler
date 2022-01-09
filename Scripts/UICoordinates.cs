@@ -6,21 +6,13 @@ using TMPro;
 public class UICoordinates : MonoBehaviour
 {
     public TMP_Text coordinatesText;
-    public void updateUICoordinates(Vector2Int coordinates)
+    public OverworldData overworldData;
+    public void updateUICoordinates()
     {
-
-        coordinatesText.text = coordinates.ToString();
-    }
-
-    private void OnEnable()
-    {
-        MovementEventHandler.broadcastPlayerMoved += updateUICoordinates;
-    }
-
-    private void OnDisable()
-    {
-        MovementEventHandler.broadcastPlayerMoved -= updateUICoordinates;
-        
+        coordinatesText.text = new Vector2Int(
+            overworldData.playerPosition.x,
+            overworldData.playerPosition.y
+        ).ToString();
     }
 
     private void Start()

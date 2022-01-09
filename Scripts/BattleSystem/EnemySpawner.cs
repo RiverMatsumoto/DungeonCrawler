@@ -11,13 +11,13 @@ public class EnemySpawner : MonoBehaviour
         BattleSystem.instance.setEnemyParty(battleEntityParties[0]);
     }
 
-    private void OnEnable()
-    {
-        BattleSystem.broadcastEnterBattle += chooseEnemyParty;
-    }
+    // private void OnEnable()
+    // {
+    //     BattleSystem.broadcastEnterBattle += chooseEnemyParty;
+    // }
 
-    private void OnDisable()
-    {
-        BattleSystem.broadcastEnterBattle -= chooseEnemyParty;
-    }
+    // private void OnDisable()
+    // {
+    //     BattleSystem.broadcastEnterBattle -= chooseEnemyParty;
+    // }
 }

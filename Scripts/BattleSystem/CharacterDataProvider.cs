@@ -8,6 +8,7 @@ public class CharacterDataProvider : SerializedScriptableObject
 {
     public Dictionary<EnemyType, CharacterData> dataLibrary;
     public Dictionary<EntityPartyType, PartyDataStruct> entityPartyLibrary;
+    public Dictionary<ClassTypeEnum, ClassType> classLibrary;
 
     public CharacterData getEntityDataFor(EnemyType type)
     {
@@ -17,6 +18,11 @@ public class CharacterDataProvider : SerializedScriptableObject
     public PartyDataStruct getEntityPartyFor(EntityPartyType type)
     {
         return entityPartyLibrary[type];
+    }
+
+    public ClassType getClassTypeFor(ClassTypeEnum type)
+    {
+        return classLibrary[type];
     }
 }
 

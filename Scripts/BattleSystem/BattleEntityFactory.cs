@@ -18,6 +18,7 @@ public class BattleEntityFactory : SerializedScriptableObject
     {
         var enemy = GameObject.Instantiate<BattleEntity>(battleEntity);
         enemy.setCharacterData(characterDataProvider.getEntityDataFor(type));
+        
 
         return enemy;
     }

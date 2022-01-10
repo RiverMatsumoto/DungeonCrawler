@@ -14,6 +14,7 @@ public class BattleEntity : SerializedMonoBehaviour
     public CharacterDataStruct characterData;
     public BattleCommand intendedBattleCommand;
     public BattleEntity target;
+    public PlayerUI playerUI;
     public List<BattleCommand> learnedSkills;
     public float[] damageMultipliers;
     public float[] speedMultipliers;
@@ -42,12 +43,15 @@ public class BattleEntity : SerializedMonoBehaviour
 
     public void setCharacterData(CharacterData characterData)
     {
+        if (characterData.isEnemy)
+        {
+            playerUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            playerUI.UpdateUI();
+        }
         GetComponent<SpriteRenderer>().sprite = characterData.sprite;
         this.characterData = new CharacterDataStruct(characterData);
     }
-
-    // public void setCharacterData(CharacterData characterData)
-    // {
-        
-    // }
 }

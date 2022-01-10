@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Samurai : BattleEntity
+public class BaseDataProvider : MonoBehaviour
 {
-    private void Start()
-    {
-        
-    }
+
 }

@@ -20,38 +20,9 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: startingMaxHealth
-      Entry: 3
-      Data: 20
-    - Name: startingHealth
-      Entry: 3
-      Data: 20
-    - Name: startingMaxMagicPoints
-      Entry: 3
-      Data: 14
-    - Name: startingMagicPoints
-      Entry: 3
-      Data: 14
-    - Name: startingStrength
-      Entry: 3
-      Data: 6
-    - Name: startingDefense
-      Entry: 3
-      Data: 3
-    - Name: startingVitality
-      Entry: 3
-      Data: 3
-    - Name: startingAgility
-      Entry: 3
-      Data: 5
-    - Name: startingTech
-      Entry: 3
-      Data: 2
-    - Name: startingLuck
-      Entry: 3
-      Data: 3
-  characterName: Samurai1
+    SerializationNodes: []
+  characterName: Samurai
+  sprite: {fileID: 0}
   maxHealth: 20
   health: 20
   maxMagicPoints: 14
@@ -64,4 +35,4 @@ MonoBehaviour:
   luck: 3
   currentEffects: 0
   currentBinds: 0
-  sprite: {fileID: 0}
+  isEnemy: 0

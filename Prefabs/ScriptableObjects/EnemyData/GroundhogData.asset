@@ -23,16 +23,19 @@ MonoBehaviour:
     SerializationNodes: []
   characterName: Groundhog
   sprite: {fileID: 21300000, guid: 52c8bc6eaa2d6d446b574df5d1839485, type: 3}
+  classType: {fileID: 0}
+  subclassType: {fileID: 0}
+  currentEffects: 0
+  currentBinds: 0
+  isEnemy: 1
+  level: 1
   maxHealth: 15
   health: 15
   maxMagicPoints: 0
-  magicPoints: 1
+  magicPoints: 0
   strength: 4
   defense: 4
   vitality: 4
   agility: 2
   tech: 1
   luck: 1
-  currentEffects: 0
-  currentBinds: 0
-  isEnemy: 0

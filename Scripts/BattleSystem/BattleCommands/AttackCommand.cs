@@ -15,6 +15,6 @@ public class AttackCommand : BattleCommand
 
     public override void executeCommand()
     {
-        Debug.Log(battleEntity.characterData.name + " attacked " + target.characterData.name);
+        Debug.Log(battleEntity.characterData.characterName + " attacked " + target.characterData.characterName);
     }
 }

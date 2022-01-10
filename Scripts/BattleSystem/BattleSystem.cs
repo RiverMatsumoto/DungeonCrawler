@@ -81,20 +81,18 @@ public class BattleSystem : SerializedMonoBehaviour
     {
         // just a math problem similar to how many slices of pizza you need to cut so everyone gets an equal amount
         const float FRONT_ROW_OFFSET = 10F;
-        const float BACK_ROW_OFFSET = 16F;
+        const float BACK_ROW_OFFSET = 15F;
         const float PLACEMENT_RANGE = 16F;
         
-        // float frontRowSpacing = FRONT_ROW_SPACING / enemies.numFrontRow;
-        // float backRowSpacing = BACK_ROW_SPACING / enemies.numBackRow;
         float frontRowSpacing = PLACEMENT_RANGE / (enemies.numFrontRow + 1);
         float backRowSpacing = PLACEMENT_RANGE / (enemies.numBackRow + 1);
         float frontRowPlacement = frontRowSpacing;
         float backRowPlacement = backRowSpacing;
         int frontRowCounter = 1;
         int backRowCounter = 1;
+        // Where the start of the placing range is.
         Vector3 frontRowPlacingStart = new Vector3(-8, 1, FRONT_ROW_OFFSET);
-        Vector3 backRowPlacingStart = new Vector3(-7, 1, BACK_ROW_OFFSET);
-        //adjust front row enemies
+        Vector3 backRowPlacingStart = new Vector3(-6, 1, BACK_ROW_OFFSET);
 
         
         for (var i = 0; i < enemies.party.Length; i++)

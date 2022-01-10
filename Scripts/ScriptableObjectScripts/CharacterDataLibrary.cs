@@ -27,7 +27,7 @@ public class CharacterDataLibrary : SerializedScriptableObject
     {
         public CharacterDataStruct(CharacterData characterData)
         {
-            name = characterData.name;
+            name = characterData.characterName;
         }
         public string name { get; set; }
     }

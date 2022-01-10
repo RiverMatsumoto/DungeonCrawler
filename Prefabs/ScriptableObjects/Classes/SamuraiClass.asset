@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: Mantis
+  m_Script: {fileID: 11500000, guid: 22ce1974cc26af44ea3a3c1a27a57f24, type: 3}
+  m_Name: SamuraiClass
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,18 +21,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  characterName: Mantis
-  sprite: {fileID: 0}
-  maxHealth: 0
-  health: 0
-  maxMagicPoints: 0
-  magicPoints: 0
-  strength: 1
-  defense: 0
-  vitality: 1
-  agility: 1
-  tech: 1
-  luck: 1
-  currentEffects: 0
-  currentBinds: 0
-  isEnemy: 0
+  type: 1
+  baseStrength: 
+  baseVitality: 
+  baseAgility: 
+  baseTech: 
+  baseLuck: 

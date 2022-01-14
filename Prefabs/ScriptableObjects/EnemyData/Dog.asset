@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: GroundhogData
+  m_Name: Dog
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -337,28 +337,28 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  characterName: Groundhog
+  characterName: Dog
   description: 
-  sprite: {fileID: 21300000, guid: 52c8bc6eaa2d6d446b574df5d1839485, type: 3}
-  classType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
-  subclassType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
+  sprite: {fileID: 0}
+  classType: {fileID: 0}
+  subclassType: {fileID: 0}
   currentStatusEffect: 0
-  isEnemy: 1
-  level: 10
-  maxHealth: 25
-  maxTalentPoints: 94
-  strength: 10
-  vitality: 5
-  wisdom: 4
-  agility: 2
-  tech: 1
-  luck: 1
-  levelField: 10
-  maxHealthField: 25
-  maxTalentPointsField: 94
-  strengthField: 10
-  vitalityField: 5
-  wisdomField: 4
-  agilityField: 2
-  techField: 1
-  luckField: 1
+  isEnemy: 0
+  level: 0
+  maxHealth: 196
+  maxTalentPoints: 96
+  strength: 8
+  vitality: 8
+  wisdom: 6
+  agility: 6
+  tech: 6
+  luck: 6
+  levelField: 0
+  maxHealthField: 196
+  maxTalentPointsField: 96
+  strengthField: 8
+  vitalityField: 8
+  wisdomField: 6
+  agilityField: 6
+  techField: 6
+  luckField: 6

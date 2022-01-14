@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using TMPro;
 using Michsky.UI.ModernUIPack;
 
-public class PlayerUI : SerializedMonoBehaviour
+public class PlayerUI : MonoBehaviour
 {
     public BattleEntity entity;
     public TMP_Text characterName;
@@ -17,7 +14,7 @@ public class PlayerUI : SerializedMonoBehaviour
     {
         characterName.text = entity.characterData.characterName;
         healthBar.maxValue = entity.characterData.maxHealth;
-        magicBar.maxValue = entity.characterData.maxMagicPoints;
+        magicBar.maxValue = entity.characterData.maxTalentPoints;
         //not actually percent, but just a value. The default min max is 0-100
         healthBar.currentPercent = entity.characterData.health;
         magicBar.currentPercent = entity.characterData.magicPoints;

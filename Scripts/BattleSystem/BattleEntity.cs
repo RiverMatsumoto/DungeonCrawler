@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 
-[ShowOdinSerializedPropertiesInInspector]
 [RequireComponent(typeof(Button))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class BattleEntity : SerializedMonoBehaviour
@@ -15,24 +13,16 @@ public class BattleEntity : SerializedMonoBehaviour
     public BattleCommand intendedBattleCommand;
     public BattleEntity target;
     public PlayerUI playerUI;
+    public Sprite sprite;
     public List<BattleCommand> learnedSkills;
-    public float[] damageMultipliers;
-    public float[] speedMultipliers;
+    public float percentDamageBoost { get => (float)damageMultiplier/100; }
+    public int damageMultiplier;
+    public int speedMultiplier;
     public bool isBackRow;
-    public int partyPosition
+
+    public void reactToBattleCommand(BattleCommand command)
     {
-        get
-        {
-            return partyPosition;
-        }
-        set
-        {
-            if (partyPosition <= 3)
-            {
-                isBackRow = true;
-            }
-            partyPosition = value;
-        }
+
     }
 
 
@@ -43,6 +33,8 @@ public class BattleEntity : SerializedMonoBehaviour
 
     public void setCharacterData(CharacterData characterData)
     {
+        sprite = characterData.sprite;
+        this.characterData = new CharacterDataStruct(characterData);
         if (characterData.isEnemy)
         {
             playerUI.gameObject.SetActive(false);
@@ -51,7 +43,5 @@ public class BattleEntity : SerializedMonoBehaviour
         {
             playerUI.UpdateUI();
         }
-        GetComponent<SpriteRenderer>().sprite = characterData.sprite;
-        this.characterData = new CharacterDataStruct(characterData);
     }
 }

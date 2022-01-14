@@ -22,8 +22,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     public float MOVE_TIME = 0.3F;
     public float MOVE_COOLDOWN_TIME = 0.02F;
     public float MOVE_DISTANCE = 5;
-    [SerializeField]
-    private InputActionAsset controls;
+    public InputActionAsset controls;
     private Vector2 input;
     private float turnInput;
     bool isActionable;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: CharacterData
+  m_Name: TestCharacter
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,24 +20,35 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  characterName: 
+    SerializationNodes:
+    - Name: statusEffectResistance
+      Entry: 6
+      Data: 
+    - Name: attackTypeResistance
+      Entry: 6
+      Data: 
+  characterName: TestCharacter
+  description: 
   sprite: {fileID: 0}
   classType: {fileID: 0}
   subclassType: {fileID: 0}
-  currentEffects: 0
-  currentBinds: 0
+  currentStatusEffect: 0
   isEnemy: 0
-  level: 1
+  level: 0
   maxHealth: 0
-  health: 0
   maxTalentPoints: 0
-  talentPoints: 0
-  defense: 1
-  magicDefense: 0
-  strength: 1
-  vitality: 1
-  wisdom: 1
-  agility: 1
-  tech: 1
-  luck: 1
+  strength: 22
+  vitality: 0
+  wisdom: 0
+  agility: 0
+  tech: 0
+  luck: 0
+  levelField: 0
+  maxHealthField: 0
+  maxTalentPointsField: 0
+  strengthField: 22
+  vitalityField: 0
+  wisdomField: 0
+  agilityField: 0
+  techField: 0
+  luckField: 0

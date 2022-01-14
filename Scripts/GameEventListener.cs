@@ -14,6 +14,7 @@ public class GameEventListener : SerializedMonoBehaviour
         response.Invoke();
     }
 
+
     private void OnEnable()
     {
         gameEvent.RegisterListener(this);

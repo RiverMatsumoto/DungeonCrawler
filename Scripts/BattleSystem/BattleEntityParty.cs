@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+[System.Serializable]
 public class BattleEntityParty
 {
     public EntityPartyType partyGroup;
-    public BattleEntity[] party;
-    [Range(0, 6)]
-    public int numEntities;
+    [SerializeField]
+    private BattleEntity[] party;
+    public int partyCapacity { get => party.Length; }
+    public int numEntities
+    {
+        get
+        {
+            int counter = 0;
+            for (var i = 0; i < party.Length; i++)
+            {
+                if (party[i] != null) counter++;
+            }
+            return counter;
+        }
+    }
     public bool isEnemy;
     public int numFrontRow
     {
@@ -33,10 +46,9 @@ public class BattleEntityParty
     }
 
 
-    public BattleEntityParty(BattleEntity[] battleEntities, bool isEnemy, EntityPartyType partyGroup)
+    public BattleEntityParty(BattleEntity[] battleEntities, bool isEnemy, EntityPartyType partyGroup = EntityPartyType.Player)
     {
         party = battleEntities;
-        numEntities = battleEntities.Length;
         this.isEnemy = isEnemy;
         this.partyGroup = partyGroup;
     }
@@ -50,7 +62,6 @@ public class BattleEntityParty
             if (party[i] == null)
             {
                 wasInserted = true;
-                numEntities++;
                 party[i] = battleEntity;
             }
         }
@@ -78,18 +89,17 @@ public class BattleEntityParty
         {
             party[i] = null;
         }
-        numEntities = 0;
     }
 
     public BattleEntity getBattleEntity(int index)
     {
         if (party[index] == null)
         {
+            Debug.Log("Tried to access a null party member at party position: " + index);
             return null;
         }
         else
         {
-            Debug.Log("Accessed index " + index);
             return party[index];
         }
     }

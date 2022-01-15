@@ -11,7 +11,10 @@ public class CharacterDataProvider : SerializedScriptableObject
     public Dictionary<EntityPartyType, PartyDataStruct> entityPartyLibrary;
     [PropertySpace(16)]
     public Dictionary<ClassTypeEnum, ClassType> classLibrary;
-
+    [PropertySpace(16)]
+    public List<CharacterDataEditor> playerEntityLibrary;
+    [PropertySpace(16)]
+    public BattleEntityParty currentPlayerParty;
     public CharacterDataEditor getEntityDataFor(EnemyType type)
     {
         return dataLibrary[type];
@@ -31,6 +34,7 @@ public class CharacterDataProvider : SerializedScriptableObject
 public enum EnemyType
 {
     Null,
+    Player,
     Groundhog,
     Ladybug,
     Mantis
@@ -38,6 +42,7 @@ public enum EnemyType
 
 public enum EntityPartyType
 {
+    Player,
     B1_1,
     B1_2,
     B2_1

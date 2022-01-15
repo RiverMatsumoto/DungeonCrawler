@@ -14,17 +14,23 @@ public class BattleEntityFactory : SerializedScriptableObject
         this.characterDataProvider = characterDataProvider;
     }
 
-    public BattleEntity createBattleEntity(EnemyType type)
+    public BattleEntity createEnemy(EnemyType type)
     {
         var enemy = GameObject.Instantiate<BattleEntity>(battleEntity);
         enemy.setCharacterData(characterDataProvider.getEntityDataFor(type));
-        
-
         return enemy;
+    }
+
+    public BattleEntity createPlayer(CharacterDataEditor data)
+    {
+        //TODO CREATE NEW PLAYERS BY READING SCRIPTABLE OBJECTS DATA CREATED BY PLAYER FROM GUILD HALL. FOR NOW JUST CREATE NEW ENTITIES
+        var player = GameObject.Instantiate<BattleEntity>(battleEntity);
+        player.setCharacterData(characterDataProvider.playerEntityLibrary.Find(entity => entity.characterName == "Johnny"));
+        return player;
     }
 
     private void Start()
     {
-        createBattleEntity(EnemyType.Groundhog);
+        createEnemy(EnemyType.Groundhog);
     }
 }

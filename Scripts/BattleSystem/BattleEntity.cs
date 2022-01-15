@@ -21,9 +21,9 @@ public class BattleEntity : SerializedMonoBehaviour
     public int speedMultiplier;
     public bool isBackRow;
 
-    public void reactToBattleCommand(BattleCommand command)
+    public void reactToCommand(BattleCommand command)
     {
-
+        
     }
 
 

@@ -6,18 +6,18 @@ using Sirenix.OdinInspector;
 public enum BattleOutcome { WON, LOST, ESCAPED }
 public class BattleSystem : SerializedMonoBehaviour
 {
-    public static BattleSystem instance;
     public GameEvent leaveBattleEvent;
     public GameEvent startTurnEvent;
     public GameEvent startBattlePhaseEvent;
     public BattleEntityFactory entityFactory;
     public EntityPartyFactory partyFactory;
-    public BattleEntityParty party;
-    public BattleEntityParty enemies;
+    public BattleEntityParty playerParty;
+    public BattleEntityParty enemyParty;
     public BattleEntity currentPlayer;
     public Stack<BattleCommand> intendedCommands;
     public OverworldData overworldData;
     public ChooseRandomEncounter chooseRandomEncounter;
+    public Camera battleCamera;
     public int partySize;
     public int enemyPartySize;
     bool playerTurn;
@@ -44,64 +44,101 @@ public class BattleSystem : SerializedMonoBehaviour
     public void startBattle()
     {
         // assign the enemies
-        enemies = partyFactory.createBattleEntityParty(EntityPartyType.B1_1);
+        enemyParty = partyFactory.createEnemyParty(EntityPartyType.B1_1);
+        playerParty = partyFactory.createPlayerParty();
         addPartyAsChildren();
         //adjust the enemy position
-        adjustEnemyPosition();
+        adjustEnemyPositions();
+        adjustPlayerPositions();
     }
 
     public void leaveBattle()
     {
         overworldData.inBattle = false;
-        enemies = null;
+        enemyParty = null;
         leaveBattleEvent.raise();
     }
 
     public void setEnemyParty(BattleEntityParty enemyParty)
     {
-        enemies = enemyParty;
+        this.enemyParty = enemyParty;
     }
 
     public void addPartyAsChildren()
     {
-        for (var i = 0; i < enemies.party.Length; i++)
+        for (var i = 0; i < enemyParty.partyCapacity; i++)
         {
-            BattleEntity entity = enemies.getBattleEntity(i);
+            BattleEntity entity = enemyParty.getBattleEntity(i);
             if (entity == null)
             {
                 continue;
             }
             entity.transform.SetParent(this.transform);
         }
+        for (var i = 0; i < playerParty.partyCapacity; i++)
+        {
+            BattleEntity entity = playerParty.getBattleEntity(i);
+            if (entity == null)
+            {
+                continue;
+            }
+            entity.transform.SetParent(battleCamera.transform);
+        }
+    }
+    
+    public void EnemyAttacked()
+    {
+        enemyParty.getBattleEntity(0).characterData.health -= 10;
+    }
+
+    private void adjustPlayerPositions()
+    {
+        // consts, horizontal spacing is 0.32F for 3 players, -0.16 for 2 players, 0 for 1 Vertical is 0.37F
+        const float BACK_ROW_VERTICAL_OFFSET = -0.5F;
+        const float FRONT_ROW_VERTICAL_OFFSET = -0.37F;
+        float playerSpacing = 0.32F;
+        int frontCounter = 0;
+        int backCounter = 0;
+        Vector3 backRowPlacingStart = new Vector3(-(((playerParty.numBackRow-1F)/2F) * playerSpacing), BACK_ROW_VERTICAL_OFFSET, 1F);
+        Vector3 frontRowPlacingStart = new Vector3(-(((playerParty.numFrontRow-1F)/2F) * playerSpacing), FRONT_ROW_VERTICAL_OFFSET, 1F);
+        for (int i = 0; i < playerParty.partyCapacity; i++)
+        {
+            BattleEntity entity = playerParty.getBattleEntity(i);
+            if (entity == null) continue;
+            if (entity.isBackRow)
+            {
+                entity.transform.localPosition = backRowPlacingStart + new Vector3(backCounter++ * playerSpacing, 0, 0);
+            }
+            else
+            {
+                entity.transform.localPosition = frontRowPlacingStart + new Vector3(frontCounter++ * playerSpacing, 0, 0);
+            }
+        }
+
     }
 
 
     // adjusts the enemies position based on how many enemies in each row there are
-    private void adjustEnemyPosition()
+    private void adjustEnemyPositions()
     {
         // just a math problem similar to how many slices of pizza you need to cut so everyone gets an equal amount
+        // TODO TRY REPLACE THIS SOLUTION WITH THE PLAYER SOLUTION
         const float FRONT_ROW_OFFSET = 10F;
         const float BACK_ROW_OFFSET = 15F;
         const float PLACEMENT_RANGE = 16F;
         
-        float frontRowSpacing = PLACEMENT_RANGE / (enemies.numFrontRow + 1);
-        float backRowSpacing = PLACEMENT_RANGE / (enemies.numBackRow + 1);
-        float frontRowPlacement = frontRowSpacing;
-        float backRowPlacement = backRowSpacing;
+        float frontRowSpacing = PLACEMENT_RANGE / (enemyParty.numFrontRow + 1);
+        float backRowSpacing = PLACEMENT_RANGE / (enemyParty.numBackRow + 1);
         int frontRowCounter = 1;
         int backRowCounter = 1;
         // Where the start of the placing range is.
         Vector3 frontRowPlacingStart = new Vector3(-8, 1, FRONT_ROW_OFFSET);
         Vector3 backRowPlacingStart = new Vector3(-6, 1, BACK_ROW_OFFSET);
-
         
-        for (var i = 0; i < enemies.party.Length; i++)
+        for (var i = 0; i < enemyParty.partyCapacity; i++)
         {
-            BattleEntity entity = enemies.getBattleEntity(i);
-            if (entity == null)
-            {
-                continue;
-            }
+            BattleEntity entity = enemyParty.getBattleEntity(i);
+            if (entity == null) continue;
             if (entity.isBackRow)
             {
                 // set the tranform
@@ -117,17 +154,5 @@ public class BattleSystem : SerializedMonoBehaviour
     private void Start()
     {
         overworldData.inBattle = false;
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
     }
 }

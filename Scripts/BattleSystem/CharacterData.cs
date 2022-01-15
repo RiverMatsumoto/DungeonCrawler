@@ -13,56 +13,56 @@ public class CharacterData
     public AttackType defaultAttackType;
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
-    [OdinSerialize, PropertyRange(0,10000000)]
+    [SerializeField, PropertyRange(0,10000000)]
     public int maxHealth 
     {
         get => baseMaxHealth + bonusMaxHealth;
     }
-    [OdinSerialize, PropertyRange(0,10000000)]
+    [SerializeField, PropertyRange(0,10000000)]
     public int health { get; set; }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     public int maxTalentPoints 
     {
         get => baseMaxTalentPoints + bonusMaxTalentPoints;
     }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     public int magicPoints { get; set; }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     public int defense 
     { 
         get => vitality + bonusVitality;
     }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     public int magicDefense 
     { 
         get => wisdom + bonusWisdom; 
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int strength
     {
         get => baseStrength + bonusStrength;
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int vitality
     {
         get => baseVitality + bonusVitality;
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int wisdom 
     {
         get => baseWisdom + bonusWisdom;
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int agility 
     { 
         get => baseAgility + bonusAgility;
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int tech 
     {
         get => baseTech + bonusTech;
     }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     public int luck 
     {
         get => baseLuck + bonusLuck;
@@ -70,38 +70,38 @@ public class CharacterData
     #endregion
     #region base stats and additional stats
     
-    [OdinSerialize, PropertyRange(0,10000000)]
+    [SerializeField, PropertyRange(0,10000000)]
     private int baseMaxHealth { get; set; }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     private int baseMaxTalentPoints { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseStrength { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseVitality { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseWisdom { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseAgility { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseTech { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int baseLuck { get; set; }
 
-    [OdinSerialize, PropertyRange(0,10000000)]
+    [SerializeField, PropertyRange(0,10000000)]
     private int bonusMaxHealth { get; set; }
-    [OdinSerialize, PropertyRange(0,999)]
+    [SerializeField, PropertyRange(0,999)]
     private int bonusMaxTalentPoints { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusStrength { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusVitality { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusWisdom { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusAgility { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusTech { get; set; }
-    [OdinSerialize, PropertyRange(0,100)]
+    [SerializeField, PropertyRange(0,100)]
     private int bonusLuck { get; set; }
     #endregion
     public bool isEnemy;

@@ -8,9 +8,9 @@ public class ClassType : SerializedScriptableObject
     // TODO Add skill tree or learnable skill
     public ClassTypeEnum type;
     private string className;
-    [SerializeField, ProgressBar(0, 999), ListDrawerSettings(NumberOfItemsPerPage = 10, ShowIndexLabels = true)]
+    [SerializeField, ListDrawerSettings(NumberOfItemsPerPage = 10, ShowIndexLabels = true)]
     private int[] baseMaxHealth;  //, baseMaxTalentPoints, baseStrength, baseVitality, baseWisdom, baseAgility, baseTech, baseLuck;
-    [SerializeField, ProgressBar(0, 999), ListDrawerSettings(NumberOfItemsPerPage = 10, ShowIndexLabels = true)]
+    [SerializeField, ListDrawerSettings(NumberOfItemsPerPage = 10, ShowIndexLabels = true)]
     private int[] baseMaxTalentPoints;
     [SerializeField, ProgressBar(0, 100), ListDrawerSettings(NumberOfItemsPerPage = 10, ShowIndexLabels = true)]
     private int[] baseStrength;

@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2048914239, guid: 1b13b5dcda712604bb4b4d88a5f7fb79, type: 3}
+      propertyPath: battleSystem
+      value: 
+      objectReference: {fileID: 446969591}
     - target: {fileID: 1439335195780777890, guid: 1b13b5dcda712604bb4b4d88a5f7fb79, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1043,6 +1047,18 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+    - target: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"player","value":null'
+      objectReference: {fileID: 0}
+    - target: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1185227275, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
       propertyPath: serializationData.Prefab
       value: 

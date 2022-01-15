@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: $v
       Entry: 10
       Data: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: $v
       Entry: 10
       Data: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: $v
       Entry: 7
       Data: 4|PartyDataStruct, Assembly-CSharp
@@ -114,7 +114,7 @@ MonoBehaviour:
       Data: 6|PartyDataStruct+DataForInspector, Assembly-CSharp
     - Name: enemyType
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: isBackRow
       Entry: 5
       Data: false
@@ -138,7 +138,7 @@ MonoBehaviour:
       Data: 8|PartyDataStruct+DataForInspector, Assembly-CSharp
     - Name: enemyType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: isBackRow
       Entry: 5
       Data: false
@@ -150,7 +150,7 @@ MonoBehaviour:
       Data: 9|PartyDataStruct+DataForInspector, Assembly-CSharp
     - Name: enemyType
       Entry: 3
-      Data: 2
+      Data: 3
     - Name: isBackRow
       Entry: 5
       Data: true
@@ -162,7 +162,7 @@ MonoBehaviour:
       Data: 10|PartyDataStruct+DataForInspector, Assembly-CSharp
     - Name: enemyType
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: isBackRow
       Entry: 5
       Data: true
@@ -237,3 +237,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: currentPlayerParty
+      Entry: 6
+      Data: 
+  playerEntityLibrary:
+  - {fileID: 11400000, guid: 8c15725744a644349a0a64aa954fdb4d, type: 2}

@@ -16,7 +16,7 @@ public class EntitySelector : MonoBehaviour
         // Enable the entity selector and navigate enemies
         Debug.Log("Navigating Entities");
         gameObject.SetActive(true);
-        currentSelectedEntity = BattleSystem.instance.enemies.getBattleEntity(1);
+        // currentSelectedEntity = BattleSystem.instance.enemies.getBattleEntity(1);
         // currentSelectedEntity.GetComponent<Button>().Select();
     }
 

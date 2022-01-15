@@ -7,7 +7,7 @@ public class TestCharacterDataClass : MonoBehaviour
 {
     [SerializeField]
     public TestScriptableObjectEditing test;
-    public CharacterData data;
+    public CharacterDataEditor data;
 
     [Button]
     public void ReadData()

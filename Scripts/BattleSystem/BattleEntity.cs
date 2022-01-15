@@ -9,10 +9,11 @@ public class BattleEntity : SerializedMonoBehaviour
 {
     // TODO add loot table, items, and item system
     public BattleEntityParty party;
-    public CharacterDataStruct characterData;
+    public CharacterData characterData;
     public BattleCommand intendedBattleCommand;
     public BattleEntity target;
     public PlayerUI playerUI;
+    public EnemyUI enemyUI;
     public Sprite sprite;
     public List<BattleCommand> learnedSkills;
     public float percentDamageBoost { get => (float)damageMultiplier/100; }
@@ -31,16 +32,19 @@ public class BattleEntity : SerializedMonoBehaviour
         EntitySelectSystem.instance.setTarget(this);
     }
 
-    public void setCharacterData(CharacterData characterData)
+    public void setCharacterData(CharacterDataEditor data)
     {
-        sprite = characterData.sprite;
-        this.characterData = new CharacterDataStruct(characterData);
-        if (characterData.isEnemy)
+        this.characterData = new CharacterData(data);
+        sprite = data.sprite;
+        GetComponent<SpriteRenderer>().sprite = sprite;
+        if (data.isEnemy)
         {
-            playerUI.gameObject.SetActive(false);
+            Destroy(playerUI.gameObject);
+            enemyUI.UpdateUI();
         }
         else
         {
+            Destroy(enemyUI.gameObject);
             playerUI.UpdateUI();
         }
     }

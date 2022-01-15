@@ -7,7 +7,7 @@ public class TestScriptableObjectEditing
 {
     public int data;
 
-    public TestScriptableObjectEditing(CharacterData data)
+    public TestScriptableObjectEditing(CharacterDataEditor data)
     {
         this.data = data.strength;
     }

@@ -26,7 +26,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dataLibrary
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[EnemyType, Assembly-CSharp],[CharacterData,
+      Data: 0|System.Collections.Generic.Dictionary`2[[EnemyType, Assembly-CSharp],[CharacterDataEditor,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7

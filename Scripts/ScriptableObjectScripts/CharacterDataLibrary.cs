@@ -9,9 +9,9 @@ public class CharacterDataLibrary : SerializedScriptableObject
     // Could extend the list class and change the Add() method to change the numEntities
     public List<BattleEntity> battleEntityLibrary;
     public List<BattleEntityParty> enemyPartyLibrary;
-    public Dictionary<EnemyType, CharacterData> dataLibrary;
+    public Dictionary<EnemyType, CharacterDataEditor> dataLibrary;
 
-    public CharacterData getDataFor(EnemyType type)
+    public CharacterDataEditor getDataFor(EnemyType type)
     {
         return dataLibrary[type];
     }
@@ -25,7 +25,7 @@ public class CharacterDataLibrary : SerializedScriptableObject
 
     public struct CharacterDataStruct
     {
-        public CharacterDataStruct(CharacterData characterData)
+        public CharacterDataStruct(CharacterDataEditor characterData)
         {
             name = characterData.characterName;
         }

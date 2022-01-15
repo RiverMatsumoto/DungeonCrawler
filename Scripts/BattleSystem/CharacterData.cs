@@ -3,97 +3,69 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
-public struct CharacterDataStruct
+public class CharacterData
 {
     public string characterName { get; set; }
+    public string description { get; set; }
     public Sprite sprite { get; set; }
     public StatusEffect currentStatusEffect;
     public Dictionary<AttackType, int> resistances { get; set; }
+    public AttackType defaultAttackType;
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
     [OdinSerialize, PropertyRange(0,10000000)]
     public int maxHealth 
     {
-        get
-        {
-            return baseMaxHealth + bonusMaxHealth;
-        }
+        get => baseMaxHealth + bonusMaxHealth;
     }
     [OdinSerialize, PropertyRange(0,10000000)]
     public int health { get; set; }
     [OdinSerialize, PropertyRange(0,999)]
     public int maxTalentPoints 
     {
-        get
-        {
-            return baseMaxTalentPoints + bonusMaxTalentPoints;
-        }
+        get => baseMaxTalentPoints + bonusMaxTalentPoints;
     }
     [OdinSerialize, PropertyRange(0,999)]
     public int magicPoints { get; set; }
     [OdinSerialize, PropertyRange(0,999)]
     public int defense 
     { 
-        get 
-        { 
-            return vitality + bonusVitality; 
-        } 
+        get => vitality + bonusVitality;
     }
     [OdinSerialize, PropertyRange(0,999)]
     public int magicDefense 
     { 
-        get 
-        { 
-            return wisdom + bonusWisdom; 
-        } 
+        get => wisdom + bonusWisdom; 
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int strength
     {
-        get
-        {
-            return baseStrength + bonusStrength;
-        }
+        get => baseStrength + bonusStrength;
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int vitality
     {
-        get
-        {
-            return baseVitality + bonusVitality;
-        }
+        get => baseVitality + bonusVitality;
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int wisdom 
     {
-        get
-        {
-            return baseWisdom + bonusWisdom;
-        }
+        get => baseWisdom + bonusWisdom;
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int agility 
     { 
-        get
-        {
-            return baseAgility + bonusAgility;
-        }
+        get => baseAgility + bonusAgility;
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int tech 
     {
-        get
-        {
-            return baseTech + bonusTech;
-        }
+        get => baseTech + bonusTech;
     }
     [OdinSerialize, PropertyRange(0,100)]
     public int luck 
     {
-        get
-        {
-            return baseLuck + bonusLuck;
-        }
+        get => baseLuck + bonusLuck;
     }
     #endregion
     #region base stats and additional stats
@@ -139,30 +111,14 @@ public struct CharacterDataStruct
     {
         switch (type)
         {
-            case StatsType.MAX_HEALTH:
-                bonusMaxHealth += bonusAmount;
-                break;
-            case StatsType.MAX_TALENT_POINTS:
-                bonusMaxTalentPoints += bonusAmount;
-                break;
-            case StatsType.STRENGTH:
-                bonusStrength += bonusAmount;
-                break;
-            case StatsType.VITALITY:
-                bonusVitality += bonusAmount;
-                break;
-            case StatsType.WISDOM:
-                bonusWisdom += bonusAmount;
-                break;
-            case StatsType.AGILITY:
-                bonusAgility += bonusAmount;
-                break;
-            case StatsType.TECH:
-                bonusMaxTalentPoints += bonusAmount;
-                break;
-            case StatsType.LUCK:
-                bonusLuck += bonusAmount;
-                break;
+            case StatsType.MAX_HEALTH: bonusMaxHealth += bonusAmount; break;
+            case StatsType.MAX_TALENT_POINTS: bonusMaxTalentPoints += bonusAmount; break;
+            case StatsType.STRENGTH: bonusStrength += bonusAmount; break;
+            case StatsType.VITALITY: bonusVitality += bonusAmount; break;
+            case StatsType.WISDOM: bonusWisdom += bonusAmount; break;
+            case StatsType.AGILITY: bonusAgility += bonusAmount; break;
+            case StatsType.TECH: bonusMaxTalentPoints += bonusAmount; break;
+            case StatsType.LUCK: bonusLuck += bonusAmount; break;
         }
     }
 
@@ -170,63 +126,37 @@ public struct CharacterDataStruct
     {
         switch (type)
         {
-            case StatsType.MAX_HEALTH:
-                bonusMaxHealth -= bonusAmount;
-                break;
-            case StatsType.MAX_TALENT_POINTS:
-                bonusMaxTalentPoints -= bonusAmount;
-                break;
-            case StatsType.STRENGTH:
-                bonusStrength -= bonusAmount;
-                break;
-            case StatsType.VITALITY:
-                bonusVitality -= bonusAmount;
-                break;
-            case StatsType.WISDOM:
-                bonusWisdom -= bonusAmount;
-                break;
-            case StatsType.AGILITY:
-                bonusAgility -= bonusAmount;
-                break;
-            case StatsType.TECH:
-                bonusMaxTalentPoints -= bonusAmount;
-                break;
-            case StatsType.LUCK:
-                bonusLuck -= bonusAmount;
-                break;
+            case StatsType.MAX_HEALTH: bonusMaxHealth -= bonusAmount; break;
+            case StatsType.MAX_TALENT_POINTS: bonusMaxTalentPoints -= bonusAmount; break;
+            case StatsType.STRENGTH: bonusStrength -= bonusAmount; break;
+            case StatsType.VITALITY: bonusVitality -= bonusAmount; break;
+            case StatsType.WISDOM: bonusWisdom -= bonusAmount; break;
+            case StatsType.AGILITY: bonusAgility -= bonusAmount; break;
+            case StatsType.TECH: bonusMaxTalentPoints -= bonusAmount; break;
+            case StatsType.LUCK: bonusLuck -= bonusAmount; break;
         }
     }
 
-    public CharacterDataStruct(CharacterData data)
+    public CharacterData(CharacterDataEditor data)
     {
         characterName = data.characterName;
+        description = data.description;
         sprite = data.sprite;
         resistances = data.attackTypeResistance;
-
-        baseMaxHealth = data.maxHealth;
-        health = data.maxHealth;
-        baseMaxTalentPoints = data.maxTalentPoints;
-        magicPoints = data.maxTalentPoints;
-        baseStrength = data.strength;
-        baseVitality = data.vitality;
-        baseWisdom = data.wisdom;
-        baseAgility = data.agility;
-        baseTech = data.tech;
-        baseLuck = data.luck;
+        defaultAttackType = data.defaultAttacktype;
         currentStatusEffect = data.currentStatusEffect;
         isEnemy = data.isEnemy;
 
-        if (data.classType == null)
+        if (data.classType.type == ClassTypeEnum.ENEMY)
         {
-            baseMaxHealth = 0;
-            baseMaxTalentPoints = 0;
-            baseStrength = 0;
-            baseVitality = 0;
-            baseWisdom = 0;
-            baseAgility = 0;
-            baseTech = 0;
-            baseLuck = 0;
-            
+            baseMaxHealth = data.maxHealth;
+            baseMaxTalentPoints = data.maxTalentPoints;
+            baseStrength = data.strength;
+            baseVitality = data.vitality;
+            baseWisdom = data.wisdom;
+            baseAgility = data.agility;
+            baseTech = data.tech;
+            baseLuck = data.luck;
         }
         else
         {
@@ -239,6 +169,8 @@ public struct CharacterDataStruct
             baseTech = data.classType.GetBaseStats(StatsType.TECH, data.level);
             baseLuck = data.classType.GetBaseStats(StatsType.LUCK, data.level);
         }
+        health = data.maxHealth;
+        magicPoints = data.maxTalentPoints;
 
 
         bonusMaxHealth = 0;

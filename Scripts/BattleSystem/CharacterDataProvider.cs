@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -6,11 +5,14 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "CharacterDataProvider", menuName = "ScriptableObject/CharacterDataProvider")]
 public class CharacterDataProvider : SerializedScriptableObject
 {
-    public Dictionary<EnemyType, CharacterData> dataLibrary;
+    [PropertySpace(16)]
+    public Dictionary<EnemyType, CharacterDataEditor> dataLibrary;
+    [PropertySpace(16)]
     public Dictionary<EntityPartyType, PartyDataStruct> entityPartyLibrary;
+    [PropertySpace(16)]
     public Dictionary<ClassTypeEnum, ClassType> classLibrary;
 
-    public CharacterData getEntityDataFor(EnemyType type)
+    public CharacterDataEditor getEntityDataFor(EnemyType type)
     {
         return dataLibrary[type];
     }
@@ -30,7 +32,8 @@ public enum EnemyType
 {
     Null,
     Groundhog,
-    Ladybug
+    Ladybug,
+    Mantis
 }
 
 public enum EntityPartyType

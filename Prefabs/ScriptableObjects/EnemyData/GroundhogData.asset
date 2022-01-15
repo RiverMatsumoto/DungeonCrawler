@@ -343,22 +343,23 @@ MonoBehaviour:
   classType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
   subclassType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
   currentStatusEffect: 0
+  defaultAttacktype: 0
   isEnemy: 1
-  level: 10
+  level: 5
   maxHealth: 25
   maxTalentPoints: 94
-  strength: 10
+  strength: 6
   vitality: 5
-  wisdom: 4
-  agility: 2
+  wisdom: 1
+  agility: 3
   tech: 1
   luck: 1
-  levelField: 10
+  levelField: 5
   maxHealthField: 25
   maxTalentPointsField: 94
-  strengthField: 10
+  strengthField: 6
   vitalityField: 5
-  wisdomField: 4
-  agilityField: 2
+  wisdomField: 1
+  agilityField: 3
   techField: 1
   luckField: 1

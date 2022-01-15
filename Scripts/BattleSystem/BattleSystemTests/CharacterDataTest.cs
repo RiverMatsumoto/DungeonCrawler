@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterDataTest : MonoBehaviour
 {
-    public CharacterData characterData;
+    public CharacterDataEditor characterData;
 
     private void Start()
     {

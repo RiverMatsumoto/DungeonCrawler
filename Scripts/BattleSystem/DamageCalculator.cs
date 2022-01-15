@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageCalculator : MonoBehaviour
 {
 
-    public static float calculateAttack(CharacterData attacker, CharacterData defender, float[] multipliers)
+    public static float calculateAttack(CharacterDataEditor attacker, CharacterDataEditor defender, float[] multipliers)
     {
         float finalDamageResult = 10;
 

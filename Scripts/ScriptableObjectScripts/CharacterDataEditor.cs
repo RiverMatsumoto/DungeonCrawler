@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using System;
 
 [CreateAssetMenu(fileName = "CharacterData", menuName = "ScriptableObject/CharacterData", order = 5)]
-public class CharacterData : SerializedScriptableObject
+public class CharacterDataEditor : SerializedScriptableObject
 {
     //todo CREATE ARMOR AND WEAPON CLASSES WITH IEQUIPPABLE AND ADD ARMOR AND WEAPONS FIELD TO THIS CLASS
     public string characterName;
@@ -13,12 +13,13 @@ public class CharacterData : SerializedScriptableObject
     [AssetList, AssetSelector]
     public ClassType classType, subclassType;
     public StatusEffect currentStatusEffect;
+    public AttackType defaultAttacktype;
+    [OnValueChanged("IsEnemyUpdateData"), OnInspectorInit("IsEnemyUpdateData")]
+    public bool isEnemy;
     [HorizontalGroup("Resistances/Lists", Width = 0.5F), BoxGroup("Resistances"), PropertyOrder(4), DictionaryDrawerSettings(KeyLabel = "Effect", ValueLabel = "%", KeyColumnWidth = 50), PropertySpace]
     public Dictionary<StatusEffect, int> statusEffectResistance;
     [HorizontalGroup("Resistances/Lists", Width = 0.5F), BoxGroup("Resistances"), PropertyOrder(4), DictionaryDrawerSettings(KeyLabel = "Type", ValueLabel = "%", KeyColumnWidth = 2), PropertySpace]
     public Dictionary<AttackType, int> attackTypeResistance;
-    [OnValueChanged("IsEnemyUpdateData"), OnInspectorInit("IsEnemyUpdateData")]
-    public bool isEnemy;
     [ProgressBar(0,100, ColorGetter = "@Color.white"), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int level;
     #region Stats
@@ -71,9 +72,7 @@ public class CharacterData : SerializedScriptableObject
     {
         level = levelField;
         maxHealth = maxHealthField;
-        // health = maxHealth;
         maxTalentPoints = maxTalentPointsField; 
-        // talentPoints = maxTalentPoints;
         strength = strengthField;
         vitality = vitalityField;
         wisdom = wisdomField;
@@ -84,6 +83,7 @@ public class CharacterData : SerializedScriptableObject
 
     private void CopyFromStats()
     {
+        levelField = level;
         maxHealthField = maxHealth;
         maxTalentPointsField = maxTalentPoints;
         strengthField = strength;

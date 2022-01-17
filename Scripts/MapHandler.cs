@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,27 +13,28 @@ public class MapHandler : MonoBehaviour
     private GameObject mapObjects;
     private const int TILE_SPACING = 5;
 
-
     void Start()
     {
         floorNumber = 1;
-        generateMap(floorNumber - 1);
+        generateMap(floorNumber);
     }
 
     /// <summary>
     /// Generates a map based on an image. Certain colors on the image determine certain tiles.
     /// Calls the Map class constructor.
     /// </summary>
-    /// <param name="floorLayoutIndex">The index of the floorLayout image array.</param>
-    private void generateMap(int floorLayoutIndex)
+    /// <param name="floor">The index of the floorLayout image array.</param>
+    private void generateMap(int floor)
     {
         Destroy(GameObject.Find("MapObjects"));
         
         mapObjects = new GameObject("MapObjects");
         // store the map texture layout rows and columns
-        int columns = floorLayout[floorLayoutIndex].height;
-        int rows = floorLayout[floorLayoutIndex].width;
-        currentMap = new Map(rows, columns, floorLayout[floorLayoutIndex]);
+        // int columns = floorLayout[floorLayoutIndex].height;
+        // int rows = floorLayout[floorLayoutIndex].width;
+        int columns = mapData.getMap(floor).height;
+        int rows = mapData.getMap(floor).width;
+        currentMap = new Map(rows, columns, mapData.getMap(floor));
         for (int x = -1; x < currentMap.rows + 1; x++)
         {
             for (int y = -1; y < currentMap.columns + 1; y++)

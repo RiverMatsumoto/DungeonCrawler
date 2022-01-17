@@ -6,9 +6,6 @@ using Sirenix.OdinInspector;
 public enum BattleOutcome { WON, LOST, ESCAPED }
 public class BattleSystem : SerializedMonoBehaviour
 {
-    public GameEvent leaveBattleEvent;
-    public GameEvent startTurnEvent;
-    public GameEvent startBattlePhaseEvent;
     public BattleEntityFactory entityFactory;
     public EntityPartyFactory partyFactory;
     public BattleEntityParty playerParty;
@@ -26,12 +23,12 @@ public class BattleSystem : SerializedMonoBehaviour
     public void startTurn()
     {
         // TODO setup ui display and let that ui add the intended actions
-        startTurnEvent.raise();
+        // startTurnEvent.raise();
     }
 
     public void startBattlePhase()
     {
-        startBattlePhaseEvent.raise();
+        // startBattlePhaseEvent.raise();
     }
 
     public void AddIntendedBattleCommand(BattleCommand battleCommand, BattleEntity battleEntity)
@@ -56,7 +53,7 @@ public class BattleSystem : SerializedMonoBehaviour
     {
         overworldData.inBattle = false;
         enemyParty = null;
-        leaveBattleEvent.raise();
+        // leaveBattleEvent.raise();
     }
 
     public void setEnemyParty(BattleEntityParty enemyParty)

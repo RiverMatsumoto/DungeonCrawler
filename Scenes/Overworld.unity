@@ -264,59 +264,6 @@ MonoBehaviour:
   test:
     data: 241
   data: {fileID: 11400000, guid: ef608b203f5a5f944813b3b950c1c6c7, type: 2}
---- !u!1 &172511160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4402653079280106663, guid: fb9d36d529019a14f9a497ee32d40874, type: 3}
-  m_PrefabInstance: {fileID: 4402653078720154101}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &172511162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172511160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: b6dea47f630925a4d918df4deaf0d1f0, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 172511163}
-        m_TargetAssemblyTypeName: UICoordinates, Assembly-CSharp
-        m_MethodName: updateUICoordinates
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &172511163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4402653079280106659, guid: fb9d36d529019a14f9a497ee32d40874, type: 3}
-  m_PrefabInstance: {fileID: 4402653078720154101}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172511160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96157a2d3b4d3614895fb276b814fc03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &174450858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -583,6 +530,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!20 &430898327 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2127839247, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+  m_PrefabInstance: {fileID: 2011923604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &446969591 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
@@ -717,7 +669,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2026576868}
   - component: {fileID: 2026576865}
-  - component: {fileID: 2026576867}
   m_Layer: 0
   m_Name: EncounterSystem
   m_TagString: Untagged
@@ -816,96 +767,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3514777300080888976, guid: 1b13b5dcda712604bb4b4d88a5f7fb79, type: 3}
   m_PrefabInstance: {fileID: 174450858}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1619904598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4307208859814790152, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
-  m_PrefabInstance: {fileID: 2668004363441946318}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1619904601 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4223847394443618505, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
-  m_PrefabInstance: {fileID: 2668004363441946318}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619904598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75938cf3f3ee91469d49416ae840956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1619904609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619904598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: dd1d0b0bc59f93849aed7c4bd10d4721, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1619904601}
-        m_TargetAssemblyTypeName: MinimapCamera, Assembly-CSharp
-        m_MethodName: minimizeOverworldMap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1619904610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619904598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: 3e6a4ec192f09c246841de008e8da13b, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1619904601}
-        m_TargetAssemblyTypeName: MinimapCamera, Assembly-CSharp
-        m_MethodName: minimizeBattleMap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1734776974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6344858351736317020, guid: fb9d36d529019a14f9a497ee32d40874, type: 3}
@@ -1044,6 +905,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
+      propertyPath: battleCamera
+      value: 
+      objectReference: {fileID: 430898327}
+    - target: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 70510206, guid: 11b8bcb26b44caa49b93ce388b4058eb, type: 3}
@@ -1144,43 +1009,6 @@ MonoBehaviour:
   overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   startBattleEvent: {fileID: 11400000, guid: 3e6a4ec192f09c246841de008e8da13b, type: 2}
   stepCounter: {fileID: 1734776978}
---- !u!114 &2026576867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278216899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: a40dc35e0b5869249a76558b7b4143ff, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2026576865}
-        m_TargetAssemblyTypeName: EncounterSystem, Assembly-CSharp
-        m_MethodName: encounterStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &2026576868
 Transform:
   m_ObjectHideFlags: 0
@@ -1371,7 +1199,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1040539624976429905, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
+    - {fileID: 293414142, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
+    - {fileID: 1619904604, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03a178531d4341b479ebbe7aab40a77d, type: 3}
 --- !u!1001 &4402653078720154101
 PrefabInstance:

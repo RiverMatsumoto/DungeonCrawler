@@ -8,20 +8,33 @@ public class MinimapPlayer : MonoBehaviour
     public OverworldData overworldData;
 
 
-    public void movePlayer()
+    public void OnPlayerMoved(Vector2Int position)
     {
-        transform.localPosition = new Vector3(overworldData.playerPosition.x, overworldData.playerPosition.y, -1);
+        transform.localPosition = new Vector3(position.x, position.y, -1);
     }
 
-    public void turnPlayer()
+    public void OnPlayerTurned(Vector2Int playerLocalForward)
     {
         // transform.localRotation = direction;
         Quaternion targetFacingDir = transform.localRotation;
         targetFacingDir.SetLookRotation(
             Vector3.forward,
-            new Vector3(overworldData.playerFacingDir.x, overworldData.playerFacingDir.y, 0)
+            new Vector3(playerLocalForward.x, playerLocalForward.y, 0) 
         );
         transform.localRotation = targetFacingDir;
-        
+
+    }
+
+    private void OnEnable()
+    {
+        MovementEventHandler.playerMoved += OnPlayerMoved;
+        MovementEventHandler.playerTurned += OnPlayerTurned;
+    }
+
+    private void OnDisable()
+    {
+
+        MovementEventHandler.playerMoved -= OnPlayerMoved;
+        MovementEventHandler.playerTurned -= OnPlayerTurned;
     }
 }

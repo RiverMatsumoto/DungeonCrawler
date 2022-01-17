@@ -16,6 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 2800000, guid: 669a39d1755589e4db1d7cfc531063fc, type: 3}
     - {fileID: 11400000, guid: ba7ab3ca19f674f489b2950d51074773, type: 2}
     - {fileID: 11400000, guid: 99c33fa49649d1f41877e4098ec9d387, type: 2}
     SerializedBytesString: 
@@ -23,13 +24,45 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: maps
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[UnityEngine.Texture2D,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: tiles
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[TileTypes, Assembly-CSharp],[TilePallete,
+      Data: 2|System.Collections.Generic.Dictionary`2[[TileTypes, Assembly-CSharp],[TilePallete,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[TileTypes, Assembly-CSharp]],
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[TileTypes, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -51,7 +84,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -63,7 +96,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 10
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

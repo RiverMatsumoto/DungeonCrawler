@@ -6,17 +6,28 @@ using TMPro;
 public class UICoordinates : MonoBehaviour
 {
     public TMP_Text coordinatesText;
-    public OverworldData overworldData;
-    public void updateUICoordinates()
+    public void updateUICoordinates(Vector2Int position)
     {
         coordinatesText.text = new Vector2Int(
-            overworldData.playerPosition.x,
-            overworldData.playerPosition.y
+            position.x,
+            position.y
         ).ToString();
     }
+
+    private void OnPlayerMoved(Vector2Int position) => updateUICoordinates(position);
 
     private void Start()
     {
         coordinatesText = GetComponent<TMP_Text>();
+    }
+
+    private void OnEnable()
+    {
+        MovementEventHandler.playerMoved += OnPlayerMoved;
+    }
+
+    private void OnDisable()
+    {
+        MovementEventHandler.playerMoved -= OnPlayerMoved;
     }
 }

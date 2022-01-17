@@ -3,39 +3,18 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class MovementEventHandler : MonoBehaviour
+public class MovementEventHandler
 {
-    public GameEvent playerMoveStartedEvent;
-    public GameEvent playerMoveEndedEvent;
-    public GameEvent playerTurnedEvent;
-    // public delegate void playerMovedEvent(Vector2Int position);
-    // public static event playerMovedEvent broadcastPlayerMoved;
-    // public delegate void playerMoveEndedEvent();
-    // public static event playerMoveEndedEvent broadcastPlayerMoveEnded;
-    // public delegate void playerTurnedEvent(Quaternion direction, Vector2Int direction2D);
-    // public static event playerTurnedEvent broadCastPlayerTurned;
-    // public delegate void playerTurnedEventV2Int(Vector2Int facingDir);
-    // public static event playerTurnedEventV2Int broadCastPlayerTurnedV2Int;
+    public delegate void playerMovedEvent(Vector2Int position);
+    public static event playerMovedEvent playerMoved;
+    public delegate void playerMoveEndedEvent();
+    public static event playerMoveEndedEvent playerMoveEnded;
+    public delegate void playerTurnedEvent(Vector2Int direction);
+    public static event playerTurnedEvent playerTurned;
 
-    public void playerMoved(Vector2Int position)
-    {
-        playerMoveStartedEvent.raise();
-        // broadcastPlayerMoved(position);
-    }
+    public static void broadcastPlayerMoved(Vector2Int position) => playerMoved?.Invoke(position);
 
-    public void playerTurned(Quaternion direction, Vector2Int direction2D)
-    {
-
-        // broadCastPlayerTurned(direction, direction2D);
-    }
+    public static void broadcastPlayerTurned(Vector2Int direction) => playerTurned?.Invoke(direction);
     
-    public void playerMoveEnded()
-    {
-        // broadcastPlayerMoveEnded();
-    }
-
-    public Quaternion quaternionTo2D(Quaternion quaternion)
-    {
-        return new Quaternion(quaternion.x, quaternion.z, -quaternion.y, quaternion.w);
-    }
+    public static void broadcastPlayerMoveEnded() => playerMoveEnded?.Invoke();
 }

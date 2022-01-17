@@ -16,7 +16,7 @@ public class MinimapCamera : MonoBehaviour
     private readonly int E_PAD = 42;
     private readonly int W_PAD = 5;
     private Vector2Int playerPosition;
-    readonly Vector3 mapOpenPosition = new Vector3(24,20, -50);
+    readonly Vector3 mapOpenPosition = new Vector3(24, 20, -50);
     const float cameraZOffset = -50;
     bool hitNPadding = false;
     bool hitSPadding = false;
@@ -26,7 +26,7 @@ public class MinimapCamera : MonoBehaviour
     #endregion
 
 
-    public void moveCamera()
+    public void moveCamera(Vector2Int position)
     {
         if (mapOpen) { return; }
 
@@ -64,40 +64,40 @@ public class MinimapCamera : MonoBehaviour
         else if (hitNPadding)
         {
             transform.localPosition = new Vector3(
-                overworldData.playerPosition.x, 
-                N_PAD, 
+                overworldData.playerPosition.x,
+                N_PAD,
                 cameraZOffset
             );
         }
         else if (hitSPadding)
         {
             transform.localPosition = new Vector3(
-                overworldData.playerPosition.x, 
-                S_PAD, 
+                overworldData.playerPosition.x,
+                S_PAD,
                 cameraZOffset
             );
         }
         else if (hitWPadding)
         {
             transform.localPosition = new Vector3(
-                W_PAD, 
-                overworldData.playerPosition.y, 
+                W_PAD,
+                overworldData.playerPosition.y,
                 cameraZOffset
             );
         }
         else if (hitEPadding)
         {
             transform.localPosition = new Vector3(
-                E_PAD, 
-                overworldData.playerPosition.y, 
+                E_PAD,
+                overworldData.playerPosition.y,
                 cameraZOffset
             );
         }
         else
         {
             transform.localPosition = new Vector3(
-                overworldData.playerPosition.x, 
-                overworldData.playerPosition.y, 
+                overworldData.playerPosition.x,
+                overworldData.playerPosition.y,
                 cameraZOffset
             );
         }
@@ -137,7 +137,7 @@ public class MinimapCamera : MonoBehaviour
         overworldMinimap.localScale = Vector3.one;
         mapOpen = false;
         minimapCamera.orthographicSize = 6F;
-        moveCamera();
+        moveCamera(overworldData.playerPosition);
     }
 
     public void maximizeOverworldMap()
@@ -168,7 +168,7 @@ public class MinimapCamera : MonoBehaviour
         battleMinimap.localScale = Vector3.one;
         mapOpen = false;
         minimapCamera.orthographicSize = 8F;
-        moveCamera();
+        moveCamera(overworldData.playerPosition);
 
     }
 
@@ -181,4 +181,14 @@ public class MinimapCamera : MonoBehaviour
         transform.localPosition = mapOpenPosition;
     }
 
+    private void OnEnable()
+    {
+        MovementEventHandler.playerMoved += moveCamera;
+        // TODO Add battle events
+    }
+
+    private void OnDisable()
+    {
+        MovementEventHandler.playerMoved -= moveCamera;
+    }
 }

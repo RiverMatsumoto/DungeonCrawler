@@ -6,7 +6,6 @@ public class EncounterSystem : MonoBehaviour
 {
     public static EncounterSystem instance;
     public OverworldData overworldData;
-    public GameEvent startBattleEvent;
     public StepCounter stepCounter;
 
 
@@ -27,7 +26,7 @@ public class EncounterSystem : MonoBehaviour
         overworldData.inBattle = true;
         overworldData.currentSteps = 0;
         randomizeEncounterSteps();
-        startBattleEvent.raise();
+        // startBattleEvent.raise();
     }
 
     private void updateStepCounter()
@@ -63,4 +62,13 @@ public class EncounterSystem : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        MovementEventHandler.playerMoveEnded += encounterStep;
+    }
+
+    private void OnDisable()
+    {
+        MovementEventHandler.playerMoveEnded -= encounterStep;
+    }
 }

@@ -1,7 +1,4 @@
 using System.Collections;
-using System;
-using System.Collections.Generic;
-using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
@@ -9,9 +6,6 @@ using Sirenix.OdinInspector;
 public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 {
     #region Variables
-    public GameEvent playerMoveStartEvent;
-    public GameEvent playerMoveEndedEvent;
-    public GameEvent playerTurnedEvent;
     public Vector2Int localForward { get; set; }
     public Vector2Int localRight;
     public Vector2Int localBack;
@@ -65,7 +59,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 
     #region Movement: turning the player
     /// <summary>
-    /// Called in the fixed update loop. Reads the already read controller input and moves
+    /// Called in the fixed update loop. Reads the controller input and moves
     /// the player in the direction they press.
     /// </summary>
     /// <param name="turnInput">The user input ranging from -1 (left) to 1 (right).</param>
@@ -108,8 +102,8 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 
         // broadcast event that player turned
         // TODO MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endPoint), localForward);
-        updateOverworldData();
-        playerTurnedEvent.raise();
+        // playerTurnedEvent.raise();
+        broadcastPlayerTurned(localForward);
         while (elapsedTime < MOVE_TIME)
         {
             transform.localRotation =
@@ -205,10 +199,10 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         }
         isActionable = false;
         // place the character on the map and send the playermoved event
-        mapHandler.currentMap.placeCharacter(mapPosition, direction, this);
+        // mapHandler.currentMap.placeCharacter(mapPosition, direction, this);
         mapPosition += direction;
-        updateOverworldData();
-        playerMoveStartEvent.raise();
+        // playerMoveStartEvent.raise();
+        broadcastPlayerMoved(mapPosition);
 
         Vector3 v3direction = new Vector3(direction.x, 0, direction.y);
         Vector3 startPoint = transform.localPosition;
@@ -224,7 +218,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         transform.localPosition = endPoint;
         yield return new WaitForSeconds(MOVE_COOLDOWN_TIME);
         // TODO MovementEventHandler.playerMoveEnded();
-        playerMoveEndedEvent.raise();
+        broadcastPlayerMovedEnded();
         isActionable = true;
     }
 
@@ -234,9 +228,9 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     /// </summary>
     /// <param name="moveDir">The intended move direction the player wants to move in.</param>
     /// <returns>A boolean true if the intended move direction is legal/valid. False if the intended move is illegal/invalid.</returns>
-    public bool isValidMove(Vector2Int moveDir)
+    private bool isValidMove(Vector2Int moveDir)
     {
-        Tile tile = mapHandler.currentMap.getTile(mapPosition, moveDir);
+        Tile tile = mapHandler.currentMap.getTile(mapPosition + moveDir);
         // Written as nested if statements to ensure no null reference exception
         if (tile != null)
         {
@@ -267,9 +261,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         newPos.z = position.y * MOVE_DISTANCE;
         transform.position = newPos;
 
-        // MovementEventHandler.playerMoved(mapPosition);
-        updateOverworldData();
-        playerMoveStartEvent.raise();
+        broadcastPlayerMoved(mapPosition);
     }
 
     private void updateOverworldData()
@@ -278,23 +270,38 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         overworldData.playerFacingDir = localForward;
     }
 
-    private void faceDirection(Vector2Int facingDir)
+    private void faceDirection(Vector2Int newForward)
     {
         // not gonna lie this is just a magic formula
-        localForward = facingDir;
-        localBack = facingDir * -1;
+        localForward = newForward;
+        localBack = newForward * -1;
         localLeft.x = localBack.y;
         localLeft.y = localBack.x;
         localRight.x = localForward.y;
         localRight.y = localForward.x;
-        Vector3 endRotation = new Vector3(facingDir.x, 0, facingDir.y);
+        Vector3 endRotation = new Vector3(newForward.x, 0, newForward.y);
         Quaternion endDir = transform.localRotation;
         endDir.SetLookRotation(endRotation);
         transform.localRotation = endDir;
 
         // TODO MovementEventHandler.playerTurned(MovementEventHandler.quaternionTo2D(endDir), localForward);
-        updateOverworldData();
-        playerTurnedEvent.raise();
+        broadcastPlayerTurned(localForward);
     }
     #endregion
+
+    private void broadcastPlayerMoved(Vector2Int position)
+    {
+        updateOverworldData();
+        MovementEventHandler.broadcastPlayerMoved(position);
+    }
+    private void broadcastPlayerMovedEnded()
+    {
+        updateOverworldData();
+        MovementEventHandler.broadcastPlayerMoveEnded();
+    }
+    private void broadcastPlayerTurned(Vector2Int direction)
+    {
+        updateOverworldData();
+        MovementEventHandler.broadcastPlayerTurned(direction);
+    }
 }

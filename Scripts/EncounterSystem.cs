@@ -26,7 +26,7 @@ public class EncounterSystem : MonoBehaviour
         overworldData.inBattle = true;
         overworldData.currentSteps = 0;
         randomizeEncounterSteps();
-        // startBattleEvent.raise();
+        BattleEventHandler.broadcastBattleStarted();
     }
 
     private void updateStepCounter()

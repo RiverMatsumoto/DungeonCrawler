@@ -208,7 +208,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 9120315034606537969}
   - component: {fileID: 7378651352790958043}
   - component: {fileID: 3791821151807296601}
+  - component: {fileID: 1734776978}
   m_Layer: 5
   m_Name: StepCounter
   m_TagString: Untagged
@@ -318,7 +319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Steps taken: '
+  m_text: 'Steps: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84101a650613c334c85a9ddfbf227d78, type: 2}
   m_sharedMaterial: {fileID: 8408001708607674857, guid: 84101a650613c334c85a9ddfbf227d78, type: 2}
@@ -387,6 +388,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1734776978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6344858351736317020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7051359f65e1048b9e4d28fd1b3663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
+  stepCounterText: {fileID: 3791821151807296601}
 --- !u!1001 &5132856724625220767
 PrefabInstance:
   m_ObjectHideFlags: 0

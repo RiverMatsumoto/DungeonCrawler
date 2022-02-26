@@ -237,8 +237,13 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: currentPlayerParty
-      Entry: 6
-      Data: 
   playerEntityLibrary:
+  - {fileID: 11400000, guid: 24254506070153b4d98fcbe912481b9d, type: 2}
   - {fileID: 11400000, guid: 8c15725744a644349a0a64aa954fdb4d, type: 2}
+  - {fileID: 11400000, guid: 0fab8c25103e85b4599e2ceaa688bab5, type: 2}
+  - {fileID: 11400000, guid: 9c57c0b3669687d4495dec969cfa0119, type: 2}
+  - {fileID: 11400000, guid: 27a7aa386202d874790a289a4975e6a2, type: 2}
+  currentPlayerParty:
+    partyType: 0
+    party: []
+    isEnemy: 0

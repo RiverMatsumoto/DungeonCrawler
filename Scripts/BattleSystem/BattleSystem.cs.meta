@@ -3,7 +3,13 @@ guid: 80bf947ef69ef9440944ec600f57dc83
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - entityFactory: {fileID: 11400000, guid: 4f0c7889a8d6bc9438984c6cac6f3532, type: 2}
+  - partyFactory: {fileID: 11400000, guid: 9352ded9a73b8aa44af075af55413956, type: 2}
+  - currentPlayer: {instanceID: 0}
+  - overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
+  - chooseRandomEncounter: {instanceID: 0}
+  - battleCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

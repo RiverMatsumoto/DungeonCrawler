@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public class BattleEntityParty
 {
-    public EntityPartyType partyGroup;
+    public EntityPartyType partyType;
     [SerializeField]
     private BattleEntity[] party;
     public int partyCapacity { get => party.Length; }
@@ -36,6 +36,8 @@ public class BattleEntityParty
             return counter;
         }
     }
+    public const int MAX_PARTY_MEMBERS = 6;
+    public const int MAX_BACK_ROW = 3;
 
     public int numBackRow
     {
@@ -46,28 +48,30 @@ public class BattleEntityParty
     }
 
 
-    public BattleEntityParty(BattleEntity[] battleEntities, bool isEnemy, EntityPartyType partyGroup = EntityPartyType.Player)
+    public BattleEntityParty(bool isEnemy, EntityPartyType partyType = EntityPartyType.Player)
     {
-        party = battleEntities;
+        party = new BattleEntity[MAX_PARTY_MEMBERS];
         this.isEnemy = isEnemy;
-        this.partyGroup = partyGroup;
+        this.partyType = partyType;
     }
 
 
-    public void addBattleEntity(BattleEntity battleEntity)
+    public void addBattleEntity(BattleEntity battleEntity, int partyPosition)
     {
         bool wasInserted = false;
-        for (int i = 0; i < 6; i++)
+        if (isEmptyPosition(partyPosition))
         {
-            if (party[i] == null)
+            // succcessfully added the battle entity to party
+            wasInserted = true;
+            party[partyPosition] = battleEntity;
+            if (partyPosition > 2)
             {
-                wasInserted = true;
-                party[i] = battleEntity;
+                battleEntity.isBackRow = true;
             }
         }
         if (!wasInserted)
         {
-            Debug.Log("BattleEntity could not be inserted in party");
+            Debug.LogError($"BattleEntity {battleEntity.name} could not be inserted in party");
         }
     }
 
@@ -104,4 +108,12 @@ public class BattleEntityParty
         }
     }
 
+    private bool isEmptyPosition(int position)
+    {
+        if (party[position] == null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

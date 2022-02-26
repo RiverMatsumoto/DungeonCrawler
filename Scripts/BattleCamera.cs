@@ -22,4 +22,26 @@ public class BattleCamera : MonoBehaviour
     {
         disableBattleCamera();
     }
+
+    private void OnBattleStarted()
+    {
+        enableBattleCamera();
+    }
+
+    private void OnBattleEnded()
+    {
+        disableBattleCamera();
+    }
+
+    private void OnEnable()
+    {
+        BattleEventHandler.battleStarted += enableBattleCamera;
+        BattleEventHandler.battleEnded += disableBattleCamera;
+    }
+
+    private void OnDisable()
+    {
+        BattleEventHandler.battleStarted -= enableBattleCamera;
+        BattleEventHandler.battleEnded -= disableBattleCamera;
+    }
 }

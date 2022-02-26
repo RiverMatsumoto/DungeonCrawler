@@ -13,11 +13,6 @@ public class MapHandler : MonoBehaviour
     private GameObject mapObjects;
     private const int TILE_SPACING = 5;
 
-    void Start()
-    {
-        floorNumber = 1;
-        generateMap(floorNumber);
-    }
 
     /// <summary>
     /// Generates a map based on an image. Certain colors on the image determine certain tiles.
@@ -27,18 +22,19 @@ public class MapHandler : MonoBehaviour
     private void generateMap(int floor)
     {
         Destroy(GameObject.Find("MapObjects"));
-        
+
         mapObjects = new GameObject("MapObjects");
         // store the map texture layout rows and columns
         // int columns = floorLayout[floorLayoutIndex].height;
         // int rows = floorLayout[floorLayoutIndex].width;
         int columns = mapData.getMap(floor).height;
         int rows = mapData.getMap(floor).width;
-        currentMap = new Map(rows, columns, mapData.getMap(floor));
+        currentMap = new Map(rows, columns, floor, mapData);
         for (int x = -1; x < currentMap.rows + 1; x++)
         {
             for (int y = -1; y < currentMap.columns + 1; y++)
             {
+                // Create walls around the outside of the map
                 if (x == -1 || y == -1 || x == currentMap.rows || y == currentMap.columns)
                 {
                     instantiateWall(x, y);
@@ -79,5 +75,11 @@ public class MapHandler : MonoBehaviour
                 Quaternion.identity
         );
         wall.transform.parent = mapObjects.transform;
+    }
+
+    private void Start()
+    {
+        floorNumber = 1;
+        generateMap(floorNumber);
     }
 }

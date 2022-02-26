@@ -12,7 +12,7 @@ public class PartyDataStruct
         party = new DataForInspector[6];
         for (var i = 0; i < party.Length; i++)
         {
-            party[i] = new DataForInspector(EnemyType.Null, false);
+            party[i] = new DataForInspector(EnemyType.Null);
         }
     }
 
@@ -20,11 +20,9 @@ public class PartyDataStruct
     public class DataForInspector
     {
         public EnemyType enemyType;
-        public bool isBackRow;
-        public DataForInspector(EnemyType enemyType, bool isBackRow)
+        public DataForInspector(EnemyType enemyType)
         {
             this.enemyType = enemyType;
-            this.isBackRow = isBackRow;
         }
     }
 }

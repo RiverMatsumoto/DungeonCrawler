@@ -16,7 +16,8 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     public float MOVE_TIME = 0.3F;
     public float MOVE_COOLDOWN_TIME = 0.02F;
     public float MOVE_DISTANCE = 5;
-    public InputActionAsset controls;
+    public PlayerControls controls;
+    public PlayerInput pControls;
     private Vector2 input;
     private float turnInput;
     bool isActionable;
@@ -36,22 +37,15 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 
     private void FixedUpdate()
     {
-        if (overworldData.inBattle)
-        {
-            return;
-        }
+        if (overworldData.inBattle) return;
         // read input and poll for movement. Moving has priority
-        // I'm using polling because unity events doesn't constantly read input.
-        input = controls
-                .FindActionMap("Player")
-                .FindAction("Movement")
-                .ReadValue<Vector2>();
+        // I'm using polling because unity's input actions don't constantly read input.
+        // input = controls.Player.Movement.ReadValue<Vector2>();
+        input = pControls.actions["Movement"].ReadValue<Vector2>();
         attemptMove(input);
 
-        turnInput = controls
-                .FindActionMap("Player")
-                .FindAction("Turn")
-                .ReadValue<float>();
+        // turnInput = controls.Player.Movement.ReadValue<float>();
+        turnInput = pControls.actions["Turn"].ReadValue<float>();
         attemptTurn(turnInput);
 
     }
@@ -158,27 +152,24 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     /// </param>
     void attemptMove(Vector2 userInput)
     {
-        if (!isActionable)
-        {
-            return;
-        }
+        if (!isActionable) { return; }
 
-        if (userInput.y > 0.5 && isValidMove(localForward)) // move forwards
+        if (userInput.y > 0.5 && mapHandler.currentMap.isValidMove(localForward + mapPosition)) // move forwards
         {
             mapHandler.currentMap.placeCharacter(mapPosition, localForward, this);
             StartCoroutine(movePlayer(localForward));
         }
-        else if (userInput.y < -0.5 && isValidMove(localBack)) // move backwards
+        else if (userInput.y < -0.5 && mapHandler.currentMap.isValidMove(localBack + mapPosition)) // move backwards
         {
             mapHandler.currentMap.placeCharacter(mapPosition, localBack, this);
             StartCoroutine(movePlayer(localBack));
         }
-        else if (userInput.x > 0.5 && isValidMove(localRight)) // move right
+        else if (userInput.x > 0.5 && mapHandler.currentMap.isValidMove(localRight + mapPosition)) // move right
         {
             mapHandler.currentMap.placeCharacter(mapPosition, localRight, this);
             StartCoroutine(movePlayer(localRight));
         }
-        else if (userInput.x < -0.5 && isValidMove(localLeft)) // move left
+        else if (userInput.x < -0.5 && mapHandler.currentMap.isValidMove(localLeft + mapPosition)) // move left
         {
             mapHandler.currentMap.placeCharacter(mapPosition, localLeft, this);
             StartCoroutine(movePlayer(localLeft));
@@ -222,25 +213,6 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         isActionable = true;
     }
 
-    /// <summary>
-    /// The method isValidMove returns a boolean value depenidng on whether
-    /// the intended move is valid or not.
-    /// </summary>
-    /// <param name="moveDir">The intended move direction the player wants to move in.</param>
-    /// <returns>A boolean true if the intended move direction is legal/valid. False if the intended move is illegal/invalid.</returns>
-    private bool isValidMove(Vector2Int moveDir)
-    {
-        Tile tile = mapHandler.currentMap.getTile(mapPosition + moveDir);
-        // Written as nested if statements to ensure no null reference exception
-        if (tile != null)
-        {
-            if (tile.properties.ContainsKey("isFloor"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
     #endregion
 
     #region Map related player placement

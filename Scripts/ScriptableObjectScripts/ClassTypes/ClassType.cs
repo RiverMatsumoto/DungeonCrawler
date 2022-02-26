@@ -75,6 +75,7 @@ public class ClassType : SerializedScriptableObject
 
 public enum ClassTypeEnum
 {
+    NONE,
     ENEMY,
     SAMURAI
 }

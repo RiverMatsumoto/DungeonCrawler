@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e3e55b6fc82ab45a3377d7ff2e275d, type: 3}
-  m_Name: Player1
+  m_Name: PartyMember5
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -337,29 +337,29 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  characterName: Johnny
+  characterName: Joseph
   description: He is a samurai
   sprite: {fileID: 0}
   classType: {fileID: 11400000, guid: f067008f0c8c5b540a777c511837b5bb, type: 2}
-  subclassType: {fileID: 11400000, guid: f067008f0c8c5b540a777c511837b5bb, type: 2}
+  subclassType: {fileID: 11400000, guid: 064240079a28906429542df998bff797, type: 2}
   currentStatusEffect: 0
   defaultAttacktype: 0
   isEnemy: 0
-  level: 1
-  maxHealth: 26
-  maxTalentPoints: 17
-  strength: 6
-  vitality: 2
-  wisdom: 2
-  agility: 5
-  tech: 1
-  luck: 3
-  levelField: 1
-  maxHealthField: 26
-  maxTalentPointsField: 17
-  strengthField: 6
-  vitalityField: 2
-  wisdomField: 2
-  agilityField: 5
-  techField: 1
-  luckField: 3
+  level: 43
+  maxHealth: 304
+  maxTalentPoints: 243
+  strength: 24
+  vitality: 16
+  wisdom: 19
+  agility: 22
+  tech: 15
+  luck: 29
+  levelField: 43
+  maxHealthField: 304
+  maxTalentPointsField: 243
+  strengthField: 24
+  vitalityField: 16
+  wisdomField: 19
+  agilityField: 22
+  techField: 15
+  luckField: 29

@@ -84,6 +84,77 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2105902723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105902726}
+  - component: {fileID: 2105902727}
+  - component: {fileID: 2105902728}
+  m_Layer: 0
+  m_Name: PlayerParty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2105902726
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105902723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8123586430361649336}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &2105902727
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105902723}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 1
+  m_Camera: {fileID: 2127839247}
+  m_PlaneDistance: 10
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!225 &2105902728
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105902723}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2127839244
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,8 +167,6 @@ GameObject:
   - component: {fileID: 2127839247}
   - component: {fileID: 2127839246}
   - component: {fileID: 2127839248}
-  - component: {fileID: 1879964878}
-  - component: {fileID: 1879964879}
   m_Layer: 0
   m_Name: BattleCamera
   m_TagString: Untagged
@@ -183,80 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73f6779bb1533e40a203d244ec0fcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1879964878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127839244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: dd1d0b0bc59f93849aed7c4bd10d4721, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2127839248}
-        m_TargetAssemblyTypeName: BattleCamera, Assembly-CSharp
-        m_MethodName: disableBattleCamera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1879964879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127839244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: 3e6a4ec192f09c246841de008e8da13b, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2127839248}
-        m_TargetAssemblyTypeName: BattleCamera, Assembly-CSharp
-        m_MethodName: enableBattleCamera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &582732420148280057
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +262,6 @@ GameObject:
   m_Component:
   - component: {fileID: 582732419290999774}
   - component: {fileID: 582732419290999771}
-  - component: {fileID: 582732419290999769}
   m_Layer: 0
   m_Name: EncounterSystem
   m_TagString: Untagged
@@ -303,45 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
-  startBattleEvent: {fileID: 11400000, guid: 3e6a4ec192f09c246841de008e8da13b, type: 2}
   stepCounter: {fileID: 0}
---- !u!114 &582732419290999769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582732420148280057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: a40dc35e0b5869249a76558b7b4143ff, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 582732419290999771}
-        m_TargetAssemblyTypeName: EncounterSystem, Assembly-CSharp
-        m_MethodName: encounterStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1895531878464363115
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +519,6 @@ GameObject:
   - component: {fileID: 8123586430361649336}
   - component: {fileID: 70510206}
   - component: {fileID: 1497962593}
-  - component: {fileID: 1185227275}
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: Untagged
@@ -590,6 +545,7 @@ Transform:
   - {fileID: 3929127300718722864}
   - {fileID: 582732419290999774}
   - {fileID: 1232936831}
+  - {fileID: 2105902726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -614,23 +570,23 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: party
-      Entry: 6
-      Data: 
-    - Name: enemies
-      Entry: 6
-      Data: 
     - Name: intendedCommands
       Entry: 6
       Data: 
-  leaveBattleEvent: {fileID: 11400000, guid: dd1d0b0bc59f93849aed7c4bd10d4721, type: 2}
-  startTurnEvent: {fileID: 11400000, guid: 922a784d4fab8c840b0cc8af36b75cfb, type: 2}
-  startBattlePhaseEvent: {fileID: 11400000, guid: 3fd92816520f3ff44a8a006cafc979b3, type: 2}
   entityFactory: {fileID: 11400000, guid: 4f0c7889a8d6bc9438984c6cac6f3532, type: 2}
   partyFactory: {fileID: 11400000, guid: 9352ded9a73b8aa44af075af55413956, type: 2}
+  playerParty:
+    partyType: 0
+    party: []
+    isEnemy: 0
+  enemyParty:
+    partyType: 0
+    party: []
+    isEnemy: 0
   currentPlayer: {fileID: 0}
   overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   chooseRandomEncounter: {fileID: 11400000, guid: 461de1e045b94a64791d1281d4e89f65, type: 2}
+  battleCamera: {fileID: 2127839247}
   partySize: 0
   enemyPartySize: 0
 --- !u!114 &1497962593
@@ -649,43 +605,6 @@ MonoBehaviour:
   target: {fileID: 0}
   entitySelector: {fileID: 344293680295506166}
   currentSelectType: 0
---- !u!114 &1185227275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123586430361649319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fba1f69b4b14604497250853cb65bba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  gameEvent: {fileID: 11400000, guid: 3e6a4ec192f09c246841de008e8da13b, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 70510206}
-        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: startBattle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &8123586430455366900
 GameObject:
   m_ObjectHideFlags: 0

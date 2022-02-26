@@ -1067,7 +1067,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 636359372}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: leaveBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &636359372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4266,7 +4278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_WrapAround: 1
     m_SelectOnUp: {fileID: 2031793590}
     m_SelectOnDown: {fileID: 7237478939329704360}
@@ -4692,6 +4704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b0e953772315f4c9f7ad73453d40df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSystem: {fileID: 0}
 --- !u!1001 &6974921453912286314
 PrefabInstance:
   m_ObjectHideFlags: 0

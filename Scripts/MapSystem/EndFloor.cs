@@ -5,10 +5,9 @@ using UnityEngine;
 public class EndFloor : Tile
 {
     public override Dictionary<string, bool> properties { get; set; }
-    public override int row { get; set; }
-    public override int column { get; set; }
 
-    public EndFloor(int row, int column)
+
+    public EndFloor(int row, int column, float encounterMeterChance) : base(row, column, encounterMeterChance)
     {
         properties = new Dictionary<string, bool>();
         this.properties.Add("isFloor", true);

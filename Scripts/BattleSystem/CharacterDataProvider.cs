@@ -29,6 +29,17 @@ public class CharacterDataProvider : SerializedScriptableObject
     {
         return classLibrary[type];
     }
+
+    public CharacterDataEditor getPartyMemberData(string charName)
+    {
+        CharacterDataEditor character = playerEntityLibrary.Find(s => s.characterName == charName);
+        if (character == null)
+        {
+            Debug.LogError("Couldn't find character with name: " + charName);
+            return null;
+        }
+        return character;
+    }
 }
 
 public enum EnemyType

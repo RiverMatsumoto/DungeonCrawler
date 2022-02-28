@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackCommand : BattleCommand
 {
-    public AttackCommand()
+    public AttackCommand(BattleEntity commandUser, BattleEntity target) : base(commandUser, target)
     {
-        /*
-        TODO add functionality to the turn commands and find a way to effectively let them communicate with everything
-        TODO Make the turncommands attach to the battle entity and let the battle entity deal with multipliers and attack command
-        TODO add a base attack or current attack value to turn command or battle entity
-        */
     }
 
-    public override void executeCommand()
+    public override void execute()
     {
-        Debug.Log(battleEntity.characterData.characterName + " attacked " + target.characterData.characterName);
+        // TODO integrate animations and battle phase speed for commands executed
+        Attack attack = new Attack();
+        // [STR + weaponATK] * Pwr% * PhyAtkBoost%
+        // prefix "a" denotes attacker, prefix "d" denotes defender
+        BattleCalculator calc = new BattleCalculator(this);
+        CharacterData attacker = commandUser.characterData;
+        CharacterData defender = target.characterData;
+        attack.damage = attacker.attack;
+        // TODO temporary for reacting to any attack.
+        target.reactToAttack(this, attack);
+        
+        Debug.Log(commandUser.characterData.characterName 
+            + " attacked " 
+            + target.characterData.characterName
+            + " for " + attack.damage);
     }
 }

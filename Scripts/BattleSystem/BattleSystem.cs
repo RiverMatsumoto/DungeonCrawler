@@ -16,6 +16,7 @@ public class BattleSystem : SerializedMonoBehaviour
     public ChooseRandomEncounter chooseRandomEncounter;
     public Camera battleCamera;
     public Canvas playerUI;
+    public BattleUI battleUI;
     public int partySize;
     public int enemyPartySize;
     private bool playerTurn;
@@ -28,15 +29,21 @@ public class BattleSystem : SerializedMonoBehaviour
 
     public void startBattlePhase()
     {
-        // startBattlePhaseEvent.raise();
-        BattleEventHandler.broadcastBattleStarted();
+        battleUI.disableCommandButtons();
+        // calculate the order of each command.
+        // Call each command and execute() while player hasn't won or lost
+        // enable intended action phase again
+    }
+
+    public void startIntendedActionPhase()
+    {
+        battleUI.enableCommandButtons();
     }
 
     public void AddIntendedBattleCommand(BattleCommand battleCommand, BattleEntity battleEntity)
     {
         // TODO Add the turn command to the battleCommand list and check that the turn is over
         intendedCommands.Push(battleCommand);
-        
     }
 
     public void startBattle()
@@ -45,10 +52,9 @@ public class BattleSystem : SerializedMonoBehaviour
         enemyParty = partyFactory.createEnemyParty(EntityPartyType.B1_1);
         playerParty = partyFactory.createPlayerParty();
         addPartiesAsChildren();
-        //adjust the enemy position
+        //adjust the position of the characters
         adjustEnemyPositions();
-        // adjustPlayerPositions();
-        testAdjustPlayerPositions();
+        adjustPlayerUI();
     }
 
     public void leaveBattle()
@@ -90,37 +96,12 @@ public class BattleSystem : SerializedMonoBehaviour
         enemyParty.getBattleEntity(0).characterData.health -= 10;
     }
 
-    private void testAdjustPlayerPositions()
+    private void adjustPlayerUI()
     {
         // consts, horizontal spacing is 0.32F for 3 players, -0.16 for 2 players, 0 for 1 Vertical is 0.37F
-        const float BACK_ROW_VERTICAL_OFFSET = -0.5F;
-        const float FRONT_ROW_VERTICAL_OFFSET = -0.37F;
-        float playerSpacing = 0.32F;
-        int frontCounter = 0;
-        int backCounter = 0;
-        Vector3 backRowPlacingStart = new Vector3(-(((playerParty.numBackRow - 1F) / 2F) * playerSpacing), BACK_ROW_VERTICAL_OFFSET, 1F);
-        Vector3 frontRowPlacingStart = new Vector3(-(((playerParty.numFrontRow - 1F) / 2F) * playerSpacing), FRONT_ROW_VERTICAL_OFFSET, 1F);
-        for (int i = 0; i < playerParty.partyCapacity; i++)
-        {
-            BattleEntity entity = playerParty.getBattleEntity(i);
-            if (entity == null) continue;
-            if (entity.isBackRow)
-            {
-                entity.transform.localPosition = backRowPlacingStart + new Vector3(backCounter++ * playerSpacing, 0, 0);
-            }
-            else
-            {
-                entity.transform.localPosition = frontRowPlacingStart + new Vector3(frontCounter++ * playerSpacing, 0, 0);
-            }
-        }
-    }
-
-    private void adjustPlayerPositions()
-    {
-        // consts, horizontal spacing is 0.32F for 3 players, -0.16 for 2 players, 0 for 1 Vertical is 0.37F
-        const float BACK_ROW_VERTICAL_OFFSET = -0.5F;
-        const float FRONT_ROW_VERTICAL_OFFSET = -0.37F;
-        float playerSpacing = 0.32F;
+        const float BACK_ROW_VERTICAL_OFFSET = -335F;
+        const float FRONT_ROW_VERTICAL_OFFSET = -245F;
+        float playerSpacing = 220F;
         int frontCounter = 0;
         int backCounter = 0;
         Vector3 backRowPlacingStart = new Vector3(-(((playerParty.numBackRow - 1F) / 2F) * playerSpacing), BACK_ROW_VERTICAL_OFFSET, 1F);

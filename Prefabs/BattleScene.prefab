@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1232936831}
   - component: {fileID: 1232936832}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: EnemyParty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,15 +133,15 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2127839247}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!225 &2105902728
 CanvasGroup:
@@ -587,6 +587,8 @@ MonoBehaviour:
   overworldData: {fileID: 11400000, guid: e62cae367edf2c94c9e6979f4312c909, type: 2}
   chooseRandomEncounter: {fileID: 11400000, guid: 461de1e045b94a64791d1281d4e89f65, type: 2}
   battleCamera: {fileID: 2127839247}
+  playerUI: {fileID: 2105902727}
+  battleUI: {fileID: 0}
   partySize: 0
   enemyPartySize: 0
 --- !u!114 &1497962593

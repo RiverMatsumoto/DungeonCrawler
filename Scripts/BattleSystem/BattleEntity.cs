@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer))]
 public class BattleEntity : SerializedMonoBehaviour
 {
+    private delegate void wasAttackedEvent(int damage);
+    private event wasAttackedEvent wasAttacked;
     // TODO add loot table, items, and item system
     public BattleEntityParty party;
     public CharacterData characterData;
@@ -21,9 +23,10 @@ public class BattleEntity : SerializedMonoBehaviour
     public int speedMultiplier;
     public bool isBackRow;
 
-    public void reactToCommand(BattleCommand command)
+    public void reactToAttack(BattleCommand command, Attack attack)
     {
-        
+        // TODO temporary. Might create "wasAttacked" event or let commands listen to the wasAttacked event
+        wasAttacked.Invoke(attack.damage);
     }
 
 

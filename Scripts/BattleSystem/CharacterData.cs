@@ -13,6 +13,10 @@ public class CharacterData
     public AttackType defaultAttackType;
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
+    public int weaponAttack;
+    public int attack { get => weaponAttack + strength; }
+    public int armorDefense;
+
     [SerializeField, PropertyRange(0,10000000)]
     public int maxHealth 
     {
@@ -30,7 +34,7 @@ public class CharacterData
     [SerializeField, PropertyRange(0,999)]
     public int defense 
     { 
-        get => vitality + bonusVitality;
+        get => vitality + bonusVitality + armorDefense;
     }
     [SerializeField, PropertyRange(0,999)]
     public int magicDefense 
@@ -172,7 +176,8 @@ public class CharacterData
         health = data.maxHealth;
         magicPoints = data.maxTalentPoints;
 
-
+        weaponAttack = 0;
+        armorDefense = 0;
         bonusMaxHealth = 0;
         bonusMaxTalentPoints = 0;
         bonusStrength = 0;

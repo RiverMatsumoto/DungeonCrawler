@@ -5,18 +5,29 @@ using UnityEngine;
 public class BattleUI : MonoBehaviour
 {
     public GameObject commandButtons;
-    public void selectingEnemy()
+
+    public void selectEnemy()
+    {
+        disableCommandButtons();
+    }
+
+    public void enableCommandButtons()
+    {
+        commandButtons.SetActive(true);
+    }
+
+    public void disableCommandButtons()
     {
         commandButtons.SetActive(false);
     }
 
     private void OnEnable()
     {
-        EntitySelectSystem.selectingEnemy += selectingEnemy;
+        EntitySelectSystem.selectingEnemy += selectEnemy;
     }
 
     private void OnDisable()
     {
-        EntitySelectSystem.selectingEnemy -= selectingEnemy;
+        EntitySelectSystem.selectingEnemy -= selectEnemy;
     }
 }

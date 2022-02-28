@@ -13,7 +13,7 @@ public class CharacterDataProvider : SerializedScriptableObject
     public Dictionary<ClassTypeEnum, ClassType> classLibrary;
     [PropertySpace(16)]
     public List<CharacterDataEditor> playerEntityLibrary;
-    [PropertySpace(16)]
+    [PropertySpace(16), SerializeField]
     public BattleEntityParty currentPlayerParty;
     public CharacterDataEditor getEntityDataFor(EnemyType type)
     {

@@ -1,13 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public abstract class BattleCommand
 {
-    public BattleEntity battleEntity;
-    public BattleEntity target;
-    public List<float> physicalMultipliers;
-    public List<float> elementalMultipliers;
+    // Formula: [STR + weaponATK] * Pwr% * PhyAtkBoost% 
+    protected BattleEntity commandUser;
+    protected BattleEntity target;
+    protected List<float> physAtkBoost;
+    protected List<float> elemAtkBoost;
 
-    public abstract void executeCommand();
+
+    public BattleCommand(BattleEntity commandUser, BattleEntity target)
+    {
+        this.commandUser = commandUser;
+        this.target = target;
+        physAtkBoost = new List<float>();
+        elemAtkBoost = new List<float>();
+    }
+
+    public abstract void execute();
 }

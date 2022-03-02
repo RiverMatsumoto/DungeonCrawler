@@ -16,7 +16,7 @@ public class PlayerUI : MonoBehaviour
         healthBar.maxValue = entity.characterData.maxHealth;
         magicBar.maxValue = entity.characterData.maxTalentPoints;
         //not actually percent, but just a value. The default min max is 0-100
-        healthBar.currentPercent = entity.characterData.health;
-        magicBar.currentPercent = entity.characterData.magicPoints;
+        healthBar.currentPercent = entity.characterData.Health;
+        magicBar.currentPercent = entity.characterData.TalentPoints;
     }
 }

@@ -13,6 +13,6 @@ public class EnemyUI : MonoBehaviour
         enemyName.text = entity.characterData.characterName;
         healthBar.maxValue = entity.characterData.maxHealth;
         //not actually percent, but just a value. The default min max is 0-100
-        healthBar.currentPercent = entity.characterData.health;
+        healthBar.currentPercent = entity.characterData.Health;
     }
 }

@@ -10,12 +10,12 @@ public abstract class Armor : Item, IEquipable
     public void equip(BattleEntity e)
     {
         // add armor's stats to battle entity
-        e.characterData.AddBonusStatsTo(StatsType.VITALITY, defense);
+        e.characterData.armorDefense = defense;
     }
     
     public void unequip(BattleEntity e)
     {
-        e.characterData.SubtractBonusStatsFrom(StatsType.VITALITY, defense);
+        e.characterData.armorDefense = 0;
     }
 }
 

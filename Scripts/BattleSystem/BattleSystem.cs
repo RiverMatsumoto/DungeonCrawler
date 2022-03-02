@@ -93,7 +93,7 @@ public class BattleSystem : SerializedMonoBehaviour
 
     public void EnemyAttacked()
     {
-        enemyParty.getBattleEntity(0).characterData.health -= 10;
+        enemyParty.getBattleEntity(0).characterData.Health -= 10;
     }
 
     private void adjustPlayerUI()

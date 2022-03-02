@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 
 public class CharacterData
 {
@@ -13,24 +12,54 @@ public class CharacterData
     public AttackType defaultAttackType;
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
-    public int weaponAttack;
+    public int weaponAttack { get; set; }
     public int attack { get => weaponAttack + strength; }
-    public int armorDefense;
+    public int armorDefense { get; set; }
 
     [SerializeField, PropertyRange(0,10000000)]
     public int maxHealth 
     {
         get => baseMaxHealth + bonusMaxHealth;
     }
-    [SerializeField, PropertyRange(0,10000000)]
-    public int health { get; set; }
+    [SerializeField, PropertyRange(0, 10000000)]
+    private int health;
+    public int Health 
+    {
+        get { return health; }
+        set
+        {
+            if (health + value > maxHealth)
+            {
+                health = maxHealth;
+            }
+            else
+            {
+                health += value;
+            }
+        } 
+    }
     [SerializeField, PropertyRange(0,999)]
     public int maxTalentPoints 
     {
         get => baseMaxTalentPoints + bonusMaxTalentPoints;
     }
-    [SerializeField, PropertyRange(0,999)]
-    public int magicPoints { get; set; }
+    [SerializeField, PropertyRange(0, 999)]
+    private int talentPoints;
+    public int TalentPoints 
+    {
+        get { return talentPoints; }
+        set
+        {
+            if (talentPoints + value > maxTalentPoints)
+            {
+                talentPoints = maxTalentPoints;
+            }
+            else
+            {
+                talentPoints += value;
+            }
+        }
+    }
     [SerializeField, PropertyRange(0,999)]
     public int defense 
     { 
@@ -174,7 +203,7 @@ public class CharacterData
             baseLuck = data.classType.GetBaseStats(StatsType.LUCK, data.level);
         }
         health = data.maxHealth;
-        magicPoints = data.maxTalentPoints;
+        talentPoints = data.maxTalentPoints;
 
         weaponAttack = 0;
         armorDefense = 0;

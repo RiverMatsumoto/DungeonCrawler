@@ -340,8 +340,8 @@ MonoBehaviour:
   characterName: Groundhog
   description: 
   sprite: {fileID: 21300000, guid: 52c8bc6eaa2d6d446b574df5d1839485, type: 3}
-  classType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
-  subclassType: {fileID: 11400000, guid: 62fc66dad60759a40877e5b09582a960, type: 2}
+  classType: {fileID: 0}
+  subclassType: {fileID: 0}
   currentStatusEffect: 0
   defaultAttacktype: 0
   isEnemy: 1

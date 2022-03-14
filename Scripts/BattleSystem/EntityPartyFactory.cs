@@ -19,10 +19,7 @@ public class EntityPartyFactory : SerializedScriptableObject
         // populate battle entity array with enemies
         for (int i = 0; i < data.party.Length; i++)
         {
-            if (data.party[i].enemyType == EnemyType.Null)
-            {
-                battleEntities[i] = null;
-            }
+            if (data.party[i].enemyType == EnemyType.Null) battleEntities[i] = null;
             else
             {
                 battleEntities[i] = entityFactory.createEnemy(data.party[i].enemyType);
@@ -42,7 +39,7 @@ public class EntityPartyFactory : SerializedScriptableObject
     {
         // TODO MAKE MORE ROBUST SEARCH SYSTEM. FIGURE OUT THE DATA STRUCTURE OR SYSTEM FOR STORING AND ACCESSING PLAYERS
         BattleEntity[] playerEntities = new BattleEntity[MAX_PARTY_MEMBERS];
-        BattleEntityParty playerParty = new BattleEntityParty(true, EntityPartyType.Player);
+        BattleEntityParty playerParty = new BattleEntityParty(false, EntityPartyType.Player);
         playerEntities[0] = entityFactory.createPlayer(dataProvider.getPartyMemberData("Johnny"));
         playerEntities[1] = entityFactory.createPlayer(dataProvider.getPartyMemberData("Jotaro"));
         playerEntities[2] = entityFactory.createPlayer(dataProvider.getPartyMemberData("Joseph"));

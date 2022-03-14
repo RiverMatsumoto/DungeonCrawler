@@ -23,11 +23,11 @@ public class BattleUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EntitySelectSystem.selectingEnemy += selectEnemy;
+        PlayerSelectSystem.startSelectPlayer += disableCommandButtons;
     }
 
     private void OnDisable()
     {
-        EntitySelectSystem.selectingEnemy -= selectEnemy;
+        PlayerSelectSystem.startSelectPlayer -= disableCommandButtons;
     }
 }

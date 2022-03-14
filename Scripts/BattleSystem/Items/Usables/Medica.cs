@@ -13,8 +13,14 @@ public class Medica : Usable
     {
         // select player
         // listen for player selected event
+        PlayerSelectSystem.instance.StartSelectPlayer();
         PlayerSelectSystem.selectPlayer += OnSelectPlayer;
         PlayerSelectSystem.selectPlayerCancel += OnSelectPlayerCancel;
+    }
+
+    public void useInMenu()
+    {
+
     }
 
     public void OnSelectPlayer(BattleEntity e)

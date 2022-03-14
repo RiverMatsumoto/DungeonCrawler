@@ -1,15 +1,26 @@
 public class BattleCalculator
 {
-    private BattleCommand command;
-
-    public BattleCalculator(BattleCommand command)
+    public int CalculatePhysDamageTaken(Attack attack, BattleCommand command)
     {
-        this.command = command;
+        CharacterData data = command.target.characterData;
+        float defense = data.defense;
+        float damage = attack.damage;
+        foreach (float defMultiplier in data.physAtkMultipliers)
+        {
+            defense *= defMultiplier;
+        }
+        
+        return (int) damage;
     }
 
-    public int CalculateDamageTaken(Attack attack)
+    public int CalculateTecDamageTaken(Attack attack, BattleCommand command)
     {
-        
-        return 0;
+        CharacterData data = command.target.characterData;
+        float damage = (data.tecDefense) * data.tecDefense;
+        foreach (float defMultiplier in data.tecDefMultipliers)
+        {
+            damage *= defMultiplier;
+        }
+        return (int) damage;
     }
 }

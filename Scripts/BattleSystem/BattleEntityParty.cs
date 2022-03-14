@@ -23,7 +23,7 @@ public class BattleEntityParty
             return counter;
         }
     }
-    public bool isEnemy;
+    public bool isEnemy { get; set; }
     public int numFrontRow
     {
         get
@@ -68,6 +68,13 @@ public class BattleEntityParty
             if (partyPosition > 2)
             {
                 battleEntity.isBackRow = true;
+                battleEntity.generalUI.sortingOrder = 0;
+                if (isEnemy) battleEntity.transform.localScale = new Vector3(3, 3, 3);
+            }
+            else
+            {
+                battleEntity.isBackRow = false;
+                battleEntity.generalUI.sortingOrder = 10;
             }
         }
         if (!wasInserted)
@@ -76,15 +83,41 @@ public class BattleEntityParty
         }
     }
 
-    public bool isFrontRow(int partyIndex)
+    public bool isFrontRow(int partyIndex) => partyIndex <= 2;
+
+    public void EnableSelecting()
     {
-        if (partyIndex <= 2)
+        foreach (BattleEntity e in party)
         {
-            return true;
+            if (e == null) continue;
+            e.button.enabled = true;
         }
-        else
+    }
+
+    public void DisableSelecting()
+    {
+        foreach (BattleEntity e in party)
         {
-            return false;
+            if (e == null) continue;
+            e.button.enabled = false;
+        }
+    }
+
+    public void showParty()
+    {
+        foreach (BattleEntity e in party)
+        {
+            if (e == null) continue;
+            e.gameObject.SetActive(true);
+        }
+    }
+
+    public void hideParty()
+    {
+        foreach (BattleEntity e in party)
+        {
+            if (e == null) continue;
+            e.gameObject.SetActive(false);
         }
     }
 
@@ -92,7 +125,10 @@ public class BattleEntityParty
     {
         for (int i = 0; i < party.Length; i++)
         {
-            party[i] = null;
+            if (party[i] != null)
+            {
+                party[i].onDeath();
+            }
         }
     }
 
@@ -109,14 +145,5 @@ public class BattleEntityParty
         }
     }
 
-    private bool isEmptyPosition(int position)
-    {
-        if (party[position] == null)
-        {
-            return true;
-        }
-        return false;
-    }
-
-
+    private bool isEmptyPosition(int position) => party[position] == null;
 }

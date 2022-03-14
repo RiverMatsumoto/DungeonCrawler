@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ce1974cc26af44ea3a3c1a27a57f24, type: 3}
-  m_Name: None
+  m_Script: {fileID: 11500000, guid: 80b2f3b58035a7746badf70113e84349, type: 3}
+  m_Name: EmptyClass
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,13 +20,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  type: 0
-  baseMaxHealth: 
-  baseMaxTalentPoints: 
-  baseStrength: 
-  baseVitality: 
-  baseWisdom: 
-  baseAgility: 
-  baseTech: 
-  baseLuck: 
+    SerializationNodes:
+    - Name: type
+      Entry: 3
+      Data: 0

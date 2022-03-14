@@ -343,6 +343,7 @@ MonoBehaviour:
   classType: {fileID: 0}
   subclassType: {fileID: 0}
   currentStatusEffect: 0
+  defaultAttacktype: 0
   isEnemy: 0
   level: 0
   maxHealth: 196

@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Michsky.UI.ModernUIPack;
+using Sirenix.OdinInspector;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -8,8 +10,15 @@ public class PlayerUI : MonoBehaviour
     public TMP_Text characterName;
     public ProgressBar healthBar;
     public ProgressBar magicBar;
+    public Image background;
 
+    [Button]
+    public void AddHealth()
+    {
+        healthBar.currentPercent = 30;
+    }
 
+    [Button]
     public void UpdateUI()
     {
         characterName.text = entity.characterData.characterName;

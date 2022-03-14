@@ -13,7 +13,36 @@ public class CharacterData
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
     public int weaponAttack { get; set; }
-    public int attack { get => weaponAttack + strength; }
+    public int attack 
+    { 
+        get
+        {
+            int atk = weaponAttack + strength;
+            float finalMultiplier = 1;
+            foreach (float atkMultiplier in physAtkMultipliers) 
+            {
+                finalMultiplier *= atkMultiplier;
+            }
+            return (int) (atk * finalMultiplier); 
+        } 
+    }
+    public int tecAttack
+    {
+        get
+        {
+            int tecAtk = (int)(tech * 1.5F);
+            float finalMultiplier = 1;
+            foreach (float multiplier in tecAtkMultipliers)
+            {
+                finalMultiplier *= multiplier;
+            }
+            return (int)(tecAtk * finalMultiplier);
+        }
+    }
+    public List<float> physAtkMultipliers { get; set; }
+    public List<float> tecAtkMultipliers { get; set; }
+    public List<float> physDefMultipliers { get; set; }
+    public List<float> tecDefMultipliers { get; set; }
     public int armorDefense { get; set; }
 
     [SerializeField, PropertyRange(0,10000000)]
@@ -28,13 +57,13 @@ public class CharacterData
         get { return health; }
         set
         {
-            if (health + value > maxHealth)
+            if (value > maxHealth)
             {
                 health = maxHealth;
             }
             else
             {
-                health += value;
+                health = value;
             }
         } 
     }
@@ -63,12 +92,30 @@ public class CharacterData
     [SerializeField, PropertyRange(0,999)]
     public int defense 
     { 
-        get => vitality + bonusVitality + armorDefense;
+        get
+        {
+            int def = vitality + armorDefense;
+            float finalMultiplier = 1;
+            foreach (float multiplier in physDefMultipliers)
+            {
+                finalMultiplier *= multiplier;
+            }
+            return (int)(def * finalMultiplier);
+        }
     }
     [SerializeField, PropertyRange(0,999)]
-    public int magicDefense 
+    public int tecDefense 
     { 
-        get => wisdom + bonusWisdom; 
+        get
+        {
+            int tecDef = wisdom + (int)(armorDefense * 0.8);
+            float finalMultiplier = 1;
+            foreach (float multiplier in tecDefMultipliers)
+            {
+                finalMultiplier *= multiplier;
+            }
+            return (int)(tecDef * finalMultiplier);
+        }
     }
     [SerializeField, PropertyRange(0,100)]
     public int strength
@@ -180,7 +227,7 @@ public class CharacterData
         currentStatusEffect = data.currentStatusEffect;
         isEnemy = data.isEnemy;
 
-        if (data.classType.type == ClassTypeEnum.ENEMY)
+        if (data.classType == null)
         {
             baseMaxHealth = data.maxHealth;
             baseMaxTalentPoints = data.maxTalentPoints;

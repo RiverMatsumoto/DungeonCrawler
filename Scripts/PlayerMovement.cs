@@ -16,7 +16,6 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
     public float MOVE_TIME = 0.3F;
     public float MOVE_COOLDOWN_TIME = 0.02F;
     public float MOVE_DISTANCE = 5;
-    public PlayerControls controls;
     public PlayerInput pControls;
     private Vector2 input;
     private float turnInput;

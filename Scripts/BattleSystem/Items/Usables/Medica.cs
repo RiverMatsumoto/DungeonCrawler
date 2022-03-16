@@ -13,9 +13,9 @@ public class Medica : Usable
     {
         // select player
         // listen for player selected event
-        PlayerSelectSystem.instance.StartSelectPlayer();
-        PlayerSelectSystem.selectPlayer += OnSelectPlayer;
-        PlayerSelectSystem.selectPlayerCancel += OnSelectPlayerCancel;
+        PlayerSelectSystem.Instance.StartSelectPlayer();
+        PlayerSelectSystem.Instance._selectPlayer += OnSelectPlayer;
+        PlayerSelectSystem.Instance._cancelSelectPlayer += OnSelectPlayerCancel;
     }
 
     public void useInMenu()
@@ -39,7 +39,7 @@ public class Medica : Usable
 
     private void DeregisterPlayerSelectEvents()
     {
-        PlayerSelectSystem.selectPlayer -= OnSelectPlayer;
-        PlayerSelectSystem.selectPlayerCancel -= OnSelectPlayerCancel;
+        PlayerSelectSystem.Instance._selectPlayer -= OnSelectPlayer;
+        PlayerSelectSystem.Instance._cancelSelectPlayer -= OnSelectPlayerCancel;
     }
 }

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class EncounterSystem : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class EncounterSystem : MonoBehaviour
     public StepCounter stepCounter;
 
 
+    [Button]
     public void encounterStep()
     {
         overworldData.currentSteps++;

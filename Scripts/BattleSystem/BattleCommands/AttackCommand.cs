@@ -4,7 +4,7 @@ public class AttackCommand : BattleCommand
 {
     public AttackCommand(BattleEntity commandUser, BattleEntity target) : base(commandUser, target)
     {
-        
+
     }
 
     public override void execute()
@@ -19,7 +19,7 @@ public class AttackCommand : BattleCommand
         attack.damage = attacker.attack;
         attack.type = attacker.defaultAttackType;
         // TODO temporary for reacting to any attack.
-        target.reactToAttack(this, attack);
+        target.receiveAttack(this, attack);
         
         Debug.Log(
             commandUser.characterData.characterName 

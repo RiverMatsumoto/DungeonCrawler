@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public abstract class BattleCommand
 {
     // Formula: [STR + weaponATK] * Pwr% * PhyAtkBoost% 

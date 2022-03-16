@@ -1,25 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using System;
 
-[System.Serializable]
 public class BattleEntityParty
 {
     public EntityPartyType partyType;
-    [SerializeField]
-    private BattleEntity[] party;
+    [ShowInInspector]
+    public BattleEntity[] party { get; }
     public int partyCapacity { get => party.Length; }
-    public int numEntities
+    public int size
     {
         get
         {
             int counter = 0;
             for (var i = 0; i < party.Length; i++)
-            {
-                if (party[i] != null) counter++;
-            }
+                if (party[i] != null)
+                    counter++;
             return counter;
         }
     }
@@ -44,7 +39,18 @@ public class BattleEntityParty
     {
         get
         {
-            return numEntities - numFrontRow;
+            return size - numFrontRow;
+        }
+    }
+    public bool isEmpty
+    {
+        get
+        {
+            if (party == null) return true;
+            bool empty = true;
+            for (var i = 0; i < party.Length; i++) 
+                if (party[i] == null) return false;
+            return empty;
         }
     }
 
@@ -136,7 +142,6 @@ public class BattleEntityParty
     {
         if (party[index] == null)
         {
-            Debug.Log("Tried to access a null party member at party position: " + index);
             return null;
         }
         else
@@ -146,4 +151,68 @@ public class BattleEntityParty
     }
 
     private bool isEmptyPosition(int position) => party[position] == null;
+
+    public PartyIterator GetIterator() => new PartyIterator(party);
+
+}
+public class PartyIterator
+{
+    public BattleEntity[] entities;
+    [ShowInInspector]
+    private int position;
+    public PartyIterator(BattleEntity[] entities)
+    {
+        this.entities = entities;
+        position = -1;
+    }
+    
+    public bool HasNext()
+    {
+        int i = position;
+        while (i < entities.Length - 1)
+        {
+            if (entities[++i] != null)
+                return true;
+        }
+        return false;
+    }
+
+    public bool HasPrev()
+    {
+        int i = position;
+        while (i > -1)
+        {
+            if (entities[i--] != null)
+                return true;
+        }
+        return false;
+    }
+
+    public BattleEntity Next()
+    {
+        if (!HasNext())
+        {
+            Debug.LogError("Try to get next nonexistant battle entity in the party");
+            return null;
+        }
+        while (++position < entities.Length)
+        {
+            if (entities[position] != null) { return entities[position]; }
+        }
+        return null;
+    }
+
+    public BattleEntity Prev()
+    {
+        if (!HasPrev())
+        {
+            Debug.LogError("Try to get previous nonexistant battle entity in the party");
+            return null;
+        }
+        while (position-- > -1)
+        {
+            if (entities[position] != null) { return entities[position]; }
+        }
+        return null;
+    }
 }

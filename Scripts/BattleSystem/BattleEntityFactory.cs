@@ -26,6 +26,7 @@ public class BattleEntityFactory : SerializedScriptableObject
         //TODO CREATE NEW PLAYERS BY READING SCRIPTABLE OBJECTS DATA CREATED BY PLAYER FROM GUILD HALL. FOR NOW JUST CREATE NEW ENTITIES
         var player = GameObject.Instantiate<BattleEntity>(battleEntity);
         player.setCharacterData(data);
+        player.name = "Name: " + player.characterData.characterName;
         return player;
     }
 

@@ -34,17 +34,17 @@ public class CharacterDataEditor : SerializedScriptableObject
     // public int talentPoints;
     // [ProgressBar(0,999)]
     // public int defense, magicDefense;
-    [ProgressBar(0,100, 0.85F,0.15F,0.1F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 0.85F,0.15F,0.1F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int strength; //, vitality, wisdom, agility, tech, luck;
-    [ProgressBar(0,100, 1F,0.5F,0F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 1F,0.5F,0F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int vitality;
-    [ProgressBar(0,100, 0.5F,0.1F,1), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 0.5F,0.1F,1), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int wisdom;
-    [ProgressBar(0,100, 0.9F,0.2F,0.9F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 0.9F,0.2F,0.9F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int agility;
-    [ProgressBar(0,100, 0.1F,0.4F,1F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 0.1F,0.4F,1F), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int tech;
-    [ProgressBar(0,100, 0,0.9F,0), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
+    [ProgressBar(0,300, 0,0.9F,0), VerticalGroup("Stats/Split/Right"), LabelText(""), PropertyOrder(2), OnValueChanged("CopyFromStats")]
     public int luck;
     #endregion
     #region Odin inspector variables

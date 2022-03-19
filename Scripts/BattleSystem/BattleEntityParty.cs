@@ -209,9 +209,10 @@ public class PartyIterator
             Debug.LogError("Try to get previous nonexistant battle entity in the party");
             return null;
         }
-        while (position-- > -1)
+        while (position > -1)
         {
-            if (entities[position] != null) { return entities[position]; }
+            if (entities[position--] != null) 
+                return entities[position];
         }
         return null;
     }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class BattleEntity : SerializedMonoBehaviour
 {
+    #region Events
     private delegate void wasAttackedEvent(int damage);
     private event wasAttackedEvent wasAttacked;
+    #endregion
     // TODO add loot table, items, and item system
     public BattleEntityParty party;
     public CharacterData characterData;
@@ -41,9 +43,9 @@ public class BattleEntity : SerializedMonoBehaviour
 
     }
 
-    public void HighlightSelf()
+    public void setHighlight(bool set)
     {
-        
+        playerUI.setHighlight(set);
     }
 
 
@@ -57,7 +59,7 @@ public class BattleEntity : SerializedMonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void setCharacterData(CharacterDataEditor data)
+    public void Initialize(CharacterDataEditor data)
     {
         button.enabled = false;
 
@@ -70,10 +72,11 @@ public class BattleEntity : SerializedMonoBehaviour
             enemyUI.UpdateUI();
             button.targetGraphic = portrait;
         }
-        else
+        else // is player
         {
             Destroy(enemyUI.gameObject);
             playerUI.UpdateUI();
+            playerUI.setHighlight(false);
             portrait.enabled = false;
             button.targetGraphic = playerUI.background;
         }

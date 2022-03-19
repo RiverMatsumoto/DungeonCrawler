@@ -348,18 +348,18 @@ MonoBehaviour:
   level: 5
   maxHealth: 25
   maxTalentPoints: 94
-  strength: 6
-  vitality: 5
-  wisdom: 1
+  strength: 7
+  vitality: 10
+  wisdom: 6
   agility: 3
   tech: 1
-  luck: 1
+  luck: 4
   levelField: 5
   maxHealthField: 25
   maxTalentPointsField: 94
-  strengthField: 6
-  vitalityField: 5
-  wisdomField: 1
+  strengthField: 7
+  vitalityField: 10
+  wisdomField: 6
   agilityField: 3
   techField: 1
-  luckField: 1
+  luckField: 4

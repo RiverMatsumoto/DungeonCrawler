@@ -660,6 +660,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""dce77e3a-ae9a-4fad-940c-14d585d5c65d"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""524b6267-83c6-4ba2-9885-cdedc8a4748a"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",

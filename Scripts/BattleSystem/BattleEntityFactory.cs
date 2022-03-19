@@ -17,7 +17,7 @@ public class BattleEntityFactory : SerializedScriptableObject
     public BattleEntity createEnemy(EnemyType type)
     {
         var enemy = GameObject.Instantiate<BattleEntity>(battleEntity);
-        enemy.setCharacterData(characterDataProvider.getEntityDataFor(type));
+        enemy.Initialize(characterDataProvider.getEntityDataFor(type));
         return enemy;
     }
 
@@ -25,7 +25,7 @@ public class BattleEntityFactory : SerializedScriptableObject
     {
         //TODO CREATE NEW PLAYERS BY READING SCRIPTABLE OBJECTS DATA CREATED BY PLAYER FROM GUILD HALL. FOR NOW JUST CREATE NEW ENTITIES
         var player = GameObject.Instantiate<BattleEntity>(battleEntity);
-        player.setCharacterData(data);
+        player.Initialize(data);
         player.name = "Name: " + player.characterData.characterName;
         return player;
     }

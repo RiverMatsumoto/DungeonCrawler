@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
     public TMP_Text characterName;
     public ProgressBar healthBar;
     public ProgressBar magicBar;
+    public Image highlighter;
     public Image background;
 
     [Button]
@@ -27,5 +28,10 @@ public class PlayerUI : MonoBehaviour
         //not actually percent, but just a value. The default min max is 0-100
         healthBar.currentPercent = entity.characterData.Health;
         magicBar.currentPercent = entity.characterData.TalentPoints;
+    }
+
+    public void setHighlight(bool set)
+    {
+        highlighter.gameObject.SetActive(set);
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public enum BattleOutcome { WON, LOST, ESCAPED }
 public class BattleSystem : SerializedMonoBehaviour, ISelectListener
@@ -17,11 +19,8 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
     public Camera battleCamera;
     public Canvas entityUI;
     public BattleUI battleUI;
-    public PartyIterator partyIter;
-    public PlayerSelectListener selectListener;
-    public int partySize;
-    public int enemyPartySize;
-    private bool playerTurn;
+    public PartyIterator partyIter;    public PlayerSelectListener selectListener;
+    public EventSystem eventSystem;
 
     public void startTurn()
     {
@@ -75,20 +74,33 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
     {
         if (playerParty != null) 
         {
+            GameObject party = entityUI.transform.GetChild(1).gameObject;
+            GameObject frontRow = party.transform.GetChild(0).gameObject;
+            GameObject backRow = party.transform.GetChild(1).gameObject;
             for (var i = 0; i < playerParty.partyCapacity; i++)
             {
                 BattleEntity entity = playerParty.getBattleEntity(i);
                 if (entity == null) continue;
-                entity.transform.SetParent(entityUI.transform);
+                if (entity.isBackRow)
+                    entity.transform.SetParent(backRow.transform); 
+                else
+                    entity.transform.SetParent(frontRow.transform); 
+                    
             }
         }
         if (enemyParty != null)
         {
+            GameObject party = entityUI.transform.GetChild(0).gameObject;
+            GameObject frontRow = party.transform.GetChild(0).gameObject;
+            GameObject backRow = party.transform.GetChild(1).gameObject;
             for (var i = 0; i < enemyParty.partyCapacity; i++)
             {
                 BattleEntity entity = enemyParty.getBattleEntity(i);
                 if (entity == null) continue;
-                entity.transform.SetParent(entityUI.transform);
+                if (entity.isBackRow)
+                    entity.transform.SetParent(backRow.transform); 
+                else
+                    entity.transform.SetParent(frontRow.transform); 
             }
         }
     }
@@ -162,7 +174,22 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
     {
         if (partyIter.HasNext())
         {
+            if (currentEntity != null)
+                currentEntity.setHighlight(false);
             currentEntity = partyIter.Next();
+            currentEntity.setHighlight(true);
+        }
+    }
+
+    public void prevPlayer()
+    {
+        Debug.Log("has prev: " + partyIter.HasPrev());
+        if (partyIter.HasPrev())
+        {
+            if (currentEntity != null)
+                currentEntity.setHighlight(false);
+            currentEntity = partyIter.Prev();
+            currentEntity.setHighlight(true);
         }
     }
 
@@ -207,9 +234,7 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
     {
         // Next character's turn to choose their intended action, otherwise start battle phase
         if (partyIter.HasNext())
-        {
-            currentEntity = partyIter.Next();
-        }
+            nextPlayer();
         else
         {
             Debug.Log("Should start the next turn since reached last player in party");
@@ -230,6 +255,30 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
         playerParty.DisableSelecting();
     }
     #endregion
+
+    public void OnCancel()
+    {
+        if (!overworldData.inBattle)
+            return;
+        
+        if (PlayerSelectSystem.isSelecting)
+            DefaultMenu();
+        else if (intendedCommands.Count > 0)
+        {
+            Debug.Log($"Intended commands size: {intendedCommands.Count}");
+            intendedCommands.Pop();
+            prevPlayer();
+        }
+
+    }
+
+    public void DefaultMenu()
+    {
+        Debug.Log("Default menu OnCancel");
+        PlayerSelectSystem.Instance.SelectPlayerCancel();
+        battleUI.stopSelectingEntity();
+        // Possibly other submenus to change
+    }
 
     private void Start()
     {

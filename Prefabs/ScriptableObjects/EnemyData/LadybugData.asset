@@ -345,21 +345,21 @@ MonoBehaviour:
   currentStatusEffect: 0
   defaultAttacktype: 0
   isEnemy: 1
-  level: 1
-  maxHealth: 13
+  level: 4
+  maxHealth: 24
   maxTalentPoints: 0
-  strength: 3
-  vitality: 4
-  wisdom: 0
-  agility: 2
-  tech: 1
-  luck: 1
-  levelField: 0
-  maxHealthField: 0
+  strength: 8
+  vitality: 7
+  wisdom: 5
+  agility: 5
+  tech: 4
+  luck: 4
+  levelField: 4
+  maxHealthField: 24
   maxTalentPointsField: 0
-  strengthField: 0
-  vitalityField: 0
-  wisdomField: 0
-  agilityField: 0
-  techField: 0
-  luckField: 0
+  strengthField: 8
+  vitalityField: 7
+  wisdomField: 5
+  agilityField: 5
+  techField: 4
+  luckField: 4

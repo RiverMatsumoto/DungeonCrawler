@@ -12,9 +12,11 @@ public class PlayerSelectSystem : MonoBehaviour
     public event selectPlayerEndEvent _cancelSelectPlayer;
     public delegate void selectPlayerEvent(BattleEntity e);
     public event selectPlayerEvent _selectPlayer;
+    public static bool isSelecting;
 
     public void StartSelectPlayer()
     {
+        isSelecting = true;
         if (data.inBattle)
         {
             // put cursor on party in battle
@@ -30,11 +32,13 @@ public class PlayerSelectSystem : MonoBehaviour
 
     public void SelectPlayerCancel()
     {
+        isSelecting = false;
         _cancelSelectPlayer?.Invoke();
     }
 
     public void SelectPlayer(BattleEntity e)
     {
+        isSelecting = false;
         Debug.Log("got here");
         _selectPlayer?.Invoke(e);
     }

@@ -40,4 +40,9 @@ public class EmptyClass : ClassType
     {
         return 0;
     }
+
+    public override void InitializeSpecialCharacterTraits(CharacterData data)
+    {
+        
+    }
 }

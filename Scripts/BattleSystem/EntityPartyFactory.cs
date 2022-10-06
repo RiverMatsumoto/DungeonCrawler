@@ -19,7 +19,8 @@ public class EntityPartyFactory : SerializedScriptableObject
         // populate battle entity array with enemies
         for (int i = 0; i < data.party.Length; i++)
         {
-            if (data.party[i].enemyType == EnemyType.Null) battleEntities[i] = null;
+            if (data.party[i].enemyType == EnemyType.Null) 
+                battleEntities[i] = null;
             else
             {
                 battleEntities[i] = entityFactory.createEnemy(data.party[i].enemyType);
@@ -28,6 +29,8 @@ public class EntityPartyFactory : SerializedScriptableObject
             // use the array to add the enemies to the party
             if (battleEntities[i] != null)
             {
+                if (battleEntities[i].isBackRow)
+                    battleEntities[i].GetComponent<Canvas>().sortingOrder = -10;
                 enemyParty.addBattleEntity(battleEntities[i], i);
             }
         }

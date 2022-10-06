@@ -9,15 +9,21 @@ public class CharacterData
     public Sprite sprite { get; set; }
     public StatusEffect currentStatusEffect;
     public Dictionary<AttackType, int> resistances { get; set; }
+
+    #region Equipment
     public AttackType defaultAttackType;
+    public int MAX_WEAPON_SLOTS;
+    public int MAX_ARMOR_SLOTS;
+    public Equipment equipment { get; set; }
+    #endregion
+
     // TODO MAKE THE GET PROPERTY READ BONUS AND BASE STATS INSTEAD OF ITSELF
     #region Stats
-    public int weaponAttack { get; set; }
     public int attack 
     { 
         get
         {
-            int atk = weaponAttack + strength;
+            int atk = equipment.WeaponAttack + strength;
             float finalMultiplier = 1;
             foreach (float atkMultiplier in physAtkMultipliers) 
             {
@@ -43,7 +49,6 @@ public class CharacterData
     public List<float> tecAtkMultipliers { get; set; }
     public List<float> physDefMultipliers { get; set; }
     public List<float> tecDefMultipliers { get; set; }
-    public int armorDefense { get; set; }
 
     [SerializeField, PropertyRange(0,10000000)]
     public int maxHealth 
@@ -94,7 +99,7 @@ public class CharacterData
     { 
         get
         {
-            int def = vitality + armorDefense;
+            int def = vitality + equipment.ArmorDefense;
             float finalMultiplier = 1;
             foreach (float multiplier in physDefMultipliers)
             {
@@ -108,7 +113,7 @@ public class CharacterData
     { 
         get
         {
-            int tecDef = wisdom + (int)(armorDefense * 0.8);
+            int tecDef = wisdom + (int)(equipment.ArmorDefense * 0.8);
             float finalMultiplier = 1;
             foreach (float multiplier in tecDefMultipliers)
             {
@@ -249,11 +254,10 @@ public class CharacterData
             baseTech = data.classType.GetBaseStats(StatsType.TECH, data.level);
             baseLuck = data.classType.GetBaseStats(StatsType.LUCK, data.level);
         }
+        // TODO INITALIZE EQUIPMENT SLOTS
         health = data.maxHealth;
         talentPoints = data.maxTalentPoints;
 
-        weaponAttack = 0;
-        armorDefense = 0;
         bonusMaxHealth = 0;
         bonusMaxTalentPoints = 0;
         bonusStrength = 0;
@@ -262,5 +266,10 @@ public class CharacterData
         bonusAgility= 0;
         bonusTech = 0;
         bonusLuck = 0;
+
+        // Equipment
+        equipment = new Equipment();
+        MAX_WEAPON_SLOTS = 1;
+        MAX_ARMOR_SLOTS = 3;
     }
 }

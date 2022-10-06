@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
 {
     #region Variables
-    public Vector2Int localForward { get; set; }
+    public Vector2Int localForward;
     public Vector2Int localRight;
     public Vector2Int localBack;
     public Vector2Int localLeft;
@@ -34,7 +34,7 @@ public class PlayerMovement : SerializedMonoBehaviour, IOccupiesTile
         isActionable = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (overworldData.inBattle) return;
         // read input and poll for movement. Moving has priority

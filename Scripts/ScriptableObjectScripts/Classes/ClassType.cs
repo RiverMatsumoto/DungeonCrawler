@@ -33,6 +33,8 @@ public abstract class ClassType : SerializedScriptableObject
                 return 1;
         }
     }
+
+    public abstract void InitializeSpecialCharacterTraits(CharacterData data);
     //Might use later to bake in stats
     // public ClassTypeEnum type;
     // private string className;

@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1493378381767040329}
   - component: {fileID: 1685460644770977717}
   - component: {fileID: 6488429352608605666}
-  - component: {fileID: 5681345963061577186}
+  - component: {fileID: 232490877159205585}
   m_Layer: 0
   m_Name: BattleEntity
   m_TagString: Untagged
@@ -182,7 +182,7 @@ RectTransform:
   m_GameObject: {fileID: 1085155540444078849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1094884667417913946}
@@ -191,11 +191,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 31, y: 12}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 34, y: 14}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493378381767040329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +218,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.08627451, g: 0.34901962, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.2509804, g: 0.54509807, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.5529412, b: 0.8784314, a: 1}
+    m_PressedColor: {r: 0.9529412, g: 0.27450982, b: 0.76862746, a: 1}
+    m_SelectedColor: {r: 1, g: 0.5529412, b: 0.8784314, a: 1}
     m_DisabledColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -236,7 +236,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 5626356420846299477}
+  m_TargetGraphic: {fileID: 6920628973235455794}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -265,16 +265,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 2d01050000007000610072007400790001010d00000063006800610072006100630074006500720044006100740061002f00000000011e00000043006800610072006100630074006500720044006100740061002c00200041007300730065006d0062006c0079002d004300530068006100720070000000000017010d00000062006100730065004d00610078004800650061006c00740068000000000017011300000062006100730065004d0061007800540061006c0065006e00740050006f0069006e00740073000000000017010c000000620061007300650053007400720065006e006700740068000000000017010c000000620061007300650056006900740061006c006900740079000000000017010a000000620061007300650057006900730064006f006d000000000017010b00000062006100730065004100670069006c0069007400790000000000170108000000620061007300650054006500630068000000000017010800000062006100730065004c00750063006b000000000017010e00000062006f006e00750073004d00610078004800650061006c00740068000000000017011400000062006f006e00750073004d0061007800540061006c0065006e00740050006f0069006e00740073000000000017010d00000062006f006e007500730053007400720065006e006700740068000000000017010d00000062006f006e007500730056006900740061006c006900740079000000000017010b00000062006f006e007500730057006900730064006f006d000000000017010c00000062006f006e00750073004100670069006c006900740079000000000017010900000062006f006e007500730054006500630068000000000017010900000062006f006e00750073004c00750063006b00000000001d0113000000630075007200720065006e00740053007400610074007500730045006600660065006300740000000000000000001d0111000000640065006600610075006c007400410074007400610063006b00540079007000650000000000000000001701060000006800650061006c00740068000000000017010c000000740061006c0065006e00740050006f0069006e0074007300000000002b01070000006900730045006e0065006d00790000052d011500000069006e00740065006e0064006500640042006100740074006c00650043006f006d006d0061006e00640001010d0000006c006500610072006e006500640053006b0069006c006c0073002f01000000014d000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004c00690073007400600031005b005b0042006100740074006c00650043006f006d006d0061006e0064002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c0069006200010000000600000000000000000705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: party
+      Entry: 6
+      Data: 
+    - Name: characterData
+      Entry: 7
+      Data: 0|CharacterData, Assembly-CSharp
+    - Name: baseMaxHealth
+      Entry: 3
+      Data: 0
+    - Name: baseMaxTalentPoints
+      Entry: 3
+      Data: 0
+    - Name: baseStrength
+      Entry: 3
+      Data: 0
+    - Name: baseVitality
+      Entry: 3
+      Data: 0
+    - Name: baseWisdom
+      Entry: 3
+      Data: 0
+    - Name: baseAgility
+      Entry: 3
+      Data: 0
+    - Name: baseTech
+      Entry: 3
+      Data: 0
+    - Name: baseLuck
+      Entry: 3
+      Data: 0
+    - Name: bonusMaxHealth
+      Entry: 3
+      Data: 0
+    - Name: bonusMaxTalentPoints
+      Entry: 3
+      Data: 0
+    - Name: bonusStrength
+      Entry: 3
+      Data: 0
+    - Name: bonusVitality
+      Entry: 3
+      Data: 0
+    - Name: bonusWisdom
+      Entry: 3
+      Data: 0
+    - Name: bonusAgility
+      Entry: 3
+      Data: 0
+    - Name: bonusTech
+      Entry: 3
+      Data: 0
+    - Name: bonusLuck
+      Entry: 3
+      Data: 0
+    - Name: currentStatusEffect
+      Entry: 3
+      Data: 0
+    - Name: defaultAttackType
+      Entry: 3
+      Data: 0
+    - Name: MAX_WEAPON_SLOTS
+      Entry: 3
+      Data: 0
+    - Name: MAX_ARMOR_SLOTS
+      Entry: 3
+      Data: 0
+    - Name: health
+      Entry: 3
+      Data: 0
+    - Name: talentPoints
+      Entry: 3
+      Data: 0
+    - Name: isEnemy
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: intendedBattleCommand
+      Entry: 6
+      Data: 
+    - Name: learnedSkills
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[BattleCommand, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   target: {fileID: 0}
-  generalUI: {fileID: 5681345963061577186}
+  generalUI: {fileID: 232490877159205585}
   playerUI: {fileID: 7569791356126559430}
   enemyUI: {fileID: 4146756614110746468}
   sprite: {fileID: 0}
@@ -291,7 +385,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085155540444078849}
   m_CullTransparentMesh: 1
---- !u!223 &5681345963061577186
+--- !u!223 &232490877159205585
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -751,7 +845,7 @@ RectTransform:
   m_GameObject: {fileID: 3084495080946307442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.27, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4928364977844065764}
@@ -760,7 +854,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 18.5}
-  m_SizeDelta: {x: 15, y: 5}
+  m_SizeDelta: {x: 13, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5253875080703983330
 CanvasRenderer:
@@ -792,7 +886,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 2296014548492901672, guid: 805554e92cefbfa4b8c9091f794e8a5e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1702,7 +1796,7 @@ RectTransform:
   m_GameObject: {fileID: 7148076022453884605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.484, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3798460872567195338}
@@ -1743,13 +1837,13 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 52c8bc6eaa2d6d446b574df5d1839485, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 1
+  m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8219371062806533694
 GameObject:

@@ -19,8 +19,9 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
     public Camera battleCamera;
     public Canvas entityUI;
     public BattleUI battleUI;
-    public PartyIterator partyIter;    public PlayerSelectListener selectListener;
-    public EventSystem eventSystem;
+    public PartyIterator partyIter;
+    public CommandAnimation commandAnimation;
+
 
     public void startTurn()
     {
@@ -31,7 +32,9 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
 
     public void startBattlePhase()
     {
-        battleUI.selectEntity();
+        Debug.Log("Started battle phase");
+        intendedCommands.Pop().execute();
+        // TODO everything in thise phase
         // calculate the order of each command.
         // Call each command and execute() while player hasn't won or lost
         // enable intended action phase again
@@ -52,8 +55,8 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
         // playerParty.showParty();
         setPartyParents();
         //adjust the position of the characters
-        adjustEnemyUI();
-        adjustPlayerUI();
+        // adjustEnemyUI();
+        // adjustPlayerUI();
         startTurn();
     }
 
@@ -77,15 +80,15 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
             GameObject party = entityUI.transform.GetChild(1).gameObject;
             GameObject frontRow = party.transform.GetChild(0).gameObject;
             GameObject backRow = party.transform.GetChild(1).gameObject;
-            for (var i = 0; i < playerParty.partyCapacity; i++)
+            PartyIterator iterator = new PartyIterator(playerParty.party);
+            while (iterator.HasNext())
             {
-                BattleEntity entity = playerParty.getBattleEntity(i);
-                if (entity == null) continue;
+                BattleEntity entity = iterator.Next();
                 if (entity.isBackRow)
-                    entity.transform.SetParent(backRow.transform); 
+                    entity.transform.SetParent(backRow.transform, false); 
                 else
-                    entity.transform.SetParent(frontRow.transform); 
-                    
+                    entity.transform.SetParent(frontRow.transform, false); 
+                
             }
         }
         if (enemyParty != null)
@@ -93,14 +96,15 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
             GameObject party = entityUI.transform.GetChild(0).gameObject;
             GameObject frontRow = party.transform.GetChild(0).gameObject;
             GameObject backRow = party.transform.GetChild(1).gameObject;
-            for (var i = 0; i < enemyParty.partyCapacity; i++)
+            PartyIterator iterator = new PartyIterator(enemyParty.party);
+            while (iterator.HasNext())
             {
-                BattleEntity entity = enemyParty.getBattleEntity(i);
-                if (entity == null) continue;
+                BattleEntity entity = iterator.Next();
                 if (entity.isBackRow)
                     entity.transform.SetParent(backRow.transform); 
                 else
                     entity.transform.SetParent(frontRow.transform); 
+                
             }
         }
     }
@@ -238,7 +242,7 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
         else
         {
             Debug.Log("Should start the next turn since reached last player in party");
-            // TODO start battle phase (speed calculations, actual command execution)
+            startBattlePhase();
         }
         OnSelectPlayerCancel();
     }
@@ -278,6 +282,11 @@ public class BattleSystem : SerializedMonoBehaviour, ISelectListener
         PlayerSelectSystem.Instance.SelectPlayerCancel();
         battleUI.stopSelectingEntity();
         // Possibly other submenus to change
+    }
+
+    public void AnimateCommand(string animation, BattleEntity target)
+    {
+        commandAnimation.PlayAnimation(animation, target);
     }
 
     private void Start()

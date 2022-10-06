@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 
 [CreateAssetMenu(fileName = "OverworldData", menuName = "ScriptableObject/OverworldData", order = 4)]
 public class OverworldData : SerializedScriptableObject

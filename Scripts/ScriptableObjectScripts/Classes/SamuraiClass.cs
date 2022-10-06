@@ -42,13 +42,13 @@ public class SamuraiClass : ClassType
 
     /// <summary>
     /// Gets base vitality with formula:
-    /// f(x) = 1.69x + 4
+    /// f(x) = 1.9x + 4
     /// </summary>
     /// <param name="level">Level of entity</param>
     /// <returns>Integer value of the vitality</returns>
     public override int GetBaseVitality(int level)
     {
-        return Mathf.RoundToInt((1.69f * level) + 4);
+        return Mathf.RoundToInt((1.9f * level) + 4);
     }
 
     /// <summary>
@@ -93,5 +93,10 @@ public class SamuraiClass : ClassType
     public override int GetBaseLuck(int level)
     {
         return Mathf.RoundToInt((2.1f * level) + 4);
+    }
+
+    public override void InitializeSpecialCharacterTraits(CharacterData data)
+    {
+        // TODO Samurai can wield 2 weapons
     }
 }

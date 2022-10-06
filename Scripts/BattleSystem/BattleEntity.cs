@@ -27,18 +27,13 @@ public class BattleEntity : SerializedMonoBehaviour
     public int speedMultiplier;
     public bool isBackRow;
 
-    public virtual void receiveAttack(BattleCommand command, Attack attack)
+    public void receiveAttack(BattleCommand command, Attack attack)
     {
         // TODO temporary. Might create "wasAttacked" event or let commands listen to the wasAttacked event
         wasAttacked.Invoke(attack.damage);
     }
 
-    public virtual void receiveHeal(BattleCommand command, Attack attack)
-    {
-        Debug.Log("player is healed");
-    }
-
-    public void listenToCommand(BattleCommand command)
+    public void receiveCommand(BattleCommand command)
     {
 
     }
@@ -87,5 +82,10 @@ public class BattleEntity : SerializedMonoBehaviour
     {
         Debug.Log(characterData.Health);
         characterData.Health = 5;
+    }
+
+    public void Equip(IEquipable item)
+    {
+
     }
 }

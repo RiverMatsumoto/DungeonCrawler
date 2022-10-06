@@ -75,7 +75,7 @@ public class BattleEntityParty
             {
                 battleEntity.isBackRow = true;
                 battleEntity.generalUI.sortingOrder = 0;
-                if (isEnemy) battleEntity.transform.localScale = new Vector3(3, 3, 3);
+                if (isEnemy) battleEntity.transform.localScale = new Vector3(4, 4, 4);
             }
             else
             {
